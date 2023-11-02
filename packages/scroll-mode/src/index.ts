@@ -7,13 +7,12 @@
  */
 
 'use client';
-
 export { DualPageCoverViewModeIcon } from './DualPageCoverViewModeIcon';
 export { DualPageViewModeIcon } from './DualPageViewModeIcon';
 export { HorizontalScrollingIcon } from './HorizontalScrollingIcon';
 export { PageScrollingIcon } from './PageScrollingIcon';
-export { type SwitchScrollModeProps } from './SwitchScrollMode';
-export { type SwitchViewModeProps } from './SwitchViewMode';
+export { type SwitchScrollModeProps } from './types/SwitchScrollModeProps';
+export { type SwitchViewModeProps } from './types/SwitchViewModeProps';
 export { VerticalScrollingIcon } from './VerticalScrollingIcon';
 export { WrappedScrollingIcon } from './WrappedScrollingIcon';
 export * from './scrollModePlugin';

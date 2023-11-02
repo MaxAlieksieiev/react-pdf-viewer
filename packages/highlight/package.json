@@ -33,7 +33,8 @@
         "lib/index.js"
     ],
     "dependencies": {
-        "@react-pdf-viewer/core": "3.12.0"
+        "@react-pdf-viewer/core": "3.12.0",
+        "is-mobile": "^4.0.0"
     },
     "peerDependencies": {
         "react": ">=16.8.0",
