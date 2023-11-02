@@ -13,6 +13,7 @@ import * as React from 'react';
 import { getImageFromArea } from './getImageFromArea';
 import { HighlightState, HighlightStateType, NO_SELECTION_STATE } from './types/HighlightState';
 import { type StoreProps } from './types/StoreProps';
+import isMobile from 'is-mobile';
 
 interface Point {
     x: number;
@@ -43,18 +44,18 @@ export const ClickDrag: React.FC<{
         }
     };
 
-    const handleMouseDown = (e: MouseEvent) => {
+    const handleMouseDown = (e: MouseEvent | TouchEvent) => {
         const textLayerEle = textLayerRef.current;
         const container = containerRef.current;
-        if (!e.altKey || !textLayerEle || !container || e.button !== 0) {
+        if (!e.altKey || !textLayerEle || !container || e instanceof MouseEvent && e.button !== 0) {
             return;
         }
         e.preventDefault();
         document.body.style.cursor = 'crosshair';
         const rect = textLayerEle.getBoundingClientRect();
         const startPoint = {
-            x: e.clientX,
-            y: e.clientY,
+            x: e instanceof MouseEvent ? e.clientX : e.touches[0].clientX,
+            y: e instanceof MouseEvent ? e.clientY : e.touches[0].clientY,
         };
         startPointRef.current = startPoint;
 
@@ -70,15 +71,21 @@ export const ClickDrag: React.FC<{
         container.style.width = '0px';
 
         // Attach the listeners to `document`
-        document.addEventListener('mousemove', handleDocumentMouseMove);
-        document.addEventListener('mouseup', handleDocumentMouseUp);
+        if(e instanceof MouseEvent) {
+            document.addEventListener('mousemove', handleDocumentMouseMove);
+            document.addEventListener('mouseup', handleDocumentMouseUp);
+        } 
+        if(e instanceof TouchEvent) {
+            document.addEventListener('touchmove', handleDocumentMouseMove);
+            document.addEventListener('touchend', handleDocumentMouseUp);
+        }
 
         store.updateCurrentValue('highlightState', (currentState) =>
             Object.assign({}, currentState, { type: HighlightStateType.ClickDragging }),
         );
     };
 
-    const handleDocumentMouseMove = (e: MouseEvent) => {
+    const handleDocumentMouseMove = (e: MouseEvent | TouchEvent) => {
         const textLayerEle = textLayerRef.current;
         const container = containerRef.current;
         if (!textLayerEle || !container) {
@@ -88,8 +95,8 @@ export const ClickDrag: React.FC<{
 
         // How far the mouse has been moved
         const endPoint = {
-            x: e.clientX - startPointRef.current.x,
-            y: e.clientY - startPointRef.current.y,
+            x: (e instanceof MouseEvent ? e.clientX : e.touches[0].clientX) - startPointRef.current.x,
+            y: (e instanceof MouseEvent ? e.clientY : e.touches[0].clientY) - startPointRef.current.y,
         };
         const rect = textLayerEle.getBoundingClientRect();
 
@@ -114,7 +121,7 @@ export const ClickDrag: React.FC<{
     };
 
     // Hide the container when clicking outside
-    const handleDocumenClick = (e: MouseEvent) => {
+    const handleDocumenClick = (e: MouseEvent | TouchEvent) => {
         const container = containerRef.current;
         if (!container) {
             return;
@@ -125,10 +132,18 @@ export const ClickDrag: React.FC<{
         }
     };
 
-    const handleDocumentMouseUp = (e: MouseEvent) => {
+    const handleDocumentMouseUp = (e: MouseEvent | TouchEvent) => {
         e.preventDefault();
-        document.removeEventListener('mousemove', handleDocumentMouseMove);
-        document.removeEventListener('mouseup', handleDocumentMouseUp);
+
+        if(e instanceof MouseEvent) {
+            document.removeEventListener('mousemove', handleDocumentMouseMove);
+            document.removeEventListener('mouseup', handleDocumentMouseUp);
+        }
+
+        if(e instanceof TouchEvent){
+            document.removeEventListener('touchmove', handleDocumentMouseMove);
+            document.removeEventListener('touchend', handleDocumentMouseUp);
+        }
 
         resetCursor();
 
@@ -185,14 +200,24 @@ export const ClickDrag: React.FC<{
         if (!canvasLayerRendered || !textLayerRendered || !canvasEle || !textLayerEle) {
             return;
         }
-        textLayerEle.addEventListener('mousedown', handleMouseDown);
+
+        if(isMobile()) {
+            textLayerEle.addEventListener('touchstart', handleMouseDown);
+        } else {
+            textLayerEle.addEventListener('mousedown', handleMouseDown);
+        }
+
         const eventOptions = {
             capture: true,
         };
         document.addEventListener('keydown', handleDocumentKeyDown);
         document.addEventListener('click', handleDocumenClick, eventOptions);
         return () => {
-            textLayerEle.removeEventListener('mousedown', handleMouseDown);
+            if(isMobile()) {
+                textLayerEle.removeEventListener('touchstart', handleMouseDown)
+            } else {
+                textLayerEle.removeEventListener('mousedown', handleMouseDown);
+            }
             document.removeEventListener('click', handleDocumenClick, eventOptions);
             document.removeEventListener('keydown', handleDocumentKeyDown);
         };

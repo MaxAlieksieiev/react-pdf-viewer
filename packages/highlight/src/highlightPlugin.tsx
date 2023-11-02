@@ -31,6 +31,7 @@ import { type RenderHighlightContentProps } from './types/RenderHighlightContent
 import { type RenderHighlightTargetProps } from './types/RenderHighlightTargetProps';
 import { type RenderHighlightsProps } from './types/RenderHighlightsProps';
 import { type StoreProps } from './types/StoreProps';
+import isMobile from 'is-mobile';
 
 export interface HighlightPlugin extends Plugin {
     jumpToHighlightArea(area: HighlightArea): void;
@@ -72,8 +73,8 @@ export const highlightPlugin = (props?: HighlightPluginProps): HighlightPlugin =
         return currentSlot;
     };
 
-    const handleMouseDown = (textLayerRender: PluginOnTextLayerRender) => (e: MouseEvent) => {
-        if (store.get('trigger') === Trigger.None || e.button !== 0) {
+    const handleMouseDown = (textLayerRender: PluginOnTextLayerRender) => (e: MouseEvent | TouchEvent) => {
+        if (store.get('trigger') === Trigger.None || e instanceof MouseEvent && e.button !== 0) {
             return;
         }
 
@@ -81,8 +82,8 @@ export const highlightPlugin = (props?: HighlightPluginProps): HighlightPlugin =
         const pageRect = textLayer.getBoundingClientRect();
         const highlightState = store.get('highlightState');
         if (highlightState.type === HighlightStateType.Selected) {
-            const mouseTop = e.clientY - pageRect.top;
-            const mouseLeft = e.clientX - pageRect.left;
+            const mouseTop = (e instanceof MouseEvent ? e.clientY: e.touches[0].clientY) - pageRect.top;
+            const mouseLeft = (e instanceof MouseEvent ? e.clientX: e.touches[0].clientX) - pageRect.left;
 
             // Check if the user clicks inside a highlighting area
             const userClickedInsideArea = highlightState.highlightAreas
@@ -107,7 +108,7 @@ export const highlightPlugin = (props?: HighlightPluginProps): HighlightPlugin =
 
         // Create an invisible element from the current position to the end of page
         // It prevents users from selecting the forward text
-        const selectionTop = ((e.clientY - pageRect.top) * 100) / pageRect.height;
+        const selectionTop = (((e instanceof MouseEvent ? e.clientY: e.touches[0].clientY) - pageRect.top) * 100) / pageRect.height;
         const selectEnd = textLayer.querySelector(`.${TEXT_LAYER_END_SELECTOR}`);
         if (selectEnd && e.target !== textLayer) {
             (selectEnd as HTMLElement).style.top = `${Math.max(0, selectionTop)}%`;
@@ -115,7 +116,7 @@ export const highlightPlugin = (props?: HighlightPluginProps): HighlightPlugin =
     };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const handleMouseUp = (textLayerRender: PluginOnTextLayerRender) => (e: MouseEvent) => {
+    const handleMouseUp = (textLayerRender: PluginOnTextLayerRender) => (e: MouseEvent | TouchEvent) => {
         if (store.get('trigger') === Trigger.None) {
             return;
         }
@@ -132,16 +133,26 @@ export const highlightPlugin = (props?: HighlightPluginProps): HighlightPlugin =
         const textEle = e.ele;
 
         if (e.status === LayerRenderStatus.PreRender) {
-            textEle.removeEventListener('mousedown', mouseDownHandler);
-            textEle.removeEventListener('mouseup', mouseUpHandler);
+            if(isMobile()) {
+                textEle.removeEventListener('touchstart', mouseDownHandler);
+                textEle.removeEventListener('touchend', mouseUpHandler);
+            } else {
+                textEle.removeEventListener('mousedown', mouseDownHandler);
+                textEle.removeEventListener('mouseup', mouseUpHandler);
+            }
 
             const selectEndEle = textEle.querySelector(`.${TEXT_LAYER_END_SELECTOR}`);
             if (selectEndEle) {
                 textEle.removeChild(selectEndEle);
             }
         } else if (e.status === LayerRenderStatus.DidRender) {
-            textEle.addEventListener('mousedown', mouseDownHandler);
-            textEle.addEventListener('mouseup', mouseUpHandler);
+            if(isMobile()) {
+                textEle.addEventListener('touchstart', mouseDownHandler);
+                textEle.addEventListener('touchend', mouseUpHandler);
+            } else {
+                textEle.addEventListener('mousedown', mouseDownHandler);
+                textEle.addEventListener('mouseup', mouseUpHandler);
+            }
 
             // Set some special attributes so we can query the text later
             textEle.setAttribute(HIGHLIGHT_LAYER_ATTR, 'true');

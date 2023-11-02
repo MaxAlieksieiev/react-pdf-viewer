@@ -22,6 +22,7 @@ import { HighlightStateType } from './types/HighlightState';
 import { type SelectionData } from './types/SelectionData';
 import { type StoreProps } from './types/StoreProps';
 import { useRotation } from './useRotation';
+import isMobile from 'is-mobile';
 
 // `\n` is the document selection string when double clicking a page without selecting any text
 const EMPTY_SELECTION = ['', '\n'];
@@ -270,9 +271,17 @@ export const Tracker: React.FC<{
             return;
         }
 
-        ele.addEventListener('mouseup', onMouseUpHandler);
+        if(isMobile()) {
+            ele.addEventListener('touchend', onMouseUpHandler);
+        } else {
+            ele.addEventListener('mouseup', onMouseUpHandler);
+        }
         return (): void => {
-            ele.removeEventListener('mouseup', onMouseUpHandler);
+            if(isMobile()) {
+                ele.removeEventListener('touchend', onMouseUpHandler);
+            } else {
+                ele.removeEventListener('mouseup', onMouseUpHandler);
+            }
         };
     }, [arePagesFound, trigger, rotation]);
 
