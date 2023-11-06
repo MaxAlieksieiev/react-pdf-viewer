@@ -1,5 +1,5 @@
 {
-    "name": "@maks_alieksieiev/@react-pdf-viewer/default-layout",
+    "name": "@max_alieksieiev/react-pdf-viewer-default-layout",
     "version": "3.12.0",
     "description": "A React component to view a PDF document",
     "license": "MIT",
@@ -27,11 +27,11 @@
         "lib/index.js"
     ],
     "dependencies": {
-        "@react-pdf-viewer/attachment": "3.12.0",
-        "@react-pdf-viewer/bookmark": "3.12.0",
-        "@react-pdf-viewer/core": "3.12.0",
-        "@react-pdf-viewer/thumbnail": "3.12.0",
-        "@react-pdf-viewer/toolbar": "3.12.0"
+        "@max_alieksieiev/react-pdf-viewer-attachment": "3.12.0",
+        "@max_alieksieiev/react-pdf-viewer-bookmark": "3.12.0",
+        "@max_alieksieiev/react-pdf-viewer-core": "3.12.0",
+        "@max_alieksieiev/react-pdf-viewer-thumbnail": "3.12.0",
+        "@max_alieksieiev/react-pdf-viewer-toolbar": "3.12.0"
     },
     "peerDependencies": {
         "react": ">=16.8.0",

@@ -1,5 +1,6 @@
 'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 var core = require('@react-pdf-viewer/core');
 var React = require('react');
 
@@ -22,9 +23,7 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var OpenFileIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M18.5,7.5c.275,0,.341-.159.146-.354L12.354.854a.5.5,0,0,0-.708,0L5.354,7.147c-.2.195-.129.354.146.354h3v10a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V7.5Z" }),
-    React__namespace.createElement("path", { d: "M23.5,18.5v4a1,1,0,0,1-1,1H1.5a1,1,0,0,1-1-1v-4" }))); };
+var OpenFileIcon = function () { return (jsxRuntime.jsxs(core.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M18.5,7.5c.275,0,.341-.159.146-.354L12.354.854a.5.5,0,0,0-.708,0L5.354,7.147c-.2.195-.129.354.146.354h3v10a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V7.5Z" }), jsxRuntime.jsx("path", { d: "M23.5,18.5v4a1,1,0,0,1-1,1H1.5a1,1,0,0,1-1-1v-4" })] })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -94,10 +93,7 @@ var OpenButton = function (_a) {
     var label = l10n && l10n.open ? l10n.open.openFile : 'Open file';
     var _b = useTriggerOpen(store), inputRef = _b.inputRef, openFile = _b.openFile;
     var ariaKeyShortcuts = enableShortcuts ? (core.isMac() ? 'Meta+O' : 'Ctrl+O') : '';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "open", position: core.Position.BottomCenter, target: React__namespace.createElement("div", { className: "rpv-open__input-wrapper" },
-            React__namespace.createElement("input", { accept: ".pdf", ref: inputRef, className: "rpv-open__input", multiple: false, tabIndex: -1, title: "", type: "file", onChange: onClick }),
-            React__namespace.createElement(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, testId: "open__button", onClick: openFile },
-                React__namespace.createElement(OpenFileIcon, null))), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "open", position: core.Position.BottomCenter, target: jsxRuntime.jsxs("div", { className: "rpv-open__input-wrapper", children: [jsxRuntime.jsx("input", { accept: ".pdf", ref: inputRef, className: "rpv-open__input", multiple: false, tabIndex: -1, title: "", type: "file", onChange: onClick }), jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, testId: "open__button", onClick: openFile, children: jsxRuntime.jsx(OpenFileIcon, {}) })] }), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
 };
 
 var Open = function (_a) {
@@ -112,7 +108,7 @@ var Open = function (_a) {
             openFile(files[0]);
         }
     };
-    var defaultChildren = function (props) { return (React__namespace.createElement(OpenButton, { enableShortcuts: enableShortcuts, store: store, onClick: props.onClick })); };
+    var defaultChildren = function (props) { return (jsxRuntime.jsx(OpenButton, { enableShortcuts: enableShortcuts, store: store, onClick: props.onClick })); };
     var render = children || defaultChildren;
     return render({
         onClick: handleOpenFiles,
@@ -124,10 +120,7 @@ var OpenMenuItem = function (_a) {
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.open ? l10n.open.openFile : 'Open file';
     var _b = useTriggerOpen(store), inputRef = _b.inputRef, openFile = _b.openFile;
-    return (React__namespace.createElement(core.MenuItem, { icon: React__namespace.createElement(OpenFileIcon, null), testId: "open__menu", onClick: openFile },
-        React__namespace.createElement("div", { className: "rpv-open__input-wrapper" },
-            React__namespace.createElement("input", { accept: ".pdf", ref: inputRef, className: "rpv-open__input", multiple: false, tabIndex: -1, title: "", type: "file", onChange: onClick }),
-            label)));
+    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(OpenFileIcon, {}), testId: "open__menu", onClick: openFile, children: jsxRuntime.jsxs("div", { className: "rpv-open__input-wrapper", children: [jsxRuntime.jsx("input", { accept: ".pdf", ref: inputRef, className: "rpv-open__input", multiple: false, tabIndex: -1, title: "", type: "file", onChange: onClick }), label] }) }));
 };
 
 var ShortcutHandler = function (_a) {
@@ -157,21 +150,19 @@ var ShortcutHandler = function (_a) {
             document.removeEventListener('keydown', keydownHandler);
         };
     }, [containerRef.current]);
-    return React__namespace.createElement(React__namespace.Fragment, null);
+    return jsxRuntime.jsx(jsxRuntime.Fragment, {});
 };
 
 var openPlugin = function (props) {
     var openPluginProps = React__namespace.useMemo(function () { return Object.assign({}, { enableShortcuts: true }, props); }, []);
     var store = React__namespace.useMemo(function () { return core.createStore({}); }, []);
-    var OpenDecorator = function (props) { return (React__namespace.createElement(Open, __assign({ enableShortcuts: openPluginProps.enableShortcuts }, props, { store: store }))); };
-    var OpenButtonDecorator = function () { return React__namespace.createElement(OpenDecorator, null); };
-    var OpenMenuItemDecorator = function () { return (React__namespace.createElement(OpenDecorator, null, function (p) { return React__namespace.createElement(OpenMenuItem, { store: store, onClick: p.onClick }); })); };
+    var OpenDecorator = function (props) { return (jsxRuntime.jsx(Open, __assign({ enableShortcuts: openPluginProps.enableShortcuts }, props, { store: store }))); };
+    var OpenButtonDecorator = function () { return jsxRuntime.jsx(OpenDecorator, {}); };
+    var OpenMenuItemDecorator = function () { return (jsxRuntime.jsx(OpenDecorator, { children: function (p) { return jsxRuntime.jsx(OpenMenuItem, { store: store, onClick: p.onClick }); } })); };
     var renderViewer = function (props) {
         var slot = props.slot;
         var updateSlot = {
-            children: (React__namespace.createElement(React__namespace.Fragment, null,
-                openPluginProps.enableShortcuts && (React__namespace.createElement(ShortcutHandler, { containerRef: props.containerRef, store: store })),
-                slot.children)),
+            children: (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [openPluginProps.enableShortcuts && (jsxRuntime.jsx(ShortcutHandler, { containerRef: props.containerRef, store: store })), slot.children] })),
         };
         return __assign(__assign({}, slot), updateSlot);
     };

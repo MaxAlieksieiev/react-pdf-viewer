@@ -1,5 +1,6 @@
 'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 var core = require('@react-pdf-viewer/core');
 var React = require('react');
 
@@ -22,14 +23,11 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var NextIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M0.541,5.627L11.666,18.2c0.183,0.207,0.499,0.226,0.706,0.043c0.015-0.014,0.03-0.028,0.043-0.043\n            L23.541,5.627" }))); };
+var NextIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M0.541,5.627L11.666,18.2c0.183,0.207,0.499,0.226,0.706,0.043c0.015-0.014,0.03-0.028,0.043-0.043\n            L23.541,5.627" }) })); };
 
-var PreviousIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M23.535,18.373L12.409,5.8c-0.183-0.207-0.499-0.226-0.706-0.043C11.688,5.77,11.674,5.785,11.66,5.8\n            L0.535,18.373" }))); };
+var PreviousIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M23.535,18.373L12.409,5.8c-0.183-0.207-0.499-0.226-0.706-0.043C11.688,5.77,11.674,5.785,11.66,5.8\n            L0.535,18.373" }) })); };
 
-var SearchIcon = function () { return (React__namespace.createElement(core.Icon, { ignoreDirection: true, size: 16 },
-    React__namespace.createElement("path", { d: "M10.5,0.5c5.523,0,10,4.477,10,10s-4.477,10-10,10s-10-4.477-10-10S4.977,0.5,10.5,0.5z\n            M23.5,23.5\n            l-5.929-5.929" }))); };
+var SearchIcon = function () { return (jsxRuntime.jsx(core.Icon, { ignoreDirection: true, size: 16, children: jsxRuntime.jsx("path", { d: "M10.5,0.5c5.523,0,10,4.477,10,10s-4.477,10-10,10s-10-4.477-10-10S4.977,0.5,10.5,0.5z\n            M23.5,23.5\n            l-5.929-5.929" }) })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -85,7 +83,7 @@ var HightlightItem = function (_a) {
             });
         }
     }, []);
-    return (React__namespace.createElement("div", { className: "rpv-search__highlight", "data-index": index, ref: containerRef, style: getCssProperties(area), title: area.keywordStr.trim() }));
+    return (jsxRuntime.jsx("div", { className: "rpv-search__highlight", "data-index": index, ref: containerRef, style: getCssProperties(area), title: area.keywordStr.trim() }));
 };
 
 var calculateOffset = function (children, parent) {
@@ -152,7 +150,7 @@ var sortHighlightPosition = function (a, b) {
 var Highlights = function (_a) {
     var numPages = _a.numPages, pageIndex = _a.pageIndex, renderHighlights = _a.renderHighlights, store = _a.store, onHighlightKeyword = _a.onHighlightKeyword;
     var containerRef = React__namespace.useRef();
-    var defaultRenderHighlights = React__namespace.useCallback(function (renderProps) { return (React__namespace.createElement(React__namespace.Fragment, null, renderProps.highlightAreas.map(function (area, index) { return (React__namespace.createElement(HightlightItem, { index: index, key: index, area: area, onHighlightKeyword: onHighlightKeyword })); }))); }, []);
+    var defaultRenderHighlights = React__namespace.useCallback(function (renderProps) { return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: renderProps.highlightAreas.map(function (area, index) { return (jsxRuntime.jsx(HightlightItem, { index: index, area: area, onHighlightKeyword: onHighlightKeyword }, index)); }) })); }, []);
     var renderHighlightElements = renderHighlights || defaultRenderHighlights;
     var _b = React__namespace.useState(store.get('matchPosition')), matchPosition = _b[0], setMatchPosition = _b[1];
     var _c = React__namespace.useState(store.get('keyword') || [EMPTY_KEYWORD_REGEXP]), keywordRegexp = _c[0], setKeywordRegexp = _c[1];
@@ -357,10 +355,10 @@ var Highlights = function (_a) {
             store.unsubscribe('renderStatus', handleRenderStatusChanged);
         };
     }, []);
-    return (React__namespace.createElement("div", { className: "rpv-search__highlights", "data-testid": "search__highlights-".concat(pageIndex), ref: containerRef }, renderHighlightElements({
-        getCssProperties: getCssProperties,
-        highlightAreas: highlightAreas,
-    })));
+    return (jsxRuntime.jsx("div", { className: "rpv-search__highlights", "data-testid": "search__highlights-".concat(pageIndex), ref: containerRef, children: renderHighlightElements({
+            getCssProperties: getCssProperties,
+            highlightAreas: highlightAreas,
+        }) }));
 };
 
 var escapeRegExp = function (input) { return input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); };
@@ -645,7 +643,7 @@ var ShortcutHandler = function (_a) {
             containerEle.removeEventListener('mouseleave', handleMouseLeave);
         };
     }, [containerRef.current]);
-    return React__namespace.createElement(React__namespace.Fragment, null);
+    return jsxRuntime.jsx(jsxRuntime.Fragment, {});
 };
 
 var PORTAL_OFFSET$1 = { left: 0, top: 8 };
@@ -698,47 +696,22 @@ var SearchPopover = function (_a) {
     var previousMatchLabel = l10n && l10n.search ? l10n.search.previousMatch : 'Previous match';
     var nextMatchLabel = l10n && l10n.search ? l10n.search.nextMatch : 'Next match';
     var closeButtonLabel = l10n && l10n.search ? l10n.search.close : 'Close';
-    return (React__namespace.createElement("div", { className: "rpv-search__popover" },
-        React__namespace.createElement("div", { className: "rpv-search__popover-input-counter" },
-            React__namespace.createElement(core.TextBox, { ariaLabel: searchLabel, autoFocus: true, placeholder: searchLabel, type: "text", value: keyword, onChange: onChangeKeyword, onKeyDown: onKeydownSearch }),
-            React__namespace.createElement("div", { className: core.classNames({
-                    'rpv-search__popover-counter': true,
-                    'rpv-search__popover-counter--ltr': !isRtl,
-                    'rpv-search__popover-counter--rtl': isRtl,
-                }) },
-                isQuerying && React__namespace.createElement(core.Spinner, { testId: "search__popover-searching", size: "1rem" }),
-                !isQuerying && (React__namespace.createElement("span", { "data-testid": "search__popover-num-matches" },
-                    currentMatch,
-                    "/",
-                    numberOfMatches)))),
-        React__namespace.createElement("label", { className: "rpv-search__popover-label" },
-            React__namespace.createElement("input", { className: "rpv-search__popover-label-checkbox", "data-testid": "search__popover-match-case", checked: matchCase, type: "checkbox", onChange: onChangeMatchCase }),
-            ' ',
-            l10n && l10n.search ? l10n.search.matchCase : 'Match case'),
-        React__namespace.createElement("label", { className: "rpv-search__popover-label" },
-            React__namespace.createElement("input", { className: "rpv-search__popover-label-checkbox", checked: wholeWords, "data-testid": "search__popover-whole-words", type: "checkbox", onChange: onChangeWholeWords }),
-            ' ',
-            l10n && l10n.search ? l10n.search.wholeWords : 'Whole words'),
-        React__namespace.createElement("div", { className: "rpv-search__popover-footer" },
-            React__namespace.createElement("div", { className: "rpv-search__popover-footer-item" },
-                React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "search-previous-match", position: isRtl ? core.Position.BottomRight : core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaLabel: previousMatchLabel, isDisabled: currentMatch <= 1, onClick: jumpToPreviousMatch },
-                        React__namespace.createElement(PreviousIcon, null)), content: function () { return previousMatchLabel; }, offset: PORTAL_OFFSET$1 })),
-            React__namespace.createElement("div", { className: "rpv-search__popover-footer-item" },
-                React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "search-next-match", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaLabel: nextMatchLabel, isDisabled: currentMatch > numberOfMatches - 1, onClick: jumpToNextMatch },
-                        React__namespace.createElement(NextIcon, null)), content: function () { return nextMatchLabel; }, offset: PORTAL_OFFSET$1 })),
-            React__namespace.createElement("div", { className: core.classNames({
-                    'rpv-search__popover-footer-button': true,
-                    'rpv-search__popover-footer-button--ltr': !isRtl,
-                    'rpv-search__popover-footer-button--rtl': isRtl,
-                }) },
-                React__namespace.createElement(core.Button, { onClick: onClose }, closeButtonLabel)))));
+    return (jsxRuntime.jsxs("div", { className: "rpv-search__popover", children: [jsxRuntime.jsxs("div", { className: "rpv-search__popover-input-counter", children: [jsxRuntime.jsx(core.TextBox, { ariaLabel: searchLabel, autoFocus: true, placeholder: searchLabel, type: "text", value: keyword, onChange: onChangeKeyword, onKeyDown: onKeydownSearch }), jsxRuntime.jsxs("div", { className: core.classNames({
+                            'rpv-search__popover-counter': true,
+                            'rpv-search__popover-counter--ltr': !isRtl,
+                            'rpv-search__popover-counter--rtl': isRtl,
+                        }), children: [isQuerying && jsxRuntime.jsx(core.Spinner, { testId: "search__popover-searching", size: "1rem" }), !isQuerying && (jsxRuntime.jsxs("span", { "data-testid": "search__popover-num-matches", children: [currentMatch, "/", numberOfMatches] }))] })] }), jsxRuntime.jsxs("label", { className: "rpv-search__popover-label", children: [jsxRuntime.jsx("input", { className: "rpv-search__popover-label-checkbox", "data-testid": "search__popover-match-case", checked: matchCase, type: "checkbox", onChange: onChangeMatchCase }), ' ', l10n && l10n.search ? l10n.search.matchCase : 'Match case'] }), jsxRuntime.jsxs("label", { className: "rpv-search__popover-label", children: [jsxRuntime.jsx("input", { className: "rpv-search__popover-label-checkbox", checked: wholeWords, "data-testid": "search__popover-whole-words", type: "checkbox", onChange: onChangeWholeWords }), ' ', l10n && l10n.search ? l10n.search.wholeWords : 'Whole words'] }), jsxRuntime.jsxs("div", { className: "rpv-search__popover-footer", children: [jsxRuntime.jsx("div", { className: "rpv-search__popover-footer-item", children: jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "search-previous-match", position: isRtl ? core.Position.BottomRight : core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: previousMatchLabel, isDisabled: currentMatch <= 1, onClick: jumpToPreviousMatch, children: jsxRuntime.jsx(PreviousIcon, {}) }), content: function () { return previousMatchLabel; }, offset: PORTAL_OFFSET$1 }) }), jsxRuntime.jsx("div", { className: "rpv-search__popover-footer-item", children: jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "search-next-match", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: nextMatchLabel, isDisabled: currentMatch > numberOfMatches - 1, onClick: jumpToNextMatch, children: jsxRuntime.jsx(NextIcon, {}) }), content: function () { return nextMatchLabel; }, offset: PORTAL_OFFSET$1 }) }), jsxRuntime.jsx("div", { className: core.classNames({
+                            'rpv-search__popover-footer-button': true,
+                            'rpv-search__popover-footer-button--ltr': !isRtl,
+                            'rpv-search__popover-footer-button--rtl': isRtl,
+                        }), children: jsxRuntime.jsx(core.Button, { onClick: onClose, children: closeButtonLabel }) })] })] }));
 };
 
 var ShowSearchPopoverDecorator = function (_a) {
     var children = _a.children, onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.search ? l10n.search.search : 'Search';
-    var icon = React__namespace.createElement(SearchIcon, null);
+    var icon = jsxRuntime.jsx(SearchIcon, {});
     return children({ icon: icon, label: label, onClick: onClick });
 };
 
@@ -757,7 +730,7 @@ var ShowSearchPopoverButton = function (_a) {
             store.unsubscribe('areShortcutsPressed', handleShortcutsPressed);
         };
     }, []);
-    return (React__namespace.createElement(ShowSearchPopoverDecorator, { onClick: onClick }, function (p) { return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "search-popover", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: p.label, testId: "search__popover-button", onClick: onClick }, p.icon), content: function () { return p.label; }, offset: TOOLTIP_OFFSET })); }));
+    return (jsxRuntime.jsx(ShowSearchPopoverDecorator, { onClick: onClick, children: function (p) { return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "search-popover", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: p.label, testId: "search__popover-button", onClick: onClick, children: p.icon }), content: function () { return p.label; }, offset: TOOLTIP_OFFSET })); } }));
 };
 
 var PORTAL_OFFSET = { left: 0, top: 8 };
@@ -765,13 +738,13 @@ var ShowSearchPopover = function (_a) {
     var children = _a.children, enableShortcuts = _a.enableShortcuts, store = _a.store;
     var direction = React__namespace.useContext(core.ThemeContext).direction;
     var portalPosition = direction === core.TextDirection.RightToLeft ? core.Position.BottomRight : core.Position.BottomLeft;
-    var defaultChildren = function (props) { return (React__namespace.createElement(ShowSearchPopoverButton, __assign({ enableShortcuts: enableShortcuts, store: store }, props))); };
+    var defaultChildren = function (props) { return (jsxRuntime.jsx(ShowSearchPopoverButton, __assign({ enableShortcuts: enableShortcuts, store: store }, props))); };
     var render = children || defaultChildren;
-    return (React__namespace.createElement(core.Popover, { ariaControlsSuffix: "search", lockScroll: false, position: portalPosition, target: function (toggle) {
+    return (jsxRuntime.jsx(core.Popover, { ariaControlsSuffix: "search", lockScroll: false, position: portalPosition, target: function (toggle) {
             return render({
                 onClick: toggle,
             });
-        }, content: function (toggle) { return React__namespace.createElement(SearchPopover, { store: store, onToggle: toggle }); }, offset: PORTAL_OFFSET, closeOnClickOutside: false, closeOnEscape: true }));
+        }, content: function (toggle) { return jsxRuntime.jsx(SearchPopover, { store: store, onToggle: toggle }); }, offset: PORTAL_OFFSET, closeOnClickOutside: false, closeOnEscape: true }));
 };
 
 var normalizeKeywords = function (keyword) {
@@ -791,19 +764,17 @@ var searchPlugin = function (props) {
         });
     }, []);
     var _a = useSearch(store), clearKeyword = _a.clearKeyword, jumpToMatch = _a.jumpToMatch, jumpToNextMatch = _a.jumpToNextMatch, jumpToPreviousMatch = _a.jumpToPreviousMatch, searchFor = _a.searchFor, setKeywords = _a.setKeywords, setTargetPages = _a.setTargetPages;
-    var SearchDecorator = function (props) { return React__namespace.createElement(Search, __assign({}, props, { store: store })); };
-    var ShowSearchPopoverDecorator = function (props) { return (React__namespace.createElement(ShowSearchPopover, __assign({ enableShortcuts: searchPluginProps.enableShortcuts }, props, { store: store }))); };
-    var ShowSearchPopoverButtonDecorator = function () { return (React__namespace.createElement(ShowSearchPopoverDecorator, null, function (props) { return (React__namespace.createElement(ShowSearchPopoverButton, __assign({ enableShortcuts: searchPluginProps.enableShortcuts, store: store }, props))); })); };
+    var SearchDecorator = function (props) { return jsxRuntime.jsx(Search, __assign({}, props, { store: store })); };
+    var ShowSearchPopoverDecorator = function (props) { return (jsxRuntime.jsx(ShowSearchPopover, __assign({ enableShortcuts: searchPluginProps.enableShortcuts }, props, { store: store }))); };
+    var ShowSearchPopoverButtonDecorator = function () { return (jsxRuntime.jsx(ShowSearchPopoverDecorator, { children: function (props) { return (jsxRuntime.jsx(ShowSearchPopoverButton, __assign({ enableShortcuts: searchPluginProps.enableShortcuts, store: store }, props))); } })); };
     var renderViewer = function (renderViewerProps) {
         var currentSlot = renderViewerProps.slot;
         if (currentSlot.subSlot) {
-            currentSlot.subSlot.children = (React__namespace.createElement(React__namespace.Fragment, null,
-                searchPluginProps.enableShortcuts && (React__namespace.createElement(ShortcutHandler, { containerRef: renderViewerProps.containerRef, store: store })),
-                currentSlot.subSlot.children));
+            currentSlot.subSlot.children = (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [searchPluginProps.enableShortcuts && (jsxRuntime.jsx(ShortcutHandler, { containerRef: renderViewerProps.containerRef, store: store })), currentSlot.subSlot.children] }));
         }
         return currentSlot;
     };
-    var renderPageLayer = function (renderProps) { return (React__namespace.createElement(Highlights, { key: renderProps.pageIndex, numPages: renderProps.doc.numPages, pageIndex: renderProps.pageIndex, renderHighlights: props === null || props === void 0 ? void 0 : props.renderHighlights, store: store, onHighlightKeyword: searchPluginProps.onHighlightKeyword })); };
+    var renderPageLayer = function (renderProps) { return (jsxRuntime.jsx(Highlights, { numPages: renderProps.doc.numPages, pageIndex: renderProps.pageIndex, renderHighlights: props === null || props === void 0 ? void 0 : props.renderHighlights, store: store, onHighlightKeyword: searchPluginProps.onHighlightKeyword }, renderProps.pageIndex)); };
     return {
         install: function (pluginFunctions) {
             var initialKeyword = props && props.keyword ? (Array.isArray(props.keyword) ? props.keyword : [props.keyword]) : [];

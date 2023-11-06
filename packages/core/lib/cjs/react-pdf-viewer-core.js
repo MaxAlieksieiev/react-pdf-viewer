@@ -1,5 +1,6 @@
 'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 var React = require('react');
 
 function _interopNamespaceDefault(e) {
@@ -656,22 +657,16 @@ var PopupWrapper = function (_a) {
             ele.style.zIndex = "".concat(parseInt(ele.style.zIndex, 10) - 1);
         };
     }, []);
-    return (React__namespace.createElement("div", { ref: containerRef, className: classNames({
+    return (jsxRuntime.jsxs("div", { ref: containerRef, className: classNames({
             'rpv-core__annotation-popup-wrapper': true,
             'rpv-core__annotation-popup-wrapper--rtl': isRtl,
         }), style: {
             top: annotation.annotationType === exports.AnnotationType.Popup ? '' : '100%',
-        } },
-        title && (React__namespace.createElement(React__namespace.Fragment, null,
-            React__namespace.createElement("div", { className: classNames({
-                    'rpv-core__annotation-popup-title': true,
-                    'rpv-core__annotation-popup-title--ltr': !isRtl,
-                    'rpv-core__annotation-popup-title--rtl': isRtl,
-                }) }, title),
-            React__namespace.createElement("div", { className: "rpv-core__annotation-popup-date" }, dateStr))),
-        contents && (React__namespace.createElement("div", { className: "rpv-core__annotation-popup-content" }, contents.split('\n').map(function (item, index) { return (React__namespace.createElement(React__namespace.Fragment, { key: index },
-            item,
-            React__namespace.createElement("br", null))); })))));
+        }, children: [title && (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("div", { className: classNames({
+                            'rpv-core__annotation-popup-title': true,
+                            'rpv-core__annotation-popup-title--ltr': !isRtl,
+                            'rpv-core__annotation-popup-title--rtl': isRtl,
+                        }), children: title }), jsxRuntime.jsx("div", { className: "rpv-core__annotation-popup-date", children: dateStr })] })), contents && (jsxRuntime.jsx("div", { className: "rpv-core__annotation-popup-content", children: contents.split('\n').map(function (item, index) { return (jsxRuntime.jsxs(React__namespace.Fragment, { children: [item, jsxRuntime.jsx("br", {})] }, index)); }) }))] }));
 };
 
 exports.ToggleStatus = void 0;
@@ -789,28 +784,28 @@ var Annotation = function (_a) {
             :
                 (styles.borderWidth = '0');
     }
-    return (React__namespace.createElement(React__namespace.Fragment, null, isRenderable &&
-        children({
-            popup: {
-                opened: opened,
-                closeOnHover: closeOnHover,
-                openOnHover: openOnHover,
-                toggleOnClick: toggleOnClick,
-            },
-            slot: {
-                attrs: {
-                    style: Object.assign({
-                        height: "".concat(height, "px"),
-                        left: "".concat(bound[0], "px"),
-                        top: "".concat(bound[1], "px"),
-                        transform: "matrix(".concat(viewport.transform.join(','), ")"),
-                        transformOrigin: "-".concat(bound[0], "px -").concat(bound[1], "px"),
-                        width: "".concat(width, "px"),
-                    }, styles),
+    return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: isRenderable &&
+            children({
+                popup: {
+                    opened: opened,
+                    closeOnHover: closeOnHover,
+                    openOnHover: openOnHover,
+                    toggleOnClick: toggleOnClick,
                 },
-                children: React__namespace.createElement(React__namespace.Fragment, null, hasPopup && opened && React__namespace.createElement(PopupWrapper, { annotation: annotation })),
-            },
-        })));
+                slot: {
+                    attrs: {
+                        style: Object.assign({
+                            height: "".concat(height, "px"),
+                            left: "".concat(bound[0], "px"),
+                            top: "".concat(bound[1], "px"),
+                            transform: "matrix(".concat(viewport.transform.join(','), ")"),
+                            transformOrigin: "-".concat(bound[0], "px -").concat(bound[1], "px"),
+                            width: "".concat(width, "px"),
+                        }, styles),
+                    },
+                    children: jsxRuntime.jsx(jsxRuntime.Fragment, { children: hasPopup && opened && jsxRuntime.jsx(PopupWrapper, { annotation: annotation }) }),
+                },
+            }) }));
 };
 
 var Caret = function (_a) {
@@ -819,7 +814,7 @@ var Caret = function (_a) {
     var title = getTitle(annotation);
     var contents = getContents(annotation);
     var isRenderable = !!(annotation.hasPopup || title || contents);
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--caret", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }), props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsx("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--caret", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: props.slot.children }))); } }));
 };
 
 var Circle = function (_a) {
@@ -832,10 +827,7 @@ var Circle = function (_a) {
     var width = rect[2] - rect[0];
     var height = rect[3] - rect[1];
     var borderWidth = annotation.borderStyle.width;
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--circle", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }),
-        React__namespace.createElement("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px") },
-            React__namespace.createElement("circle", { cy: height / 2, fill: "none", rx: width / 2 - borderWidth / 2, ry: height / 2 - borderWidth / 2, stroke: "transparent", strokeWidth: borderWidth || 1 })),
-        props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsxs("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--circle", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: [jsxRuntime.jsx("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px"), children: jsxRuntime.jsx("circle", { cy: height / 2, fill: "none", rx: width / 2 - borderWidth / 2, ry: height / 2 - borderWidth / 2, stroke: "transparent", strokeWidth: borderWidth || 1 }) }), props.slot.children] }))); } }));
 };
 
 var getFileName = function (url) {
@@ -866,7 +858,7 @@ var FileAttachment = function (_a) {
         var file = annotation.file;
         file && downloadFile(file.filename, file.content);
     };
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: true, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--file-attachment", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onDoubleClick: doubleClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }), props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: true, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsx("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--file-attachment", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onDoubleClick: doubleClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: props.slot.children }))); } }));
 };
 
 var FreeText = function (_a) {
@@ -875,7 +867,7 @@ var FreeText = function (_a) {
     var title = getTitle(annotation);
     var contents = getContents(annotation);
     var isRenderable = !!(annotation.hasPopup || title || contents);
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--free-text", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }), props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsx("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--free-text", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: props.slot.children }))); } }));
 };
 
 var Popup = function (_a) {
@@ -900,8 +892,7 @@ var Popup = function (_a) {
         container.style.top = "".concat(top, "px");
         container.style.transformOrigin = "-".concat(left, "px -").concat(top, "px");
     }, []);
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: false, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--popup", "data-annotation-id": annotation.id }),
-        React__namespace.createElement(PopupWrapper, { annotation: annotation }))); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: false, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsx("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--popup", "data-annotation-id": annotation.id, children: jsxRuntime.jsx(PopupWrapper, { annotation: annotation }) }))); } }));
 };
 
 var Highlight = function (_a) {
@@ -918,13 +909,11 @@ var Highlight = function (_a) {
                 quadPoints: [],
             });
         });
-        return (React__namespace.createElement(React__namespace.Fragment, null, annotations.map(function (ann, index) { return (React__namespace.createElement(Highlight, { key: index, annotation: ann, childAnnotation: childAnnotation, page: page, viewport: viewport })); })));
+        return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: annotations.map(function (ann, index) { return (jsxRuntime.jsx(Highlight, { annotation: ann, childAnnotation: childAnnotation, page: page, viewport: viewport }, index)); }) }));
     }
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement(React__namespace.Fragment, null,
-        React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--highlight", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }), props.slot.children),
-        childAnnotation &&
-            childAnnotation.annotationType === exports.AnnotationType.Popup &&
-            props.popup.opened && React__namespace.createElement(Popup, { annotation: childAnnotation, page: page, viewport: viewport }))); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--highlight", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: props.slot.children })), childAnnotation &&
+                    childAnnotation.annotationType === exports.AnnotationType.Popup &&
+                    props.popup.opened && jsxRuntime.jsx(Popup, { annotation: childAnnotation, page: page, viewport: viewport })] })); } }));
 };
 
 var Ink = function (_a) {
@@ -937,9 +926,7 @@ var Ink = function (_a) {
     var width = rect[2] - rect[0];
     var height = rect[3] - rect[1];
     var borderWidth = annotation.borderStyle.width;
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--ink", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }),
-        annotation.inkLists && annotation.inkLists.length && (React__namespace.createElement("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px") }, annotation.inkLists.map(function (inkList, index) { return (React__namespace.createElement("polyline", { key: index, fill: "none", stroke: "transparent", strokeWidth: borderWidth || 1, points: inkList.map(function (item) { return "".concat(item.x - rect[0], ",").concat(rect[3] - item.y); }).join(' ') })); }))),
-        props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsxs("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--ink", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: [annotation.inkLists && annotation.inkLists.length && (jsxRuntime.jsx("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px"), children: annotation.inkLists.map(function (inkList, index) { return (jsxRuntime.jsx("polyline", { fill: "none", stroke: "transparent", strokeWidth: borderWidth || 1, points: inkList.map(function (item) { return "".concat(item.x - rect[0], ",").concat(rect[3] - item.y); }).join(' ') }, index)); }) })), props.slot.children] }))); } }));
 };
 
 var Line = function (_a) {
@@ -952,10 +939,7 @@ var Line = function (_a) {
     var width = rect[2] - rect[0];
     var height = rect[3] - rect[1];
     var borderWidth = annotation.borderStyle.width;
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--line", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }),
-        React__namespace.createElement("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px") },
-            React__namespace.createElement("line", { stroke: "transparent", strokeWidth: borderWidth || 1, x1: rect[2] - annotation.lineCoordinates[0], x2: rect[2] - annotation.lineCoordinates[2], y1: rect[3] - annotation.lineCoordinates[1], y2: rect[3] - annotation.lineCoordinates[3] })),
-        props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsxs("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--line", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: [jsxRuntime.jsx("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px"), children: jsxRuntime.jsx("line", { stroke: "transparent", strokeWidth: borderWidth || 1, x1: rect[2] - annotation.lineCoordinates[0], x2: rect[2] - annotation.lineCoordinates[2], y1: rect[3] - annotation.lineCoordinates[1], y2: rect[3] - annotation.lineCoordinates[3] }) }), props.slot.children] }))); } }));
 };
 
 exports.SpecialZoomLevel = void 0;
@@ -1157,8 +1141,7 @@ var Link = function (_a) {
             'aria-label': title,
         });
     }
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: false, ignoreBorder: false, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--link", "data-annotation-id": annotation.id, "data-testid": "core__annotation--link-".concat(annotation.id) }),
-        React__namespace.createElement("a", __assign({ ref: elementRef }, attrs)))); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: false, ignoreBorder: false, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsx("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--link", "data-annotation-id": annotation.id, "data-testid": "core__annotation--link-".concat(annotation.id), children: jsxRuntime.jsx("a", __assign({ ref: elementRef }, attrs)) }))); } }));
 };
 
 var Polygon = function (_a) {
@@ -1171,12 +1154,9 @@ var Polygon = function (_a) {
     var width = rect[2] - rect[0];
     var height = rect[3] - rect[1];
     var borderWidth = annotation.borderStyle.width;
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--polygon", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }),
-        annotation.vertices && annotation.vertices.length && (React__namespace.createElement("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px") },
-            React__namespace.createElement("polygon", { fill: "none", stroke: "transparent", strokeWidth: borderWidth || 1, points: annotation.vertices
-                    .map(function (item) { return "".concat(item.x - rect[0], ",").concat(rect[3] - item.y); })
-                    .join(' ') }))),
-        props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsxs("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--polygon", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: [annotation.vertices && annotation.vertices.length && (jsxRuntime.jsx("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px"), children: jsxRuntime.jsx("polygon", { fill: "none", stroke: "transparent", strokeWidth: borderWidth || 1, points: annotation.vertices
+                            .map(function (item) { return "".concat(item.x - rect[0], ",").concat(rect[3] - item.y); })
+                            .join(' ') }) })), props.slot.children] }))); } }));
 };
 
 var Polyline = function (_a) {
@@ -1189,12 +1169,9 @@ var Polyline = function (_a) {
     var width = rect[2] - rect[0];
     var height = rect[3] - rect[1];
     var borderWidth = annotation.borderStyle.width;
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--polyline", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }),
-        annotation.vertices && annotation.vertices.length && (React__namespace.createElement("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px") },
-            React__namespace.createElement("polyline", { fill: "none", stroke: "transparent", strokeWidth: borderWidth || 1, points: annotation.vertices
-                    .map(function (item) { return "".concat(item.x - rect[0], ",").concat(rect[3] - item.y); })
-                    .join(' ') }))),
-        props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsxs("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--polyline", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: [annotation.vertices && annotation.vertices.length && (jsxRuntime.jsx("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px"), children: jsxRuntime.jsx("polyline", { fill: "none", stroke: "transparent", strokeWidth: borderWidth || 1, points: annotation.vertices
+                            .map(function (item) { return "".concat(item.x - rect[0], ",").concat(rect[3] - item.y); })
+                            .join(' ') }) })), props.slot.children] }))); } }));
 };
 
 var Square = function (_a) {
@@ -1207,10 +1184,7 @@ var Square = function (_a) {
     var width = rect[2] - rect[0];
     var height = rect[3] - rect[1];
     var borderWidth = annotation.borderStyle.width;
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--square", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }),
-        React__namespace.createElement("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px") },
-            React__namespace.createElement("rect", { height: height - borderWidth, fill: "none", stroke: "transparent", strokeWidth: borderWidth || 1, x: borderWidth / 2, y: borderWidth / 2, width: width - borderWidth })),
-        props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsxs("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--square", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: [jsxRuntime.jsx("svg", { height: "".concat(height, "px"), preserveAspectRatio: "none", version: "1.1", viewBox: "0 0 ".concat(width, " ").concat(height), width: "".concat(width, "px"), children: jsxRuntime.jsx("rect", { height: height - borderWidth, fill: "none", stroke: "transparent", strokeWidth: borderWidth || 1, x: borderWidth / 2, y: borderWidth / 2, width: width - borderWidth }) }), props.slot.children] }))); } }));
 };
 
 var Squiggly = function (_a) {
@@ -1219,7 +1193,7 @@ var Squiggly = function (_a) {
     var title = getTitle(annotation);
     var contents = getContents(annotation);
     var isRenderable = !!(annotation.hasPopup || title || contents);
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--squiggly", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }), props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsx("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--squiggly", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: props.slot.children }))); } }));
 };
 
 var Stamp = function (_a) {
@@ -1228,7 +1202,7 @@ var Stamp = function (_a) {
     var title = getTitle(annotation);
     var contents = getContents(annotation);
     var isRenderable = !!(annotation.hasPopup || title || contents);
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--stamp", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }), props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsx("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--stamp", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: props.slot.children }))); } }));
 };
 
 var StrikeOut = function (_a) {
@@ -1237,7 +1211,7 @@ var StrikeOut = function (_a) {
     var title = getTitle(annotation);
     var contents = getContents(annotation);
     var isRenderable = !!(annotation.hasPopup || title || contents);
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--strike-out", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }), props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsx("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--strike-out", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: props.slot.children }))); } }));
 };
 
 var Icon = function (_a) {
@@ -1245,51 +1219,25 @@ var Icon = function (_a) {
     var direction = React__namespace.useContext(ThemeContext).direction;
     var isRtl = !ignoreDirection && direction === exports.TextDirection.RightToLeft;
     var width = "".concat(size || 24, "px");
-    return (React__namespace.createElement("svg", { "aria-hidden": "true", className: classNames({
+    return (jsxRuntime.jsx("svg", { "aria-hidden": "true", className: classNames({
             'rpv-core__icon': true,
             'rpv-core__icon--rtl': isRtl,
-        }), focusable: "false", height: width, viewBox: "0 0 24 24", width: width }, children));
+        }), focusable: "false", height: width, viewBox: "0 0 24 24", width: width, children: children }));
 };
 
-var CheckIcon = function () { return (React__namespace.createElement(Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M23.5,0.499l-16.5,23l-6.5-6.5" }))); };
+var CheckIcon = function () { return (jsxRuntime.jsx(Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M23.5,0.499l-16.5,23l-6.5-6.5" }) })); };
 
-var CommentIcon = function () { return (React__namespace.createElement(Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M.5,16.5a1,1,0,0,0,1,1h2v4l4-4h15a1,1,0,0,0,1-1V3.5a1,1,0,0,0-1-1H1.5a1,1,0,0,0-1,1Z" }),
-    React__namespace.createElement("path", { d: "M7.25,9.75A.25.25,0,1,1,7,10a.25.25,0,0,1,.25-.25" }),
-    React__namespace.createElement("path", { d: "M12,9.75a.25.25,0,1,1-.25.25A.25.25,0,0,1,12,9.75" }),
-    React__namespace.createElement("path", { d: "M16.75,9.75a.25.25,0,1,1-.25.25.25.25,0,0,1,.25-.25" }))); };
+var CommentIcon = function () { return (jsxRuntime.jsxs(Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M.5,16.5a1,1,0,0,0,1,1h2v4l4-4h15a1,1,0,0,0,1-1V3.5a1,1,0,0,0-1-1H1.5a1,1,0,0,0-1,1Z" }), jsxRuntime.jsx("path", { d: "M7.25,9.75A.25.25,0,1,1,7,10a.25.25,0,0,1,.25-.25" }), jsxRuntime.jsx("path", { d: "M12,9.75a.25.25,0,1,1-.25.25A.25.25,0,0,1,12,9.75" }), jsxRuntime.jsx("path", { d: "M16.75,9.75a.25.25,0,1,1-.25.25.25.25,0,0,1,.25-.25" })] })); };
 
-var HelpIcon = function () { return (React__namespace.createElement(Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M0.500 12.001 A11.500 11.500 0 1 0 23.500 12.001 A11.500 11.500 0 1 0 0.500 12.001 Z" }),
-    React__namespace.createElement("path", { d: "M6.000 12.001 A6.000 6.000 0 1 0 18.000 12.001 A6.000 6.000 0 1 0 6.000 12.001 Z" }),
-    React__namespace.createElement("path", { d: "M21.423 5.406L17.415 9.414" }),
-    React__namespace.createElement("path", { d: "M14.587 6.585L18.607 2.565" }),
-    React__namespace.createElement("path", { d: "M5.405 21.424L9.413 17.416" }),
-    React__namespace.createElement("path", { d: "M6.585 14.588L2.577 18.596" }),
-    React__namespace.createElement("path", { d: "M18.602 21.419L14.595 17.412" }),
-    React__namespace.createElement("path", { d: "M17.419 14.58L21.428 18.589" }),
-    React__namespace.createElement("path", { d: "M2.582 5.399L6.588 9.406" }),
-    React__namespace.createElement("path", { d: "M9.421 6.581L5.412 2.572" }))); };
+var HelpIcon = function () { return (jsxRuntime.jsxs(Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M0.500 12.001 A11.500 11.500 0 1 0 23.500 12.001 A11.500 11.500 0 1 0 0.500 12.001 Z" }), jsxRuntime.jsx("path", { d: "M6.000 12.001 A6.000 6.000 0 1 0 18.000 12.001 A6.000 6.000 0 1 0 6.000 12.001 Z" }), jsxRuntime.jsx("path", { d: "M21.423 5.406L17.415 9.414" }), jsxRuntime.jsx("path", { d: "M14.587 6.585L18.607 2.565" }), jsxRuntime.jsx("path", { d: "M5.405 21.424L9.413 17.416" }), jsxRuntime.jsx("path", { d: "M6.585 14.588L2.577 18.596" }), jsxRuntime.jsx("path", { d: "M18.602 21.419L14.595 17.412" }), jsxRuntime.jsx("path", { d: "M17.419 14.58L21.428 18.589" }), jsxRuntime.jsx("path", { d: "M2.582 5.399L6.588 9.406" }), jsxRuntime.jsx("path", { d: "M9.421 6.581L5.412 2.572" })] })); };
 
-var KeyIcon = function () { return (React__namespace.createElement(Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M4.000 18.500 A1.500 1.500 0 1 0 7.000 18.500 A1.500 1.500 0 1 0 4.000 18.500 Z" }),
-    React__namespace.createElement("path", { d: "M20.5.5l-9.782,9.783a7,7,0,1,0,3,3L17,10h1.5V8.5L19,8h1.5V6.5L21,6h1.5V4.5l1-1V.5Z" }))); };
+var KeyIcon = function () { return (jsxRuntime.jsxs(Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M4.000 18.500 A1.500 1.500 0 1 0 7.000 18.500 A1.500 1.500 0 1 0 4.000 18.500 Z" }), jsxRuntime.jsx("path", { d: "M20.5.5l-9.782,9.783a7,7,0,1,0,3,3L17,10h1.5V8.5L19,8h1.5V6.5L21,6h1.5V4.5l1-1V.5Z" })] })); };
 
-var NoteIcon = function () { return (React__namespace.createElement(Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M2.000 2.500 L22.000 2.500 L22.000 23.500 L2.000 23.500 Z" }),
-    React__namespace.createElement("path", { d: "M6 4.5L6 0.5" }),
-    React__namespace.createElement("path", { d: "M18 4.5L18 0.5" }),
-    React__namespace.createElement("path", { d: "M10 4.5L10 0.5" }),
-    React__namespace.createElement("path", { d: "M14 4.5L14 0.5" }))); };
+var NoteIcon = function () { return (jsxRuntime.jsxs(Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M2.000 2.500 L22.000 2.500 L22.000 23.500 L2.000 23.500 Z" }), jsxRuntime.jsx("path", { d: "M6 4.5L6 0.5" }), jsxRuntime.jsx("path", { d: "M18 4.5L18 0.5" }), jsxRuntime.jsx("path", { d: "M10 4.5L10 0.5" }), jsxRuntime.jsx("path", { d: "M14 4.5L14 0.5" })] })); };
 
-var ParagraphIcon = function () { return (React__namespace.createElement(Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M17.5 0.498L17.5 23.498" }),
-    React__namespace.createElement("path", { d: "M10.5 0.498L10.5 23.498" }),
-    React__namespace.createElement("path", { d: "M23.5.5H6.5a6,6,0,0,0,0,12h4" }))); };
+var ParagraphIcon = function () { return (jsxRuntime.jsxs(Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M17.5 0.498L17.5 23.498" }), jsxRuntime.jsx("path", { d: "M10.5 0.498L10.5 23.498" }), jsxRuntime.jsx("path", { d: "M23.5.5H6.5a6,6,0,0,0,0,12h4" })] })); };
 
-var TriangleIcon = function () { return (React__namespace.createElement(Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M2.5 22.995L12 6.005 21.5 22.995 2.5 22.995z" }))); };
+var TriangleIcon = function () { return (jsxRuntime.jsx(Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M2.5 22.995L12 6.005 21.5 22.995 2.5 22.995z" }) })); };
 
 var Text = function (_a) {
     var annotation = _a.annotation, childAnnotation = _a.childAnnotation, page = _a.page, viewport = _a.viewport;
@@ -1298,20 +1246,9 @@ var Text = function (_a) {
     var contents = getContents(annotation);
     var isRenderable = !!(annotation.hasPopup || title || contents);
     var name = annotation.name ? annotation.name.toLowerCase() : '';
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: false, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement(React__namespace.Fragment, null,
-        React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--text", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }),
-            name && (React__namespace.createElement("div", { className: "rpv-core__annotation-text-icon" },
-                name === 'check' && React__namespace.createElement(CheckIcon, null),
-                name === 'comment' && React__namespace.createElement(CommentIcon, null),
-                name === 'help' && React__namespace.createElement(HelpIcon, null),
-                name === 'insert' && React__namespace.createElement(TriangleIcon, null),
-                name === 'key' && React__namespace.createElement(KeyIcon, null),
-                name === 'note' && React__namespace.createElement(NoteIcon, null),
-                (name === 'newparagraph' || name === 'paragraph') && React__namespace.createElement(ParagraphIcon, null))),
-            props.slot.children),
-        childAnnotation &&
-            childAnnotation.annotationType === exports.AnnotationType.Popup &&
-            props.popup.opened && React__namespace.createElement(Popup, { annotation: childAnnotation, page: page, viewport: viewport }))); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: false, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsxs("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--text", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: [name && (jsxRuntime.jsxs("div", { className: "rpv-core__annotation-text-icon", children: [name === 'check' && jsxRuntime.jsx(CheckIcon, {}), name === 'comment' && jsxRuntime.jsx(CommentIcon, {}), name === 'help' && jsxRuntime.jsx(HelpIcon, {}), name === 'insert' && jsxRuntime.jsx(TriangleIcon, {}), name === 'key' && jsxRuntime.jsx(KeyIcon, {}), name === 'note' && jsxRuntime.jsx(NoteIcon, {}), (name === 'newparagraph' || name === 'paragraph') && jsxRuntime.jsx(ParagraphIcon, {})] })), props.slot.children] })), childAnnotation &&
+                    childAnnotation.annotationType === exports.AnnotationType.Popup &&
+                    props.popup.opened && jsxRuntime.jsx(Popup, { annotation: childAnnotation, page: page, viewport: viewport })] })); } }));
 };
 
 var Underline = function (_a) {
@@ -1320,7 +1257,7 @@ var Underline = function (_a) {
     var title = getTitle(annotation);
     var contents = getContents(annotation);
     var isRenderable = !!(annotation.hasPopup || title || contents);
-    return (React__namespace.createElement(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport }, function (props) { return (React__namespace.createElement("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--underline", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover }), props.slot.children)); }));
+    return (jsxRuntime.jsx(Annotation, { annotation: annotation, hasPopup: hasPopup, ignoreBorder: true, isRenderable: isRenderable, page: page, viewport: viewport, children: function (props) { return (jsxRuntime.jsx("div", __assign({}, props.slot.attrs, { className: "rpv-core__annotation rpv-core__annotation--underline", "data-annotation-id": annotation.id, onClick: props.popup.toggleOnClick, onMouseEnter: props.popup.openOnHover, onMouseLeave: props.popup.closeOnHover, children: props.slot.children }))); } }));
 };
 
 var AnnotationLayerBody = function (_a) {
@@ -1346,47 +1283,47 @@ var AnnotationLayerBody = function (_a) {
             }
         });
     }, []);
-    return (React__namespace.createElement("div", { ref: containerRef, className: "rpv-core__annotation-layer", "data-testid": "core__annotation-layer-".concat(pageIndex) }, filterAnnotations.map(function (annotation) {
-        var childAnnotation = annotations.find(function (item) { return item.parentId === annotation.id; });
-        switch (annotation.annotationType) {
-            case exports.AnnotationType.Caret:
-                return (React__namespace.createElement(Caret, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Circle:
-                return (React__namespace.createElement(Circle, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.FileAttachment:
-                return (React__namespace.createElement(FileAttachment, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.FreeText:
-                return (React__namespace.createElement(FreeText, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Highlight:
-                return (React__namespace.createElement(Highlight, { key: annotation.id, annotation: annotation, childAnnotation: childAnnotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Ink:
-                return (React__namespace.createElement(Ink, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Line:
-                return (React__namespace.createElement(Line, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Link:
-                return (React__namespace.createElement(Link, { key: annotation.id, annotation: annotation, annotationContainerRef: containerRef, doc: doc, outlines: outlines, page: page, pageIndex: pageIndex, scale: scale, viewport: clonedViewPort, onExecuteNamedAction: onExecuteNamedAction, onJumpFromLinkAnnotation: onJumpFromLinkAnnotation, onJumpToDest: onJumpToDest }));
-            case exports.AnnotationType.Polygon:
-                return (React__namespace.createElement(Polygon, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Polyline:
-                return (React__namespace.createElement(Polyline, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Popup:
-                return (React__namespace.createElement(Popup, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Square:
-                return (React__namespace.createElement(Square, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Squiggly:
-                return (React__namespace.createElement(Squiggly, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Stamp:
-                return (React__namespace.createElement(Stamp, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.StrikeOut:
-                return (React__namespace.createElement(StrikeOut, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Text:
-                return (React__namespace.createElement(Text, { key: annotation.id, annotation: annotation, childAnnotation: childAnnotation, page: page, viewport: clonedViewPort }));
-            case exports.AnnotationType.Underline:
-                return (React__namespace.createElement(Underline, { key: annotation.id, annotation: annotation, page: page, viewport: clonedViewPort }));
-            default:
-                return React__namespace.createElement(React__namespace.Fragment, { key: annotation.id });
-        }
-    })));
+    return (jsxRuntime.jsx("div", { ref: containerRef, className: "rpv-core__annotation-layer", "data-testid": "core__annotation-layer-".concat(pageIndex), children: filterAnnotations.map(function (annotation) {
+            var childAnnotation = annotations.find(function (item) { return item.parentId === annotation.id; });
+            switch (annotation.annotationType) {
+                case exports.AnnotationType.Caret:
+                    return (jsxRuntime.jsx(Caret, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Circle:
+                    return (jsxRuntime.jsx(Circle, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.FileAttachment:
+                    return (jsxRuntime.jsx(FileAttachment, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.FreeText:
+                    return (jsxRuntime.jsx(FreeText, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Highlight:
+                    return (jsxRuntime.jsx(Highlight, { annotation: annotation, childAnnotation: childAnnotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Ink:
+                    return (jsxRuntime.jsx(Ink, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Line:
+                    return (jsxRuntime.jsx(Line, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Link:
+                    return (jsxRuntime.jsx(Link, { annotation: annotation, annotationContainerRef: containerRef, doc: doc, outlines: outlines, page: page, pageIndex: pageIndex, scale: scale, viewport: clonedViewPort, onExecuteNamedAction: onExecuteNamedAction, onJumpFromLinkAnnotation: onJumpFromLinkAnnotation, onJumpToDest: onJumpToDest }, annotation.id));
+                case exports.AnnotationType.Polygon:
+                    return (jsxRuntime.jsx(Polygon, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Polyline:
+                    return (jsxRuntime.jsx(Polyline, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Popup:
+                    return (jsxRuntime.jsx(Popup, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Square:
+                    return (jsxRuntime.jsx(Square, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Squiggly:
+                    return (jsxRuntime.jsx(Squiggly, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Stamp:
+                    return (jsxRuntime.jsx(Stamp, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.StrikeOut:
+                    return (jsxRuntime.jsx(StrikeOut, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Text:
+                    return (jsxRuntime.jsx(Text, { annotation: annotation, childAnnotation: childAnnotation, page: page, viewport: clonedViewPort }, annotation.id));
+                case exports.AnnotationType.Underline:
+                    return (jsxRuntime.jsx(Underline, { annotation: annotation, page: page, viewport: clonedViewPort }, annotation.id));
+                default:
+                    return jsxRuntime.jsx(React__namespace.Fragment, {}, annotation.id);
+            }
+        }) }));
 };
 
 var useIsMounted = function () {
@@ -1417,13 +1354,13 @@ var AnnotationLoader = function (_a) {
             }
         });
     }, []);
-    return status.loading ? React__namespace.createElement(React__namespace.Fragment, null) : renderAnnotations(status.annotations);
+    return status.loading ? jsxRuntime.jsx(jsxRuntime.Fragment, {}) : renderAnnotations(status.annotations);
 };
 
 var AnnotationLayer = function (_a) {
     var doc = _a.doc, outlines = _a.outlines, page = _a.page, pageIndex = _a.pageIndex, plugins = _a.plugins, rotation = _a.rotation, scale = _a.scale, onExecuteNamedAction = _a.onExecuteNamedAction, onJumpFromLinkAnnotation = _a.onJumpFromLinkAnnotation, onJumpToDest = _a.onJumpToDest;
-    var renderAnnotations = function (annotations) { return (React__namespace.createElement(AnnotationLayerBody, { annotations: annotations, doc: doc, outlines: outlines, page: page, pageIndex: pageIndex, plugins: plugins, rotation: rotation, scale: scale, onExecuteNamedAction: onExecuteNamedAction, onJumpFromLinkAnnotation: onJumpFromLinkAnnotation, onJumpToDest: onJumpToDest })); };
-    return React__namespace.createElement(AnnotationLoader, { page: page, renderAnnotations: renderAnnotations });
+    var renderAnnotations = function (annotations) { return (jsxRuntime.jsx(AnnotationLayerBody, { annotations: annotations, doc: doc, outlines: outlines, page: page, pageIndex: pageIndex, plugins: plugins, rotation: rotation, scale: scale, onExecuteNamedAction: onExecuteNamedAction, onJumpFromLinkAnnotation: onJumpFromLinkAnnotation, onJumpToDest: onJumpToDest })); };
+    return jsxRuntime.jsx(AnnotationLoader, { page: page, renderAnnotations: renderAnnotations });
 };
 
 var Spinner = function (_a) {
@@ -1436,7 +1373,7 @@ var Spinner = function (_a) {
     var containerRef = useIntersectionObserver({
         onVisibilityChanged: handleVisibilityChanged,
     });
-    return (React__namespace.createElement("div", __assign({}, attrs, { className: classNames({
+    return (jsxRuntime.jsx("div", __assign({}, attrs, { className: classNames({
             'rpv-core__spinner': true,
             'rpv-core__spinner--animating': visible,
         }), ref: containerRef, style: { height: size, width: size } })));
@@ -1554,11 +1491,10 @@ var CanvasLayer = function (_a) {
             }
         };
     }, []);
-    return (React__namespace.createElement("div", { className: "rpv-core__canvas-layer", style: {
+    return (jsxRuntime.jsx("div", { className: "rpv-core__canvas-layer", style: {
             height: "".concat(height, "px"),
             width: "".concat(width, "px"),
-        } },
-        React__namespace.createElement("canvas", { ref: canvasLayerRef })));
+        }, children: jsxRuntime.jsx("canvas", { ref: canvasLayerRef }) }));
 };
 
 var PdfJsApiContext = React__namespace.createContext({});
@@ -1587,7 +1523,7 @@ var SvgLayer = function (_a) {
             });
         });
     }, []);
-    return React__namespace.createElement("div", { className: "rpv-core__svg-layer", ref: containerRef });
+    return jsxRuntime.jsx("div", { className: "rpv-core__svg-layer", ref: containerRef });
 };
 
 var TextLayer = function (_a) {
@@ -1664,7 +1600,7 @@ var TextLayer = function (_a) {
             (_a = renderTask.current) === null || _a === void 0 ? void 0 : _a.cancel();
         };
     }, []);
-    return React__namespace.createElement("div", { className: "rpv-core__text-layer", ref: containerRef });
+    return jsxRuntime.jsx("div", { className: "rpv-core__text-layer", ref: containerRef });
 };
 
 var PageLayer = function (_a) {
@@ -1690,10 +1626,7 @@ var PageLayer = function (_a) {
             }
         });
     };
-    var defaultPageRenderer = function (props) { return (React__namespace.createElement(React__namespace.Fragment, null,
-        props.canvasLayer.children,
-        props.textLayer.children,
-        props.annotationLayer.children)); };
+    var defaultPageRenderer = function (props) { return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [props.canvasLayer.children, props.textLayer.children, props.annotationLayer.children] })); };
     var renderPageLayer = renderPage || defaultPageRenderer;
     var handleRenderCanvasCompleted = function () {
         if (isMounted.current) {
@@ -1727,7 +1660,7 @@ var PageLayer = function (_a) {
             }
         }
     }, [canvasLayerRendered, textLayerRendered]);
-    return (React__namespace.createElement("div", { className: classNames({
+    return (jsxRuntime.jsx("div", { className: classNames({
             'rpv-core__page-layer': true,
             'rpv-core__page-layer--dual': viewMode === exports.ViewMode.DualPage,
             'rpv-core__page-layer--dual-cover': viewMode === exports.ViewMode.DualPageWithCover,
@@ -1735,49 +1668,47 @@ var PageLayer = function (_a) {
         }), "data-testid": "core__page-layer-".concat(pageIndex), ref: measureRef, style: {
             height: "".concat(h, "px"),
             width: "".concat(w, "px"),
-        } }, !page ? (React__namespace.createElement(Spinner, { testId: "core__page-layer-loading-".concat(pageIndex) })) : (React__namespace.createElement(React__namespace.Fragment, null,
-        renderPageLayer({
-            annotationLayer: {
-                attrs: {},
-                children: (React__namespace.createElement(AnnotationLayer, { doc: doc, outlines: outlines, page: page, pageIndex: pageIndex, plugins: plugins, rotation: rotationValue, scale: scale, onExecuteNamedAction: onExecuteNamedAction, onJumpFromLinkAnnotation: onJumpFromLinkAnnotation, onJumpToDest: onJumpToDest })),
-            },
-            canvasLayer: {
-                attrs: {},
-                children: (React__namespace.createElement(CanvasLayer, { canvasLayerRef: canvasLayerRef, height: h, page: page, pageIndex: pageIndex, plugins: plugins, rotation: rotationValue, scale: scale, width: w, onRenderCanvasCompleted: handleRenderCanvasCompleted })),
-            },
-            canvasLayerRendered: canvasLayerRendered,
-            doc: doc,
-            height: h,
-            pageIndex: pageIndex,
-            rotation: rotationValue,
-            scale: scale,
-            svgLayer: {
-                attrs: {},
-                children: (React__namespace.createElement(SvgLayer, { height: h, page: page, rotation: rotationValue, scale: scale, width: w })),
-            },
-            textLayer: {
-                attrs: {},
-                children: (React__namespace.createElement(TextLayer, { containerRef: textLayerRef, page: page, pageIndex: pageIndex, plugins: plugins, rotation: rotationValue, scale: scale, onRenderTextCompleted: handleRenderTextCompleted })),
-            },
-            textLayerRendered: textLayerRendered,
-            width: w,
-            markRendered: onRenderCompleted,
-            onRotatePage: function (direction) { return onRotatePage(pageIndex, direction); },
-        }),
-        plugins.map(function (plugin, idx) {
-            return plugin.renderPageLayer ? (React__namespace.createElement(React__namespace.Fragment, { key: idx }, plugin.renderPageLayer({
-                canvasLayerRef: canvasLayerRef,
-                canvasLayerRendered: canvasLayerRendered,
-                doc: doc,
-                height: h,
-                pageIndex: pageIndex,
-                rotation: rotationValue,
-                scale: scale,
-                textLayerRef: textLayerRef,
-                textLayerRendered: textLayerRendered,
-                width: w,
-            }))) : (React__namespace.createElement(React__namespace.Fragment, { key: idx }));
-        })))));
+        }, children: !page ? (jsxRuntime.jsx(Spinner, { testId: "core__page-layer-loading-".concat(pageIndex) })) : (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [renderPageLayer({
+                    annotationLayer: {
+                        attrs: {},
+                        children: (jsxRuntime.jsx(AnnotationLayer, { doc: doc, outlines: outlines, page: page, pageIndex: pageIndex, plugins: plugins, rotation: rotationValue, scale: scale, onExecuteNamedAction: onExecuteNamedAction, onJumpFromLinkAnnotation: onJumpFromLinkAnnotation, onJumpToDest: onJumpToDest })),
+                    },
+                    canvasLayer: {
+                        attrs: {},
+                        children: (jsxRuntime.jsx(CanvasLayer, { canvasLayerRef: canvasLayerRef, height: h, page: page, pageIndex: pageIndex, plugins: plugins, rotation: rotationValue, scale: scale, width: w, onRenderCanvasCompleted: handleRenderCanvasCompleted })),
+                    },
+                    canvasLayerRendered: canvasLayerRendered,
+                    doc: doc,
+                    height: h,
+                    pageIndex: pageIndex,
+                    rotation: rotationValue,
+                    scale: scale,
+                    svgLayer: {
+                        attrs: {},
+                        children: (jsxRuntime.jsx(SvgLayer, { height: h, page: page, rotation: rotationValue, scale: scale, width: w })),
+                    },
+                    textLayer: {
+                        attrs: {},
+                        children: (jsxRuntime.jsx(TextLayer, { containerRef: textLayerRef, page: page, pageIndex: pageIndex, plugins: plugins, rotation: rotationValue, scale: scale, onRenderTextCompleted: handleRenderTextCompleted })),
+                    },
+                    textLayerRendered: textLayerRendered,
+                    width: w,
+                    markRendered: onRenderCompleted,
+                    onRotatePage: function (direction) { return onRotatePage(pageIndex, direction); },
+                }), plugins.map(function (plugin, idx) {
+                    return plugin.renderPageLayer ? (jsxRuntime.jsx(React__namespace.Fragment, { children: plugin.renderPageLayer({
+                            canvasLayerRef: canvasLayerRef,
+                            canvasLayerRendered: canvasLayerRendered,
+                            doc: doc,
+                            height: h,
+                            pageIndex: pageIndex,
+                            rotation: rotationValue,
+                            scale: scale,
+                            textLayerRef: textLayerRef,
+                            textLayerRendered: textLayerRendered,
+                            width: w,
+                        }) }, idx)) : (jsxRuntime.jsx(React__namespace.Fragment, {}, idx));
+                })] })) }));
 };
 
 var core = {
@@ -3546,7 +3477,7 @@ var Inner = function (_a) {
                     height: '100%',
                 },
             },
-            children: React__namespace.createElement(React__namespace.Fragment, null),
+            children: jsxRuntime.jsx(jsxRuntime.Fragment, {}),
             subSlot: {
                 attrs: {
                     'data-testid': 'core__inner-pages',
@@ -3564,37 +3495,36 @@ var Inner = function (_a) {
                         position: 'relative',
                     },
                 },
-                children: (React__namespace.createElement("div", { "data-testid": "core__inner-current-page-".concat(state.currentPage), style: Object.assign({
+                children: (jsxRuntime.jsx("div", { "data-testid": "core__inner-current-page-".concat(state.currentPage), style: Object.assign({
                         '--scale-factor': state.scale,
-                    }, virtualizer.getContainerStyles()) }, chunks.map(function (items) { return (React__namespace.createElement("div", { className: classNames({
-                        'rpv-core__inner-page-container': true,
-                        'rpv-core__inner-page-container--single': state.scrollMode === exports.ScrollMode.Page,
-                    }), style: virtualizer.getItemContainerStyles(items[0]), key: "".concat(items[0].index, "-").concat(state.viewMode) }, items.map(function (item) {
-                    var isCover = state.viewMode === exports.ViewMode.DualPageWithCover &&
-                        (item.index === 0 || (numPages % 2 === 0 && item.index === numPages - 1));
-                    return (React__namespace.createElement("div", { "aria-label": pageLabel.replace('{{pageIndex}}', "".concat(item.index + 1)), className: classNames({
-                            'rpv-core__inner-page': true,
-                            'rpv-core__inner-page--dual-even': state.viewMode === exports.ViewMode.DualPage && item.index % 2 === 0,
-                            'rpv-core__inner-page--dual-odd': state.viewMode === exports.ViewMode.DualPage && item.index % 2 === 1,
-                            'rpv-core__inner-page--dual-cover': isCover,
-                            'rpv-core__inner-page--dual-cover-even': state.viewMode === exports.ViewMode.DualPageWithCover &&
-                                !isCover &&
-                                item.index % 2 === 0,
-                            'rpv-core__inner-page--dual-cover-odd': state.viewMode === exports.ViewMode.DualPageWithCover &&
-                                !isCover &&
-                                item.index % 2 === 1,
-                            'rpv-core__inner-page--single': state.viewMode === exports.ViewMode.SinglePage &&
-                                state.scrollMode === exports.ScrollMode.Page,
-                        }), role: "region", key: "".concat(item.index, "-").concat(state.viewMode), style: Object.assign({}, virtualizer.getItemStyles(item), layoutBuilder.buildPageStyles({
-                            numPages: numPages,
-                            pageIndex: item.index,
-                            scrollMode: state.scrollMode,
-                            viewMode: state.viewMode,
-                        })) },
-                        React__namespace.createElement(PageLayer, { doc: doc, measureRef: item.measureRef, outlines: outlines, pageIndex: item.index, pageRotation: state.pagesRotation.has(item.index)
-                                ? state.pagesRotation.get(item.index)
-                                : 0, pageSize: state.pageSizes[item.index], plugins: plugins, renderPage: renderPage, renderQueueKey: renderQueueKey, rotation: state.rotation, scale: state.scale, shouldRender: renderPageIndex === item.index, viewMode: state.viewMode, onExecuteNamedAction: executeNamedAction, onJumpFromLinkAnnotation: handleJumpFromLinkAnnotation, onJumpToDest: jumpToDestination, onRenderCompleted: handlePageRenderCompleted, onRotatePage: rotatePage })));
-                }))); }))),
+                    }, virtualizer.getContainerStyles()), children: chunks.map(function (items) { return (jsxRuntime.jsx("div", { className: classNames({
+                            'rpv-core__inner-page-container': true,
+                            'rpv-core__inner-page-container--single': state.scrollMode === exports.ScrollMode.Page,
+                        }), style: virtualizer.getItemContainerStyles(items[0]), children: items.map(function (item) {
+                            var isCover = state.viewMode === exports.ViewMode.DualPageWithCover &&
+                                (item.index === 0 || (numPages % 2 === 0 && item.index === numPages - 1));
+                            return (jsxRuntime.jsx("div", { "aria-label": pageLabel.replace('{{pageIndex}}', "".concat(item.index + 1)), className: classNames({
+                                    'rpv-core__inner-page': true,
+                                    'rpv-core__inner-page--dual-even': state.viewMode === exports.ViewMode.DualPage && item.index % 2 === 0,
+                                    'rpv-core__inner-page--dual-odd': state.viewMode === exports.ViewMode.DualPage && item.index % 2 === 1,
+                                    'rpv-core__inner-page--dual-cover': isCover,
+                                    'rpv-core__inner-page--dual-cover-even': state.viewMode === exports.ViewMode.DualPageWithCover &&
+                                        !isCover &&
+                                        item.index % 2 === 0,
+                                    'rpv-core__inner-page--dual-cover-odd': state.viewMode === exports.ViewMode.DualPageWithCover &&
+                                        !isCover &&
+                                        item.index % 2 === 1,
+                                    'rpv-core__inner-page--single': state.viewMode === exports.ViewMode.SinglePage &&
+                                        state.scrollMode === exports.ScrollMode.Page,
+                                }), role: "region", style: Object.assign({}, virtualizer.getItemStyles(item), layoutBuilder.buildPageStyles({
+                                    numPages: numPages,
+                                    pageIndex: item.index,
+                                    scrollMode: state.scrollMode,
+                                    viewMode: state.viewMode,
+                                })), children: jsxRuntime.jsx(PageLayer, { doc: doc, measureRef: item.measureRef, outlines: outlines, pageIndex: item.index, pageRotation: state.pagesRotation.has(item.index)
+                                        ? state.pagesRotation.get(item.index)
+                                        : 0, pageSize: state.pageSizes[item.index], plugins: plugins, renderPage: renderPage, renderQueueKey: renderQueueKey, rotation: state.rotation, scale: state.scale, shouldRender: renderPageIndex === item.index, viewMode: state.viewMode, onExecuteNamedAction: executeNamedAction, onJumpFromLinkAnnotation: handleJumpFromLinkAnnotation, onJumpToDest: jumpToDestination, onRenderCompleted: handlePageRenderCompleted, onRotatePage: rotatePage }) }, "".concat(item.index, "-").concat(state.viewMode)));
+                        }) }, "".concat(items[0].index, "-").concat(state.viewMode))); }) })),
             },
         };
         plugins.forEach(function (plugin) {
@@ -3620,9 +3550,7 @@ var Inner = function (_a) {
         });
         return slot;
     }, [plugins, virtualizer]);
-    var renderSlot = React__namespace.useCallback(function (slot) { return (React__namespace.createElement("div", __assign({}, slot.attrs, { style: slot.attrs && slot.attrs.style ? slot.attrs.style : {} }),
-        slot.children,
-        slot.subSlot && renderSlot(slot.subSlot))); }, []);
+    var renderSlot = React__namespace.useCallback(function (slot) { return (jsxRuntime.jsxs("div", __assign({}, slot.attrs, { style: slot.attrs && slot.attrs.style ? slot.attrs.style : {}, children: [slot.children, slot.subSlot && renderSlot(slot.subSlot)] }))); }, []);
     return renderSlot(renderViewer());
 };
 
@@ -3681,8 +3609,7 @@ var PageSizeCalculator = function (_a) {
             setState({ estimatedPageSizes: estimatedPageSizes, scale: scale });
         });
     }, [doc.loadingTask.docId]);
-    return state.estimatedPageSizes.length === 0 || state.scale === 0 ? (React__namespace.createElement("div", { className: "rpv-core__page-size-calculator", "data-testid": "core__page-size-calculating", ref: pagesRef },
-        React__namespace.createElement(Spinner, null))) : (render(state.estimatedPageSizes, state.scale));
+    return state.estimatedPageSizes.length === 0 || state.scale === 0 ? (jsxRuntime.jsx("div", { className: "rpv-core__page-size-calculator", "data-testid": "core__page-size-calculating", ref: pagesRef, children: jsxRuntime.jsx(Spinner, {}) })) : (render(state.estimatedPageSizes, state.scale));
 };
 
 exports.PasswordStatus = void 0;
@@ -3713,10 +3640,10 @@ var PrimaryButton = function (_a) {
     var direction = React__namespace.useContext(ThemeContext).direction;
     var isRtl = direction === exports.TextDirection.RightToLeft;
     var attrs = testId ? { 'data-testid': testId } : {};
-    return (React__namespace.createElement("button", __assign({ className: classNames({
+    return (jsxRuntime.jsx("button", __assign({ className: classNames({
             'rpv-core__primary-button': true,
             'rpv-core__primary-button--rtl': isRtl,
-        }), type: "button", onClick: onClick }, attrs), children));
+        }), type: "button", onClick: onClick }, attrs, { children: children })));
 };
 
 var TextBox = function (_a) {
@@ -3751,7 +3678,7 @@ var TextBox = function (_a) {
             }
         }
     }, []);
-    return type === 'text' ? React__namespace.createElement("input", __assign({ type: "text" }, attrs)) : React__namespace.createElement("input", __assign({ type: "password" }, attrs));
+    return type === 'text' ? jsxRuntime.jsx("input", __assign({ type: "text" }, attrs)) : jsxRuntime.jsx("input", __assign({ type: "password" }, attrs));
 };
 
 var AskingPassword = function (_a) {
@@ -3779,25 +3706,17 @@ var AskingPassword = function (_a) {
             verifyPassword: verifyPassword,
         });
     }
-    return (React__namespace.createElement("div", { className: "rpv-core__asking-password-wrapper" },
-        React__namespace.createElement("div", { className: classNames({
+    return (jsxRuntime.jsx("div", { className: "rpv-core__asking-password-wrapper", children: jsxRuntime.jsxs("div", { className: classNames({
                 'rpv-core__asking-password': true,
                 'rpv-core__asking-password--rtl': isRtl,
-            }) },
-            React__namespace.createElement("div", { className: "rpv-core__asking-password-message" },
-                passwordStatus === exports.PasswordStatus.RequiredPassword &&
-                    l10n.core.askingPassword
-                        .requirePasswordToOpen,
-                passwordStatus === exports.PasswordStatus.WrongPassword &&
-                    l10n.core.wrongPassword.tryAgain),
-            React__namespace.createElement("div", { className: "rpv-core__asking-password-body" },
-                React__namespace.createElement("div", { className: classNames({
-                        'rpv-core__asking-password-input': true,
-                        'rpv-core__asking-password-input--ltr': !isRtl,
-                        'rpv-core__asking-password-input--rtl': isRtl,
-                    }) },
-                    React__namespace.createElement(TextBox, { testId: "core__asking-password-input", type: "password", value: password, onChange: setPassword, onKeyDown: handleKeyDown })),
-                React__namespace.createElement(PrimaryButton, { onClick: submit }, l10n.core.askingPassword.submit)))));
+            }), children: [jsxRuntime.jsxs("div", { className: "rpv-core__asking-password-message", children: [passwordStatus === exports.PasswordStatus.RequiredPassword &&
+                            l10n.core.askingPassword
+                                .requirePasswordToOpen, passwordStatus === exports.PasswordStatus.WrongPassword &&
+                            l10n.core.wrongPassword.tryAgain] }), jsxRuntime.jsxs("div", { className: "rpv-core__asking-password-body", children: [jsxRuntime.jsx("div", { className: classNames({
+                                'rpv-core__asking-password-input': true,
+                                'rpv-core__asking-password-input--ltr': !isRtl,
+                                'rpv-core__asking-password-input--rtl': isRtl,
+                            }), children: jsxRuntime.jsx(TextBox, { testId: "core__asking-password-input", type: "password", value: password, onChange: setPassword, onKeyDown: handleKeyDown }) }), jsxRuntime.jsx(PrimaryButton, { onClick: submit, children: l10n.core.askingPassword.submit })] })] }) }));
 };
 
 var CompletedState = (function (_super) {
@@ -3892,22 +3811,21 @@ var DocumentLoader = function (_a) {
         };
     }, [file]);
     if (status instanceof AskForPasswordState) {
-        return (React__namespace.createElement(AskingPassword, { passwordStatus: status.passwordStatus, renderProtectedView: renderProtectedView, verifyPassword: status.verifyPassword, onDocumentAskPassword: onDocumentAskPassword }));
+        return (jsxRuntime.jsx(AskingPassword, { passwordStatus: status.passwordStatus, renderProtectedView: renderProtectedView, verifyPassword: status.verifyPassword, onDocumentAskPassword: onDocumentAskPassword }));
     }
     if (status instanceof CompletedState) {
         return render(status.doc);
     }
     if (status instanceof FailureState) {
-        return renderError ? (renderError(status.error)) : (React__namespace.createElement("div", { className: classNames({
+        return renderError ? (renderError(status.error)) : (jsxRuntime.jsx("div", { className: classNames({
                 'rpv-core__doc-error': true,
                 'rpv-core__doc-error--rtl': isRtl,
-            }) },
-            React__namespace.createElement("div", { className: "rpv-core__doc-error-text" }, status.error.message)));
+            }), children: jsxRuntime.jsx("div", { className: "rpv-core__doc-error-text", children: status.error.message }) }));
     }
-    return (React__namespace.createElement("div", { "data-testid": "core__doc-loading", className: classNames({
+    return (jsxRuntime.jsx("div", { "data-testid": "core__doc-loading", className: classNames({
             'rpv-core__doc-loading': true,
             'rpv-core__doc-loading--rtl': isRtl,
-        }) }, renderLoader ? renderLoader(status.percentages) : React__namespace.createElement(Spinner, null)));
+        }), children: renderLoader ? renderLoader(status.percentages) : jsxRuntime.jsx(Spinner, {}) }));
 };
 
 var isDarkMode = function () {
@@ -4016,26 +3934,24 @@ var Viewer = function (_a) {
             setL10n(localization);
         }
     }, [localization]);
-    return (React__namespace.createElement(LocalizationContext.Provider, { value: localizationContext },
-        React__namespace.createElement(ThemeContext.Provider, { value: themeContext },
-            React__namespace.createElement("div", { ref: containerRef, className: "rpv-core__viewer rpv-core__viewer--".concat(themeContext.currentTheme), "data-testid": "core__viewer", style: {
+    return (jsxRuntime.jsx(LocalizationContext.Provider, { value: localizationContext, children: jsxRuntime.jsx(ThemeContext.Provider, { value: themeContext, children: jsxRuntime.jsx("div", { ref: containerRef, className: "rpv-core__viewer rpv-core__viewer--".concat(themeContext.currentTheme), "data-testid": "core__viewer", style: {
                     height: '100%',
                     width: '100%',
-                } }, file.shouldLoad && (React__namespace.createElement(DocumentLoader, { characterMap: characterMap, file: file.data, httpHeaders: httpHeaders, render: function (doc) { return (React__namespace.createElement(PageSizeCalculator, { defaultScale: defaultScale, doc: doc, render: function (estimatedPageSizes, initialScale) { return (React__namespace.createElement(Inner, { currentFile: {
-                            data: file.data,
-                            name: file.name,
-                        }, defaultScale: defaultScale, doc: doc, enableSmoothScroll: enableSmoothScroll, estimatedPageSizes: estimatedPageSizes, initialPage: initialPage, initialRotation: initialRotation, initialScale: initialScale, pageLayout: pageLayout, plugins: plugins, renderPage: renderPage, scrollMode: scrollMode, setRenderRange: setRenderRange, viewMode: viewMode, viewerState: {
-                            file: file,
-                            fullScreenMode: exports.FullScreenMode.Normal,
-                            pageIndex: -1,
-                            pageHeight: estimatedPageSizes[0].pageHeight,
-                            pageWidth: estimatedPageSizes[0].pageWidth,
-                            pagesRotation: new Map(),
-                            rotation: initialRotation,
-                            scale: initialScale,
-                            scrollMode: scrollMode,
-                            viewMode: viewMode,
-                        }, onDocumentLoad: onDocumentLoad, onOpenFile: openFile, onPageChange: onPageChange, onRotate: onRotate, onRotatePage: onRotatePage, onZoom: onZoom })); }, scrollMode: scrollMode, viewMode: viewMode })); }, renderError: renderError, renderLoader: renderLoader, renderProtectedView: renderProtectedView, transformGetDocumentParams: transformGetDocumentParams, withCredentials: withCredentials, onDocumentAskPassword: onDocumentAskPassword }))))));
+                }, children: file.shouldLoad && (jsxRuntime.jsx(DocumentLoader, { characterMap: characterMap, file: file.data, httpHeaders: httpHeaders, render: function (doc) { return (jsxRuntime.jsx(PageSizeCalculator, { defaultScale: defaultScale, doc: doc, render: function (estimatedPageSizes, initialScale) { return (jsxRuntime.jsx(Inner, { currentFile: {
+                                data: file.data,
+                                name: file.name,
+                            }, defaultScale: defaultScale, doc: doc, enableSmoothScroll: enableSmoothScroll, estimatedPageSizes: estimatedPageSizes, initialPage: initialPage, initialRotation: initialRotation, initialScale: initialScale, pageLayout: pageLayout, plugins: plugins, renderPage: renderPage, scrollMode: scrollMode, setRenderRange: setRenderRange, viewMode: viewMode, viewerState: {
+                                file: file,
+                                fullScreenMode: exports.FullScreenMode.Normal,
+                                pageIndex: -1,
+                                pageHeight: estimatedPageSizes[0].pageHeight,
+                                pageWidth: estimatedPageSizes[0].pageWidth,
+                                pagesRotation: new Map(),
+                                rotation: initialRotation,
+                                scale: initialScale,
+                                scrollMode: scrollMode,
+                                viewMode: viewMode,
+                            }, onDocumentLoad: onDocumentLoad, onOpenFile: openFile, onPageChange: onPageChange, onRotate: onRotate, onRotatePage: onRotatePage, onZoom: onZoom })); }, scrollMode: scrollMode, viewMode: viewMode })); }, renderError: renderError, renderLoader: renderLoader, renderProtectedView: renderProtectedView, transformGetDocumentParams: transformGetDocumentParams, withCredentials: withCredentials, onDocumentAskPassword: onDocumentAskPassword })) }) }) }));
 };
 
 var Worker = function (_a) {
@@ -4048,10 +3964,10 @@ var Button = function (_a) {
     var direction = React__namespace.useContext(ThemeContext).direction;
     var isRtl = direction === exports.TextDirection.RightToLeft;
     var attrs = testId ? { 'data-testid': testId } : {};
-    return (React__namespace.createElement("button", __assign({ className: classNames({
+    return (jsxRuntime.jsx("button", __assign({ className: classNames({
             'rpv-core__button': true,
             'rpv-core__button--rtl': isRtl,
-        }), type: "button", onClick: onClick }, attrs), children));
+        }), type: "button", onClick: onClick }, attrs, { children: children })));
 };
 
 var LazyRender = function (_a) {
@@ -4067,7 +3983,7 @@ var LazyRender = function (_a) {
         once: true,
         onVisibilityChanged: handleVisibilityChanged,
     });
-    return (React__namespace.createElement("div", __assign({ ref: containerRef }, containerAttrs), visible && children));
+    return (jsxRuntime.jsx("div", __assign({ ref: containerRef }, containerAttrs, { children: visible && children })));
 };
 
 var Menu = function (_a) {
@@ -4148,40 +4064,37 @@ var Menu = function (_a) {
             document.removeEventListener('keydown', handleKeyDown);
         };
     }, []);
-    return (React__namespace.createElement("div", { ref: containerRef, "aria-orientation": "vertical", className: classNames({
+    return (jsxRuntime.jsx("div", { ref: containerRef, "aria-orientation": "vertical", className: classNames({
             'rpv-core__menu': true,
             'rpv-core__menu--rtl': isRtl,
-        }), role: "menu", tabIndex: 0 }, children));
+        }), role: "menu", tabIndex: 0, children: children }));
 };
 
-var MenuDivider = function () { return (React__namespace.createElement("div", { "aria-orientation": "horizontal", className: "rpv-core__menu-divider", role: "separator" })); };
+var MenuDivider = function () { return (jsxRuntime.jsx("div", { "aria-orientation": "horizontal", className: "rpv-core__menu-divider", role: "separator" })); };
 
 var MenuItem = function (_a) {
     var _b = _a.checked, checked = _b === void 0 ? false : _b, children = _a.children, _c = _a.icon, icon = _c === void 0 ? null : _c, _d = _a.isDisabled, isDisabled = _d === void 0 ? false : _d, testId = _a.testId, onClick = _a.onClick;
     var direction = React__namespace.useContext(ThemeContext).direction;
     var isRtl = direction === exports.TextDirection.RightToLeft;
     var attrs = testId ? { 'data-testid': testId } : {};
-    return (React__namespace.createElement("button", __assign({ className: classNames({
+    return (jsxRuntime.jsxs("button", __assign({ className: classNames({
             'rpv-core__menu-item': true,
             'rpv-core__menu-item--disabled': isDisabled,
             'rpv-core__menu-item--ltr': !isRtl,
             'rpv-core__menu-item--rtl': isRtl,
-        }), role: "menuitem", tabIndex: -1, type: "button", onClick: onClick }, attrs),
-        React__namespace.createElement("div", { className: classNames({
-                'rpv-core__menu-item-icon': true,
-                'rpv-core__menu-item-icon--ltr': !isRtl,
-                'rpv-core__menu-item-icon--rtl': isRtl,
-            }) }, icon),
-        React__namespace.createElement("div", { className: classNames({
-                'rpv-core__menu-item-label': true,
-                'rpv-core__menu-item-label--ltr': !isRtl,
-                'rpv-core__menu-item-label--rtl': isRtl,
-            }) }, children),
-        React__namespace.createElement("div", { className: classNames({
-                'rpv-core__menu-item-check': true,
-                'rpv-core__menu-item-check--ltr': !isRtl,
-                'rpv-core__menu-item-check--rtl': isRtl,
-            }) }, checked && React__namespace.createElement(CheckIcon, null))));
+        }), role: "menuitem", tabIndex: -1, type: "button", onClick: onClick }, attrs, { children: [jsxRuntime.jsx("div", { className: classNames({
+                    'rpv-core__menu-item-icon': true,
+                    'rpv-core__menu-item-icon--ltr': !isRtl,
+                    'rpv-core__menu-item-icon--rtl': isRtl,
+                }), children: icon }), jsxRuntime.jsx("div", { className: classNames({
+                    'rpv-core__menu-item-label': true,
+                    'rpv-core__menu-item-label--ltr': !isRtl,
+                    'rpv-core__menu-item-label--rtl': isRtl,
+                }), children: children }), jsxRuntime.jsx("div", { className: classNames({
+                    'rpv-core__menu-item-check': true,
+                    'rpv-core__menu-item-check--ltr': !isRtl,
+                    'rpv-core__menu-item-check--rtl': isRtl,
+                }), children: checked && jsxRuntime.jsx(CheckIcon, {}) })] })));
 };
 
 var MinimalButton = function (_a) {
@@ -4189,28 +4102,25 @@ var MinimalButton = function (_a) {
     var direction = React__namespace.useContext(ThemeContext).direction;
     var isRtl = direction === exports.TextDirection.RightToLeft;
     var attrs = testId ? { 'data-testid': testId } : {};
-    return (React__namespace.createElement("button", __assign({ "aria-label": ariaLabel }, (ariaKeyShortcuts && { 'aria-keyshortcuts': ariaKeyShortcuts }), (isDisabled && { 'aria-disabled': true }), { className: classNames({
+    return (jsxRuntime.jsx("button", __assign({ "aria-label": ariaLabel }, (ariaKeyShortcuts && { 'aria-keyshortcuts': ariaKeyShortcuts }), (isDisabled && { 'aria-disabled': true }), { className: classNames({
             'rpv-core__minimal-button': true,
             'rpv-core__minimal-button--disabled': isDisabled,
             'rpv-core__minimal-button--rtl': isRtl,
             'rpv-core__minimal-button--selected': isSelected,
-        }), type: "button", onClick: onClick }, attrs), children));
+        }), type: "button", onClick: onClick }, attrs, { children: children })));
 };
 
 var ProgressBar = function (_a) {
     var progress = _a.progress;
     var direction = React__namespace.useContext(ThemeContext).direction;
     var isRtl = direction === exports.TextDirection.RightToLeft;
-    return (React__namespace.createElement("div", { className: classNames({
+    return (jsxRuntime.jsx("div", { className: classNames({
             'rpv-core__progress-bar': true,
             'rpv-core__progress-bar--rtl': isRtl,
-        }) },
-        React__namespace.createElement("div", { className: "rpv-core__progress-bar-progress", style: { width: "".concat(progress, "%") } },
-            progress,
-            "%")));
+        }), children: jsxRuntime.jsxs("div", { className: "rpv-core__progress-bar-progress", style: { width: "".concat(progress, "%") }, children: [progress, "%"] }) }));
 };
 
-var Separator = function () { return React__namespace.createElement("div", { className: "rpv-core__separator" }); };
+var Separator = function () { return jsxRuntime.jsx("div", { className: "rpv-core__separator" }); };
 
 var Splitter = function (_a) {
     var constrain = _a.constrain;
@@ -4285,7 +4195,7 @@ var Splitter = function (_a) {
         leftSideRef.current = resizerEle.previousElementSibling;
         rightSideRef.current = resizerEle.nextElementSibling;
     }, []);
-    return React__namespace.createElement("div", { ref: resizerRef, className: "rpv-core__splitter", onMouseDown: handleMouseDown });
+    return jsxRuntime.jsx("div", { ref: resizerRef, className: "rpv-core__splitter", onMouseDown: handleMouseDown });
 };
 
 var id = 0;
@@ -4369,32 +4279,29 @@ var ModalBody = function (_a) {
             contentEle.style.maxHeight = "".concat(maxHeight, "px");
         }
     }, []);
-    return (React__namespace.createElement("div", { "aria-modal": "true", className: classNames({
+    return (jsxRuntime.jsx("div", { "aria-modal": "true", className: classNames({
             'rpv-core__modal-body': true,
             'rpv-core__modal-body--rtl': isRtl,
-        }), id: "rpv-core__modal-body-".concat(ariaControlsSuffix), ref: contentRef, role: "dialog", tabIndex: -1 }, children));
+        }), id: "rpv-core__modal-body-".concat(ariaControlsSuffix), ref: contentRef, role: "dialog", tabIndex: -1, children: children }));
 };
 
 var ModalOverlay = function (_a) {
     var children = _a.children;
-    return React__namespace.createElement("div", { className: "rpv-core__modal-overlay" }, children);
+    return jsxRuntime.jsx("div", { className: "rpv-core__modal-overlay", children: children });
 };
 
 var Portal = function (_a) {
     var content = _a.content, _b = _a.isOpened, isOpened = _b === void 0 ? false : _b, target = _a.target;
     var _c = useToggle(isOpened), opened = _c.opened, toggle = _c.toggle;
-    return (React__namespace.createElement(React__namespace.Fragment, null,
-        target && target(toggle, opened),
-        opened && content(toggle)));
+    return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [target && target(toggle, opened), opened && content(toggle)] }));
 };
 
 var Modal = function (_a) {
     var ariaControlsSuffix = _a.ariaControlsSuffix, closeOnClickOutside = _a.closeOnClickOutside, closeOnEscape = _a.closeOnEscape, content = _a.content, _b = _a.isOpened, isOpened = _b === void 0 ? false : _b, target = _a.target;
     var controlsSuffix = ariaControlsSuffix || "".concat(uniqueId());
-    var renderTarget = function (toggle, opened) { return (React__namespace.createElement("div", { "aria-expanded": opened ? 'true' : 'false', "aria-haspopup": "dialog", "aria-controls": "rpv-core__modal-body-".concat(controlsSuffix) }, target(toggle, opened))); };
-    var renderContent = function (toggle) { return (React__namespace.createElement(ModalOverlay, null,
-        React__namespace.createElement(ModalBody, { ariaControlsSuffix: controlsSuffix, closeOnClickOutside: closeOnClickOutside, closeOnEscape: closeOnEscape, onToggle: toggle }, content(toggle)))); };
-    return React__namespace.createElement(Portal, { target: target ? renderTarget : null, content: renderContent, isOpened: isOpened });
+    var renderTarget = function (toggle, opened) { return (jsxRuntime.jsx("div", { "aria-expanded": opened ? 'true' : 'false', "aria-haspopup": "dialog", "aria-controls": "rpv-core__modal-body-".concat(controlsSuffix), children: target(toggle, opened) })); };
+    var renderContent = function (toggle) { return (jsxRuntime.jsx(ModalOverlay, { children: jsxRuntime.jsx(ModalBody, { ariaControlsSuffix: controlsSuffix, closeOnClickOutside: closeOnClickOutside, closeOnEscape: closeOnEscape, onToggle: toggle, children: content(toggle) }) })); };
+    return jsxRuntime.jsx(Portal, { target: target ? renderTarget : null, content: renderContent, isOpened: isOpened });
 };
 
 exports.Position = void 0;
@@ -4493,7 +4400,7 @@ var usePosition = function (contentRef, targetRef, anchorRef, position, offset) 
 var Arrow = function (_a) {
     var _b;
     var customClassName = _a.customClassName, position = _a.position;
-    return (React__namespace.createElement("div", { className: classNames((_b = {
+    return (jsxRuntime.jsx("div", { className: classNames((_b = {
                 'rpv-core__arrow': true,
                 'rpv-core__arrow--tl': position === exports.Position.TopLeft,
                 'rpv-core__arrow--tc': position === exports.Position.TopCenter,
@@ -4533,14 +4440,10 @@ var PopoverBody = function (_a) {
         }
     }, []);
     var innerId = "rpv-core__popover-body-inner-".concat(ariaControlsSuffix);
-    return (React__namespace.createElement(React__namespace.Fragment, null,
-        React__namespace.createElement("div", { ref: anchorRef, style: { left: 0, position: 'absolute', top: 0 } }),
-        React__namespace.createElement("div", { "aria-describedby": innerId, className: classNames({
-                'rpv-core__popover-body': true,
-                'rpv-core__popover-body--rtl': isRtl,
-            }), id: "rpv-core__popover-body-".concat(ariaControlsSuffix), ref: contentRef, role: "dialog", tabIndex: -1 },
-            React__namespace.createElement(Arrow, { customClassName: "rpv-core__popover-body-arrow", position: position }),
-            React__namespace.createElement("div", { id: innerId, ref: innerRef }, children))));
+    return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("div", { ref: anchorRef, style: { left: 0, position: 'absolute', top: 0 } }), jsxRuntime.jsxs("div", { "aria-describedby": innerId, className: classNames({
+                    'rpv-core__popover-body': true,
+                    'rpv-core__popover-body--rtl': isRtl,
+                }), id: "rpv-core__popover-body-".concat(ariaControlsSuffix), ref: contentRef, role: "dialog", tabIndex: -1, children: [jsxRuntime.jsx(Arrow, { customClassName: "rpv-core__popover-body-arrow", position: position }), jsxRuntime.jsx("div", { id: innerId, ref: innerRef, children: children })] })] }));
 };
 
 var PopoverOverlay = function (_a) {
@@ -4551,7 +4454,7 @@ var PopoverOverlay = function (_a) {
             onClose();
         }
     });
-    return React__namespace.createElement("div", { className: "rpv-core__popover-overlay", ref: containerRef });
+    return jsxRuntime.jsx("div", { className: "rpv-core__popover-overlay", ref: containerRef });
 };
 
 var Popover = function (_a) {
@@ -4559,11 +4462,7 @@ var Popover = function (_a) {
     var _d = useToggle(false), opened = _d.opened, toggle = _d.toggle;
     var targetRef = React__namespace.useRef();
     var controlsSuffix = React__namespace.useMemo(function () { return ariaControlsSuffix || "".concat(uniqueId()); }, []);
-    return (React__namespace.createElement("div", { ref: targetRef, "aria-expanded": opened ? 'true' : 'false', "aria-haspopup": ariaHasPopup, "aria-controls": "rpv-core__popver-body-".concat(controlsSuffix) },
-        target(toggle, opened),
-        opened && (React__namespace.createElement(React__namespace.Fragment, null,
-            lockScroll && React__namespace.createElement(PopoverOverlay, { closeOnEscape: closeOnEscape, onClose: toggle }),
-            React__namespace.createElement(PopoverBody, { ariaControlsSuffix: controlsSuffix, closeOnClickOutside: closeOnClickOutside, offset: offset, position: position, targetRef: targetRef, onClose: toggle }, content(toggle))))));
+    return (jsxRuntime.jsxs("div", { ref: targetRef, "aria-expanded": opened ? 'true' : 'false', "aria-haspopup": ariaHasPopup, "aria-controls": "rpv-core__popver-body-".concat(controlsSuffix), children: [target(toggle, opened), opened && (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [lockScroll && jsxRuntime.jsx(PopoverOverlay, { closeOnEscape: closeOnEscape, onClose: toggle }), jsxRuntime.jsx(PopoverBody, { ariaControlsSuffix: controlsSuffix, closeOnClickOutside: closeOnClickOutside, offset: offset, position: position, targetRef: targetRef, onClose: toggle, children: content(toggle) })] }))] }));
 };
 
 var TooltipBody = function (_a) {
@@ -4572,14 +4471,10 @@ var TooltipBody = function (_a) {
     var direction = React__namespace.useContext(ThemeContext).direction;
     var isRtl = direction === exports.TextDirection.RightToLeft;
     usePosition(contentRef, targetRef, anchorRef, position, offset);
-    return (React__namespace.createElement(React__namespace.Fragment, null,
-        React__namespace.createElement("div", { ref: anchorRef, style: { left: 0, position: 'absolute', top: 0 } }),
-        React__namespace.createElement("div", { className: classNames({
-                'rpv-core__tooltip-body': true,
-                'rpv-core__tooltip-body--rtl': isRtl,
-            }), id: "rpv-core__tooltip-body-".concat(ariaControlsSuffix), ref: contentRef, role: "tooltip" },
-            React__namespace.createElement(Arrow, { customClassName: "rpv-core__tooltip-body-arrow", position: position }),
-            React__namespace.createElement("div", { className: "rpv-core__tooltip-body-content" }, children))));
+    return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("div", { ref: anchorRef, style: { left: 0, position: 'absolute', top: 0 } }), jsxRuntime.jsxs("div", { className: classNames({
+                    'rpv-core__tooltip-body': true,
+                    'rpv-core__tooltip-body--rtl': isRtl,
+                }), id: "rpv-core__tooltip-body-".concat(ariaControlsSuffix), ref: contentRef, role: "tooltip", children: [jsxRuntime.jsx(Arrow, { customClassName: "rpv-core__tooltip-body-arrow", position: position }), jsxRuntime.jsx("div", { className: "rpv-core__tooltip-body-content", children: children })] })] }));
 };
 
 var Tooltip = function (_a) {
@@ -4612,9 +4507,7 @@ var Tooltip = function (_a) {
             close();
         }
     };
-    return (React__namespace.createElement(React__namespace.Fragment, null,
-        React__namespace.createElement("div", { ref: targetRef, "aria-describedby": "rpv-core__tooltip-body-".concat(controlsSuffix), onBlur: onBlur, onFocus: open, onMouseEnter: open, onMouseLeave: close }, target),
-        opened && (React__namespace.createElement(TooltipBody, { ariaControlsSuffix: controlsSuffix, contentRef: contentRef, offset: offset, position: position, targetRef: targetRef }, content()))));
+    return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("div", { ref: targetRef, "aria-describedby": "rpv-core__tooltip-body-".concat(controlsSuffix), onBlur: onBlur, onFocus: open, onMouseEnter: open, onMouseLeave: close, children: target }), opened && (jsxRuntime.jsx(TooltipBody, { ariaControlsSuffix: controlsSuffix, contentRef: contentRef, offset: offset, position: position, targetRef: targetRef, children: content() }))] }));
 };
 
 function createStore(initialState) {

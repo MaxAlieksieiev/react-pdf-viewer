@@ -1,5 +1,6 @@
 'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 var core = require('@react-pdf-viewer/core');
 var React = require('react');
 
@@ -22,17 +23,13 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var DownArrowIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M2.32,2.966h19.452c0.552,0.001,1,0.449,0.999,1.001c0,0.182-0.05,0.36-0.144,0.516L12.9,20.552\n            c-0.286,0.472-0.901,0.624-1.373,0.338c-0.138-0.084-0.254-0.2-0.338-0.338L1.465,4.483C1.179,4.01,1.331,3.396,1.804,3.11\n            C1.96,3.016,2.138,2.966,2.32,2.966z" }))); };
+var DownArrowIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M2.32,2.966h19.452c0.552,0.001,1,0.449,0.999,1.001c0,0.182-0.05,0.36-0.144,0.516L12.9,20.552\n            c-0.286,0.472-0.901,0.624-1.373,0.338c-0.138-0.084-0.254-0.2-0.338-0.338L1.465,4.483C1.179,4.01,1.331,3.396,1.804,3.11\n            C1.96,3.016,2.138,2.966,2.32,2.966z" }) })); };
 
-var NextIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M0.541,5.627L11.666,18.2c0.183,0.207,0.499,0.226,0.706,0.043c0.015-0.014,0.03-0.028,0.043-0.043\n            L23.541,5.627" }))); };
+var NextIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M0.541,5.627L11.666,18.2c0.183,0.207,0.499,0.226,0.706,0.043c0.015-0.014,0.03-0.028,0.043-0.043\n            L23.541,5.627" }) })); };
 
-var PreviousIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M23.535,18.373L12.409,5.8c-0.183-0.207-0.499-0.226-0.706-0.043C11.688,5.77,11.674,5.785,11.66,5.8\n            L0.535,18.373" }))); };
+var PreviousIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M23.535,18.373L12.409,5.8c-0.183-0.207-0.499-0.226-0.706-0.043C11.688,5.77,11.674,5.785,11.66,5.8\n            L0.535,18.373" }) })); };
 
-var UpArrowIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M21.783,21.034H2.332c-0.552,0-1-0.448-1-1c0-0.182,0.05-0.361,0.144-0.517L11.2,3.448\n            c0.286-0.472,0.901-0.624,1.373-0.338c0.138,0.084,0.254,0.2,0.338,0.338l9.726,16.069c0.286,0.473,0.134,1.087-0.339,1.373\n            C22.143,20.984,21.965,21.034,21.783,21.034z" }))); };
+var UpArrowIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M21.783,21.034H2.332c-0.552,0-1-0.448-1-1c0-0.182,0.05-0.361,0.144-0.517L11.2,3.448\n            c0.286-0.472,0.901-0.624,1.373-0.338c0.138,0.084,0.254,0.2,0.338,0.338l9.726,16.069c0.286,0.473,0.134,1.087-0.339,1.373\n            C22.143,20.984,21.965,21.034,21.783,21.034z" }) })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -144,8 +141,7 @@ var CurrentPageInput = function (_a) {
     var label = l10n && l10n.pageNavigation
         ? l10n.pageNavigation.enterPageNumber
         : 'Enter a page number';
-    return (React__namespace.createElement("span", { className: "rpv-page-navigation__current-page-input" },
-        React__namespace.createElement(core.TextBox, { ariaLabel: label, testId: "page-navigation__current-page-input", type: "text", value: editingPage, onChange: setEditingPage, onKeyDown: keydownPage })));
+    return (jsxRuntime.jsx("span", { className: "rpv-page-navigation__current-page-input", children: jsxRuntime.jsx(core.TextBox, { ariaLabel: label, testId: "page-navigation__current-page-input", type: "text", value: editingPage, onChange: setEditingPage, onKeyDown: keydownPage }) }));
 };
 
 var FetchLabels = function (_a) {
@@ -160,7 +156,7 @@ var FetchLabels = function (_a) {
             isMounted.current && setStatus({ loading: false, labels: result || [] });
         });
     }, [doc.loadingTask.docId]);
-    return status.loading ? React__namespace.createElement(React__namespace.Fragment, null) : children(status.labels);
+    return status.loading ? jsxRuntime.jsx(jsxRuntime.Fragment, {}) : children(status.labels);
 };
 
 var useDocument = function (store) {
@@ -182,16 +178,16 @@ var CurrentPageLabel = function (_a) {
     var currentDoc = useDocument(store);
     var currentPage = useCurrentPage(store).currentPage;
     var numberOfPages = useNumberOfPages(store).numberOfPages;
-    var defaultChildren = function (props) { return React__namespace.createElement(React__namespace.Fragment, null, props.currentPage + 1); };
+    var defaultChildren = function (props) { return jsxRuntime.jsx(jsxRuntime.Fragment, { children: props.currentPage + 1 }); };
     var render = children || defaultChildren;
-    return currentDoc ? (React__namespace.createElement(FetchLabels, { doc: currentDoc }, function (labels) {
-        var pageLabel = labels.length === numberOfPages && numberOfPages > 0 ? labels[currentPage] : '';
-        return render({
-            currentPage: currentPage,
-            numberOfPages: numberOfPages,
-            pageLabel: pageLabel,
-        });
-    })) : (React__namespace.createElement(React__namespace.Fragment, null));
+    return currentDoc ? (jsxRuntime.jsx(FetchLabels, { doc: currentDoc, children: function (labels) {
+            var pageLabel = labels.length === numberOfPages && numberOfPages > 0 ? labels[currentPage] : '';
+            return render({
+                currentPage: currentPage,
+                numberOfPages: numberOfPages,
+                pageLabel: pageLabel,
+            });
+        } })) : (jsxRuntime.jsx(jsxRuntime.Fragment, {}));
 };
 
 var TOOLTIP_OFFSET$3 = { left: 0, top: 8 };
@@ -199,8 +195,7 @@ var GoToFirstPageButton = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToFirstPage : 'First page';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "page-navigation-first", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__first-button", onClick: onClick },
-            React__namespace.createElement(UpArrowIcon, null)), content: function () { return label; }, offset: TOOLTIP_OFFSET$3 }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "page-navigation-first", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__first-button", onClick: onClick, children: jsxRuntime.jsx(UpArrowIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$3 }));
 };
 
 var GoToFirstPage = function (_a) {
@@ -212,7 +207,7 @@ var GoToFirstPage = function (_a) {
             jumpToPage(0);
         }
     };
-    var defaultChildren = function (props) { return (React__namespace.createElement(GoToFirstPageButton, { isDisabled: props.isDisabled, onClick: props.onClick })); };
+    var defaultChildren = function (props) { return (jsxRuntime.jsx(GoToFirstPageButton, { isDisabled: props.isDisabled, onClick: props.onClick })); };
     var render = children || defaultChildren;
     return render({
         isDisabled: currentPage === 0,
@@ -224,7 +219,7 @@ var GoToFirstPageMenuItem = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToFirstPage : 'First page';
-    return (React__namespace.createElement(core.MenuItem, { icon: React__namespace.createElement(UpArrowIcon, null), isDisabled: isDisabled, testId: "page-navigation__first-menu", onClick: onClick }, label));
+    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(UpArrowIcon, {}), isDisabled: isDisabled, testId: "page-navigation__first-menu", onClick: onClick, children: label }));
 };
 
 var TOOLTIP_OFFSET$2 = { left: 0, top: 8 };
@@ -232,8 +227,7 @@ var GoToLastPageButton = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToLastPage : 'Last page';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "page-navigation-last", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__last-button", onClick: onClick },
-            React__namespace.createElement(DownArrowIcon, null)), content: function () { return label; }, offset: TOOLTIP_OFFSET$2 }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "page-navigation-last", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__last-button", onClick: onClick, children: jsxRuntime.jsx(DownArrowIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$2 }));
 };
 
 var GoToLastPage = function (_a) {
@@ -246,7 +240,7 @@ var GoToLastPage = function (_a) {
             jumpToPage(numberOfPages - 1);
         }
     };
-    var defaultChildren = function (props) { return (React__namespace.createElement(GoToLastPageButton, { isDisabled: props.isDisabled, onClick: props.onClick })); };
+    var defaultChildren = function (props) { return (jsxRuntime.jsx(GoToLastPageButton, { isDisabled: props.isDisabled, onClick: props.onClick })); };
     var render = children || defaultChildren;
     return render({
         isDisabled: currentPage + 1 >= numberOfPages,
@@ -258,7 +252,7 @@ var GoToLastPageMenuItem = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToLastPage : 'Last page';
-    return (React__namespace.createElement(core.MenuItem, { icon: React__namespace.createElement(DownArrowIcon, null), isDisabled: isDisabled, testId: "page-navigation__last-menu", onClick: onClick }, label));
+    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(DownArrowIcon, {}), isDisabled: isDisabled, testId: "page-navigation__last-menu", onClick: onClick, children: label }));
 };
 
 var TOOLTIP_OFFSET$1 = { left: 0, top: 8 };
@@ -266,8 +260,7 @@ var GoToNextPageButton = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToNextPage : 'Next page';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "page-navigation-next", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__next-button", onClick: onClick },
-            React__namespace.createElement(NextIcon, null)), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "page-navigation-next", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__next-button", onClick: onClick, children: jsxRuntime.jsx(NextIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
 };
 
 var GoToNextPage = function (_a) {
@@ -280,7 +273,7 @@ var GoToNextPage = function (_a) {
             jumpToNextPage();
         }
     };
-    var defaultChildren = function (props) { return (React__namespace.createElement(GoToNextPageButton, { onClick: props.onClick, isDisabled: props.isDisabled })); };
+    var defaultChildren = function (props) { return (jsxRuntime.jsx(GoToNextPageButton, { onClick: props.onClick, isDisabled: props.isDisabled })); };
     var render = children || defaultChildren;
     return render({
         isDisabled: currentPage + 1 >= numberOfPages,
@@ -292,7 +285,7 @@ var GoToNextPageMenuItem = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToNextPage : 'Next page';
-    return (React__namespace.createElement(core.MenuItem, { icon: React__namespace.createElement(NextIcon, null), isDisabled: isDisabled, testId: "page-navigation__next-menu", onClick: onClick }, label));
+    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(NextIcon, {}), isDisabled: isDisabled, testId: "page-navigation__next-menu", onClick: onClick, children: label }));
 };
 
 var TOOLTIP_OFFSET = { left: 0, top: 8 };
@@ -302,8 +295,7 @@ var GoToPreviousPageButton = function (_a) {
     var label = l10n && l10n.pageNavigation
         ? l10n.pageNavigation.goToPreviousPage
         : 'Previous page';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "page-navigation-previous", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__previous-button", onClick: onClick },
-            React__namespace.createElement(PreviousIcon, null)), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "page-navigation-previous", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__previous-button", onClick: onClick, children: jsxRuntime.jsx(PreviousIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
 };
 
 var GoToPreviousPage = function (_a) {
@@ -315,7 +307,7 @@ var GoToPreviousPage = function (_a) {
             jumpToPreviousPage();
         }
     };
-    var defaultChildren = function (props) { return (React__namespace.createElement(GoToPreviousPageButton, { isDisabled: props.isDisabled, onClick: props.onClick })); };
+    var defaultChildren = function (props) { return (jsxRuntime.jsx(GoToPreviousPageButton, { isDisabled: props.isDisabled, onClick: props.onClick })); };
     var render = children || defaultChildren;
     return render({
         isDisabled: currentPage <= 0,
@@ -329,13 +321,13 @@ var GoToPreviousPageMenuItem = function (_a) {
     var label = l10n && l10n.pageNavigation
         ? l10n.pageNavigation.goToPreviousPage
         : 'Previous page';
-    return (React__namespace.createElement(core.MenuItem, { icon: React__namespace.createElement(PreviousIcon, null), isDisabled: isDisabled, testId: "page-navigation__previous-menu", onClick: onClick }, label));
+    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(PreviousIcon, {}), isDisabled: isDisabled, testId: "page-navigation__previous-menu", onClick: onClick, children: label }));
 };
 
 var NumberOfPages = function (_a) {
     var children = _a.children, store = _a.store;
     var numberOfPages = useNumberOfPages(store).numberOfPages;
-    return children ? children({ numberOfPages: numberOfPages }) : React__namespace.createElement(React__namespace.Fragment, null, numberOfPages);
+    return children ? children({ numberOfPages: numberOfPages }) : jsxRuntime.jsx(jsxRuntime.Fragment, { children: numberOfPages });
 };
 
 var ShortcutHandler = function (_a) {
@@ -422,48 +414,46 @@ var ShortcutHandler = function (_a) {
             containerEle.removeEventListener('mouseleave', handleMouseLeave);
         };
     }, [containerRef.current]);
-    return React__namespace.createElement(React__namespace.Fragment, null);
+    return jsxRuntime.jsx(jsxRuntime.Fragment, {});
 };
 
 var pageNavigationPlugin = function (props) {
     var pageNavigationPluginProps = React__namespace.useMemo(function () { return Object.assign({}, { enableShortcuts: true }, props); }, []);
     var store = React__namespace.useMemo(function () { return core.createStore(); }, []);
-    var CurrentPageInputDecorator = function () { return React__namespace.createElement(CurrentPageInput, { store: store }); };
-    var CurrentPageLabelDecorator = function (props) { return React__namespace.createElement(CurrentPageLabel, __assign({}, props, { store: store })); };
-    var GoToFirstPageDecorator = function (props) { return React__namespace.createElement(GoToFirstPage, __assign({}, props, { store: store })); };
-    var GoToFirstPageButtonDecorator = function () { return (React__namespace.createElement(GoToFirstPageDecorator, null, function (props) { return React__namespace.createElement(GoToFirstPageButton, __assign({}, props)); })); };
-    var GoToFirstPageMenuItemDecorator = function (props) { return (React__namespace.createElement(GoToFirstPageDecorator, null, function (p) { return (React__namespace.createElement(GoToFirstPageMenuItem, { isDisabled: p.isDisabled, onClick: function () {
-            p.onClick();
-            props.onClick();
-        } })); })); };
-    var GoToLastPageDecorator = function (props) { return React__namespace.createElement(GoToLastPage, __assign({}, props, { store: store })); };
-    var GoToLastPageButtonDecorator = function () { return (React__namespace.createElement(GoToLastPageDecorator, null, function (props) { return React__namespace.createElement(GoToLastPageButton, __assign({}, props)); })); };
-    var GoToLastPageMenuItemDecorator = function (props) { return (React__namespace.createElement(GoToLastPageDecorator, null, function (p) { return (React__namespace.createElement(GoToLastPageMenuItem, { isDisabled: p.isDisabled, onClick: function () {
-            p.onClick();
-            props.onClick();
-        } })); })); };
-    var GoToNextPageDecorator = function (props) { return React__namespace.createElement(GoToNextPage, __assign({}, props, { store: store })); };
-    var GoToNextPageButtonDecorator = function () { return (React__namespace.createElement(GoToNextPageDecorator, null, function (props) { return React__namespace.createElement(GoToNextPageButton, __assign({}, props)); })); };
-    var GoToNextPageMenuItemDecorator = function (props) { return (React__namespace.createElement(GoToNextPageDecorator, null, function (p) { return (React__namespace.createElement(GoToNextPageMenuItem, { isDisabled: p.isDisabled, onClick: function () {
-            p.onClick();
-            props.onClick();
-        } })); })); };
-    var GoToPreviousPageDecorator = function (props) { return React__namespace.createElement(GoToPreviousPage, __assign({}, props, { store: store })); };
-    var GoToPreviousPageButtonDecorator = function () { return (React__namespace.createElement(GoToPreviousPageDecorator, null, function (props) { return React__namespace.createElement(GoToPreviousPageButton, __assign({}, props)); })); };
-    var GoToPreviousPageMenuItemDecorator = function (props) { return (React__namespace.createElement(GoToPreviousPageDecorator, null, function (p) { return (React__namespace.createElement(GoToPreviousPageMenuItem, { isDisabled: p.isDisabled, onClick: function () {
-            p.onClick();
-            props.onClick();
-        } })); })); };
-    var NumberOfPagesDecorator = function (props) { return React__namespace.createElement(NumberOfPages, __assign({}, props, { store: store })); };
+    var CurrentPageInputDecorator = function () { return jsxRuntime.jsx(CurrentPageInput, { store: store }); };
+    var CurrentPageLabelDecorator = function (props) { return jsxRuntime.jsx(CurrentPageLabel, __assign({}, props, { store: store })); };
+    var GoToFirstPageDecorator = function (props) { return jsxRuntime.jsx(GoToFirstPage, __assign({}, props, { store: store })); };
+    var GoToFirstPageButtonDecorator = function () { return (jsxRuntime.jsx(GoToFirstPageDecorator, { children: function (props) { return jsxRuntime.jsx(GoToFirstPageButton, __assign({}, props)); } })); };
+    var GoToFirstPageMenuItemDecorator = function (props) { return (jsxRuntime.jsx(GoToFirstPageDecorator, { children: function (p) { return (jsxRuntime.jsx(GoToFirstPageMenuItem, { isDisabled: p.isDisabled, onClick: function () {
+                p.onClick();
+                props.onClick();
+            } })); } })); };
+    var GoToLastPageDecorator = function (props) { return jsxRuntime.jsx(GoToLastPage, __assign({}, props, { store: store })); };
+    var GoToLastPageButtonDecorator = function () { return (jsxRuntime.jsx(GoToLastPageDecorator, { children: function (props) { return jsxRuntime.jsx(GoToLastPageButton, __assign({}, props)); } })); };
+    var GoToLastPageMenuItemDecorator = function (props) { return (jsxRuntime.jsx(GoToLastPageDecorator, { children: function (p) { return (jsxRuntime.jsx(GoToLastPageMenuItem, { isDisabled: p.isDisabled, onClick: function () {
+                p.onClick();
+                props.onClick();
+            } })); } })); };
+    var GoToNextPageDecorator = function (props) { return jsxRuntime.jsx(GoToNextPage, __assign({}, props, { store: store })); };
+    var GoToNextPageButtonDecorator = function () { return (jsxRuntime.jsx(GoToNextPageDecorator, { children: function (props) { return jsxRuntime.jsx(GoToNextPageButton, __assign({}, props)); } })); };
+    var GoToNextPageMenuItemDecorator = function (props) { return (jsxRuntime.jsx(GoToNextPageDecorator, { children: function (p) { return (jsxRuntime.jsx(GoToNextPageMenuItem, { isDisabled: p.isDisabled, onClick: function () {
+                p.onClick();
+                props.onClick();
+            } })); } })); };
+    var GoToPreviousPageDecorator = function (props) { return jsxRuntime.jsx(GoToPreviousPage, __assign({}, props, { store: store })); };
+    var GoToPreviousPageButtonDecorator = function () { return (jsxRuntime.jsx(GoToPreviousPageDecorator, { children: function (props) { return jsxRuntime.jsx(GoToPreviousPageButton, __assign({}, props)); } })); };
+    var GoToPreviousPageMenuItemDecorator = function (props) { return (jsxRuntime.jsx(GoToPreviousPageDecorator, { children: function (p) { return (jsxRuntime.jsx(GoToPreviousPageMenuItem, { isDisabled: p.isDisabled, onClick: function () {
+                p.onClick();
+                props.onClick();
+            } })); } })); };
+    var NumberOfPagesDecorator = function (props) { return jsxRuntime.jsx(NumberOfPages, __assign({}, props, { store: store })); };
     var renderViewer = function (props) {
         var slot = props.slot;
         if (!pageNavigationPluginProps.enableShortcuts) {
             return slot;
         }
         var updateSlot = {
-            children: (React__namespace.createElement(React__namespace.Fragment, null,
-                React__namespace.createElement(ShortcutHandler, { containerRef: props.containerRef, numPages: props.doc.numPages, store: store }),
-                slot.children)),
+            children: (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx(ShortcutHandler, { containerRef: props.containerRef, numPages: props.doc.numPages, store: store }), slot.children] })),
         };
         return __assign(__assign({}, slot), updateSlot);
     };

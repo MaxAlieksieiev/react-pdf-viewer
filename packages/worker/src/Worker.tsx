@@ -8,7 +8,7 @@
 
 'use client';
 
-import { PdfJsApiContext, type PdfJsApiProvider } from '@react-pdf-viewer/core';
+import { PdfJsApiContext, type PdfJsApiProvider } from '@max_alieksieiev/react-pdf-viewer-core';
 import * as PdfJs from 'pdfjs-dist';
 import * as React from 'react';
 

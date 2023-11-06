@@ -1,7 +1,7 @@
 'use strict';
 
 var jsxRuntime = require('react/jsx-runtime');
-var core = require('@react-pdf-viewer/core');
+var reactPdfViewerCore = require('@max_alieksieiev/react-pdf-viewer-core');
 var PdfJs = require('pdfjs-dist');
 
 function _interopNamespaceDefault(e) {
@@ -27,7 +27,7 @@ var Worker = function (_a) {
     var children = _a.children, workerUrl = _a.workerUrl;
     var apiProvider = PdfJs__namespace;
     apiProvider.GlobalWorkerOptions.workerSrc = workerUrl;
-    return jsxRuntime.jsx(core.PdfJsApiContext.Provider, { value: { pdfJsApiProvider: apiProvider }, children: children });
+    return jsxRuntime.jsx(reactPdfViewerCore.PdfJsApiContext.Provider, { value: { pdfJsApiProvider: apiProvider }, children: children });
 };
 
 exports.Worker = Worker;

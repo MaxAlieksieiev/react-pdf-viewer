@@ -83,6 +83,7 @@ var ClickDrag = function (_a) {
         }
     };
     var handleMouseDown = function (e) {
+        console.log('hahandleMouseDownnde');
         var textLayerEle = textLayerRef.current;
         var container = containerRef.current;
         if (!e.altKey || !textLayerEle || !container || e instanceof MouseEvent && e.button !== 0) {
@@ -118,6 +119,7 @@ var ClickDrag = function (_a) {
         });
     };
     var handleDocumentMouseMove = function (e) {
+        console.log('handleDocumentMouseMove');
         var textLayerEle = textLayerRef.current;
         var container = containerRef.current;
         if (!textLayerEle || !container) {
@@ -138,6 +140,7 @@ var ClickDrag = function (_a) {
         container.style.height = "".concat(height, "%");
     };
     var handleDocumentKeyDown = function (e) {
+        console.log('handleDocumentKeyDown');
         if (e.key === 'Escape' && store.get('highlightState').type === HighlightStateType.ClickDragged) {
             e.preventDefault();
             hideContainer();
@@ -145,6 +148,7 @@ var ClickDrag = function (_a) {
         }
     };
     var handleDocumenClick = function (e) {
+        console.log('handleDocumenClick', handleDocumenClick);
         var container = containerRef.current;
         if (!container) {
             return;
@@ -155,6 +159,7 @@ var ClickDrag = function (_a) {
         }
     };
     var handleDocumentMouseUp = function (e) {
+        console.log('handleDocumentMouseUp');
         e.preventDefault();
         if (e instanceof MouseEvent) {
             document.removeEventListener('mousemove', handleDocumentMouseMove);
@@ -218,17 +223,23 @@ var ClickDrag = function (_a) {
         var eventOptions = {
             capture: true,
         };
-        document.addEventListener('keydown', handleDocumentKeyDown);
-        document.addEventListener('click', handleDocumenClick, eventOptions);
+        if (isMobile()) {
+            document.addEventListener('touchcancel', handleDocumenClick, eventOptions);
+        }
+        else {
+            document.addEventListener('keydown', handleDocumentKeyDown);
+            document.addEventListener('click', handleDocumenClick, eventOptions);
+        }
         return function () {
             if (isMobile()) {
                 textLayerEle.removeEventListener('touchstart', handleMouseDown);
+                document.removeEventListener('touchcancel', handleDocumenClick, eventOptions);
             }
             else {
                 textLayerEle.removeEventListener('mousedown', handleMouseDown);
+                document.removeEventListener('click', handleDocumenClick, eventOptions);
+                document.removeEventListener('keydown', handleDocumentKeyDown);
             }
-            document.removeEventListener('click', handleDocumenClick, eventOptions);
-            document.removeEventListener('keydown', handleDocumentKeyDown);
         };
     }, [textLayerRendered]);
     return jsxRuntime.jsx("div", { ref: containerRef, className: "rpv-highlight__click-drag rpv-highlight__click-drag--hidden" });

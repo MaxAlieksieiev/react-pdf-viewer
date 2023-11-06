@@ -1,5 +1,6 @@
 'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 var core = require('@react-pdf-viewer/core');
 var React = require('react');
 
@@ -22,11 +23,9 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var ZoomInIcon = function () { return (React__namespace.createElement(core.Icon, { ignoreDirection: true, size: 16 },
-    React__namespace.createElement("path", { d: "M10.5,0.499c5.523,0,10,4.477,10,10s-4.477,10-10,10s-10-4.477-10-10S4.977,0.499,10.5,0.499z\n            M23.5,23.499\n            l-5.929-5.929\n            M5.5,10.499h10\n            M10.5,5.499v10" }))); };
+var ZoomInIcon = function () { return (jsxRuntime.jsx(core.Icon, { ignoreDirection: true, size: 16, children: jsxRuntime.jsx("path", { d: "M10.5,0.499c5.523,0,10,4.477,10,10s-4.477,10-10,10s-10-4.477-10-10S4.977,0.499,10.5,0.499z\n            M23.5,23.499\n            l-5.929-5.929\n            M5.5,10.499h10\n            M10.5,5.499v10" }) })); };
 
-var ZoomOutIcon = function () { return (React__namespace.createElement(core.Icon, { ignoreDirection: true, size: 16 },
-    React__namespace.createElement("path", { d: "M10.5,0.499c5.523,0,10,4.477,10,10s-4.477,10-10,10s-10-4.477-10-10S4.977,0.499,10.5,0.499z\n            M23.5,23.499\n            l-5.929-5.929\n            M5.5,10.499h10" }))); };
+var ZoomOutIcon = function () { return (jsxRuntime.jsx(core.Icon, { ignoreDirection: true, size: 16, children: jsxRuntime.jsx("path", { d: "M10.5,0.499c5.523,0,10,4.477,10,10s-4.477,10-10,10s-10-4.477-10-10S4.977,0.499,10.5,0.499z\n            M23.5,23.499\n            l-5.929-5.929\n            M5.5,10.499h10" }) })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -78,7 +77,7 @@ var useZoom = function (store) {
 var CurrentScale = function (_a) {
     var children = _a.children, store = _a.store;
     var scale = useZoom(store).scale;
-    var defaultChildren = function (props) { return React__namespace.createElement(React__namespace.Fragment, null, "".concat(Math.round(props.scale * 100), "%")); };
+    var defaultChildren = function (props) { return jsxRuntime.jsx(jsxRuntime.Fragment, { children: "".concat(Math.round(props.scale * 100), "%") }); };
     var render = children || defaultChildren;
     return render({ scale: scale });
 };
@@ -127,7 +126,7 @@ var PinchZoom = function (_a) {
             pagesContainer.removeEventListener('wheel', handleWheelEvent);
         };
     }, []);
-    return React__namespace.createElement(React__namespace.Fragment, null);
+    return jsxRuntime.jsx(jsxRuntime.Fragment, {});
 };
 
 var LEVELS = [
@@ -192,7 +191,7 @@ var ShortcutHandler = function (_a) {
             document.removeEventListener('keydown', keydownHandler);
         };
     }, [containerRef.current]);
-    return React__namespace.createElement(React__namespace.Fragment, null);
+    return jsxRuntime.jsx(jsxRuntime.Fragment, {});
 };
 
 var DEFAULT_LEVELS = [0.5, 0.75, 1, 1.25, 1.5, 2, 3, 4];
@@ -217,35 +216,27 @@ var ZoomPopover = function (_a) {
         var click = function () {
             toggle();
         };
-        return (React__namespace.createElement(core.MinimalButton, { ariaLabel: zoomDocumentLabel, testId: "zoom__popover-target", onClick: click },
-            React__namespace.createElement("span", { className: "rpv-zoom__popover-target" },
-                React__namespace.createElement("span", { "data-testid": "zoom__popover-target-scale", className: core.classNames({
-                        'rpv-zoom__popover-target-scale': true,
-                        'rpv-zoom__popover-target-scale--ltr': !isRtl,
-                        'rpv-zoom__popover-target-scale--rtl': isRtl,
-                    }) },
-                    Math.round(scale * 100),
-                    "%"),
-                React__namespace.createElement("span", { className: "rpv-zoom__popover-target-arrow" }))));
+        return (jsxRuntime.jsx(core.MinimalButton, { ariaLabel: zoomDocumentLabel, testId: "zoom__popover-target", onClick: click, children: jsxRuntime.jsxs("span", { className: "rpv-zoom__popover-target", children: [jsxRuntime.jsxs("span", { "data-testid": "zoom__popover-target-scale", className: core.classNames({
+                            'rpv-zoom__popover-target-scale': true,
+                            'rpv-zoom__popover-target-scale--ltr': !isRtl,
+                            'rpv-zoom__popover-target-scale--rtl': isRtl,
+                        }), children: [Math.round(scale * 100), "%"] }), jsxRuntime.jsx("span", { className: "rpv-zoom__popover-target-arrow" })] }) }));
     };
-    var renderContent = function (toggle) { return (React__namespace.createElement(core.Menu, null,
-        Object.keys(core.SpecialZoomLevel).map(function (k) {
-            var level = k;
-            var clickMenuItem = function () {
-                toggle();
-                onZoom(level);
-            };
-            return (React__namespace.createElement(core.MenuItem, { key: level, onClick: clickMenuItem }, getSpcialLevelLabel(level)));
-        }),
-        React__namespace.createElement(core.MenuDivider, null),
-        levels.map(function (level) {
-            var clickMenuItem = function () {
-                toggle();
-                onZoom(level);
-            };
-            return (React__namespace.createElement(core.MenuItem, { key: level, onClick: clickMenuItem }, "".concat(Math.round(level * 100), "%")));
-        }))); };
-    return (React__namespace.createElement(core.Popover, { ariaControlsSuffix: "zoom", ariaHasPopup: "menu", position: core.Position.BottomCenter, target: renderTarget, content: renderContent, offset: PORTAL_OFFSET, closeOnClickOutside: true, closeOnEscape: true }));
+    var renderContent = function (toggle) { return (jsxRuntime.jsxs(core.Menu, { children: [Object.keys(core.SpecialZoomLevel).map(function (k) {
+                var level = k;
+                var clickMenuItem = function () {
+                    toggle();
+                    onZoom(level);
+                };
+                return (jsxRuntime.jsx(core.MenuItem, { onClick: clickMenuItem, children: getSpcialLevelLabel(level) }, level));
+            }), jsxRuntime.jsx(core.MenuDivider, {}), levels.map(function (level) {
+                var clickMenuItem = function () {
+                    toggle();
+                    onZoom(level);
+                };
+                return (jsxRuntime.jsx(core.MenuItem, { onClick: clickMenuItem, children: "".concat(Math.round(level * 100), "%") }, level));
+            })] })); };
+    return (jsxRuntime.jsx(core.Popover, { ariaControlsSuffix: "zoom", ariaHasPopup: "menu", position: core.Position.BottomCenter, target: renderTarget, content: renderContent, offset: PORTAL_OFFSET, closeOnClickOutside: true, closeOnEscape: true }));
 };
 
 var Zoom = function (_a) {
@@ -257,7 +248,7 @@ var Zoom = function (_a) {
             zoom(newLevel);
         }
     };
-    var defaultChildren = function (props) { return (React__namespace.createElement(ZoomPopover, { levels: levels, scale: props.scale, onZoom: props.onZoom })); };
+    var defaultChildren = function (props) { return (jsxRuntime.jsx(ZoomPopover, { levels: levels, scale: props.scale, onZoom: props.onZoom })); };
     var render = children || defaultChildren;
     return render({
         scale: scale,
@@ -271,8 +262,7 @@ var ZoomInButton = function (_a) {
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.zoom ? l10n.zoom.zoomIn : 'Zoom in';
     var ariaKeyShortcuts = enableShortcuts ? (core.isMac() ? 'Meta+=' : 'Ctrl+=') : '';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "zoom-in", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, testId: "zoom__in-button", onClick: onClick },
-            React__namespace.createElement(ZoomInIcon, null)), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "zoom-in", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, testId: "zoom__in-button", onClick: onClick, children: jsxRuntime.jsx(ZoomInIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
 };
 
 var ZoomIn = function (_a) {
@@ -296,7 +286,7 @@ var ZoomInMenuItem = function (_a) {
     var onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.zoom ? l10n.zoom.zoomIn : 'Zoom in';
-    return (React__namespace.createElement(core.MenuItem, { icon: React__namespace.createElement(ZoomInIcon, null), testId: "zoom__in-menu", onClick: onClick }, label));
+    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(ZoomInIcon, {}), testId: "zoom__in-menu", onClick: onClick, children: label }));
 };
 
 var TOOLTIP_OFFSET = { left: 0, top: 8 };
@@ -305,8 +295,7 @@ var ZoomOutButton = function (_a) {
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.zoom ? l10n.zoom.zoomOut : 'Zoom out';
     var ariaKeyShortcuts = enableShortcuts ? (core.isMac() ? 'Meta+-' : 'Ctrl+-') : '';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "zoom-out", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, testId: "zoom__out-button", onClick: onClick },
-            React__namespace.createElement(ZoomOutIcon, null)), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "zoom-out", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, testId: "zoom__out-button", onClick: onClick, children: jsxRuntime.jsx(ZoomOutIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
 };
 
 var ZoomOut = function (_a) {
@@ -330,37 +319,34 @@ var ZoomOutMenuItem = function (_a) {
     var onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.zoom ? l10n.zoom.zoomOut : 'Zoom out';
-    return (React__namespace.createElement(core.MenuItem, { icon: React__namespace.createElement(ZoomOutIcon, null), testId: "zoom__out-menu", onClick: onClick }, label));
+    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(ZoomOutIcon, {}), testId: "zoom__out-menu", onClick: onClick, children: label }));
 };
 
 var zoomPlugin = function (props) {
     var zoomPluginProps = React__namespace.useMemo(function () { return Object.assign({}, { enableShortcuts: true }, props); }, []);
     var store = React__namespace.useMemo(function () { return core.createStore({}); }, []);
-    var CurrentScaleDecorator = function (props) { return React__namespace.createElement(CurrentScale, __assign({}, props, { store: store })); };
-    var ZoomInDecorator = function (props) { return (React__namespace.createElement(ZoomIn, __assign({ enableShortcuts: zoomPluginProps.enableShortcuts }, props, { store: store }))); };
-    var ZoomInButtonDecorator = function () { return React__namespace.createElement(ZoomInDecorator, null, function (props) { return React__namespace.createElement(ZoomInButton, __assign({}, props)); }); };
-    var ZoomInMenuItemDecorator = function (props) { return (React__namespace.createElement(ZoomInDecorator, null, function (p) { return (React__namespace.createElement(ZoomInMenuItem, { onClick: function () {
-            p.onClick();
-            props.onClick();
-        } })); })); };
-    var ZoomOutDecorator = function (props) { return (React__namespace.createElement(ZoomOut, __assign({ enableShortcuts: zoomPluginProps.enableShortcuts }, props, { store: store }))); };
-    var ZoomOutButtonDecorator = function () { return React__namespace.createElement(ZoomOutDecorator, null, function (props) { return React__namespace.createElement(ZoomOutButton, __assign({}, props)); }); };
-    var ZoomOutMenuItemDecorator = function (props) { return (React__namespace.createElement(ZoomOutDecorator, null, function (p) { return (React__namespace.createElement(ZoomOutMenuItem, { onClick: function () {
-            p.onClick();
-            props.onClick();
-        } })); })); };
-    var ZoomDecorator = function (props) { return React__namespace.createElement(Zoom, __assign({}, props, { store: store })); };
-    var ZoomPopoverDecorator = function (zoomPopverProps) { return (React__namespace.createElement(ZoomDecorator, null, function (props) { return React__namespace.createElement(ZoomPopover, __assign({ levels: zoomPopverProps === null || zoomPopverProps === void 0 ? void 0 : zoomPopverProps.levels }, props)); })); };
+    var CurrentScaleDecorator = function (props) { return jsxRuntime.jsx(CurrentScale, __assign({}, props, { store: store })); };
+    var ZoomInDecorator = function (props) { return (jsxRuntime.jsx(ZoomIn, __assign({ enableShortcuts: zoomPluginProps.enableShortcuts }, props, { store: store }))); };
+    var ZoomInButtonDecorator = function () { return jsxRuntime.jsx(ZoomInDecorator, { children: function (props) { return jsxRuntime.jsx(ZoomInButton, __assign({}, props)); } }); };
+    var ZoomInMenuItemDecorator = function (props) { return (jsxRuntime.jsx(ZoomInDecorator, { children: function (p) { return (jsxRuntime.jsx(ZoomInMenuItem, { onClick: function () {
+                p.onClick();
+                props.onClick();
+            } })); } })); };
+    var ZoomOutDecorator = function (props) { return (jsxRuntime.jsx(ZoomOut, __assign({ enableShortcuts: zoomPluginProps.enableShortcuts }, props, { store: store }))); };
+    var ZoomOutButtonDecorator = function () { return jsxRuntime.jsx(ZoomOutDecorator, { children: function (props) { return jsxRuntime.jsx(ZoomOutButton, __assign({}, props)); } }); };
+    var ZoomOutMenuItemDecorator = function (props) { return (jsxRuntime.jsx(ZoomOutDecorator, { children: function (p) { return (jsxRuntime.jsx(ZoomOutMenuItem, { onClick: function () {
+                p.onClick();
+                props.onClick();
+            } })); } })); };
+    var ZoomDecorator = function (props) { return jsxRuntime.jsx(Zoom, __assign({}, props, { store: store })); };
+    var ZoomPopoverDecorator = function (zoomPopverProps) { return (jsxRuntime.jsx(ZoomDecorator, { children: function (props) { return jsxRuntime.jsx(ZoomPopover, __assign({ levels: zoomPopverProps === null || zoomPopverProps === void 0 ? void 0 : zoomPopverProps.levels }, props)); } })); };
     var renderViewer = function (props) {
         var slot = props.slot;
         if (!zoomPluginProps.enableShortcuts) {
             return slot;
         }
         var updateSlot = {
-            children: (React__namespace.createElement(React__namespace.Fragment, null,
-                React__namespace.createElement(ShortcutHandler, { containerRef: props.containerRef, store: store }),
-                React__namespace.createElement(PinchZoom, { pagesContainerRef: props.pagesContainerRef, store: store }),
-                slot.children)),
+            children: (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx(ShortcutHandler, { containerRef: props.containerRef, store: store }), jsxRuntime.jsx(PinchZoom, { pagesContainerRef: props.pagesContainerRef, store: store }), slot.children] })),
         };
         return __assign(__assign({}, slot), updateSlot);
     };

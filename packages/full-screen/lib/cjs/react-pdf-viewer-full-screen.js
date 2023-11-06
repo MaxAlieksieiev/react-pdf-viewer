@@ -66,12 +66,7 @@ var EnterFullScreenButton = function (_a) {
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.fullScreen ? l10n.fullScreen.enterFullScreen : 'Full screen';
     var ariaKeyShortcuts = enableShortcuts ? (core.isMac() ? 'Meta+Ctrl+F' : 'F11') : '';
-    console.log('isFullScreenEnabled', core.isFullScreenEnabled());
-    var handleClick = function () {
-        console.log(onClick);
-        onClick();
-    };
-    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "full-screen-enter", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, isDisabled: !core.isFullScreenEnabled(), testId: "full-screen__enter-button", onClick: handleClick, children: jsxRuntime.jsx(FullScreenIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "full-screen-enter", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, isDisabled: !core.isFullScreenEnabled(), testId: "full-screen__enter-button", onClick: onClick, children: jsxRuntime.jsx(FullScreenIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
 };
 
 var TOOLTIP_OFFSET = { left: 0, top: 8 };
@@ -158,7 +153,6 @@ var FullScreenModeTracker = function (_a) {
     var store = _a.store, onEnterFullScreen = _a.onEnterFullScreen, onExitFullScreen = _a.onExitFullScreen;
     var _b = React__namespace.useState(store.get('fullScreenMode')), fullScreenMode = _b[0], setFullScreenMode = _b[1];
     var handleFullScreenMode = React__namespace.useCallback(function (fullScreenMode) {
-        console.log('handleFullScreenMode', fullScreenMode);
         setFullScreenMode(fullScreenMode);
     }, []);
     var handleEnteredFullScreen = function () {

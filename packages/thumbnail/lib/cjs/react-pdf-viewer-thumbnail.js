@@ -1,5 +1,6 @@
 'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 var core = require('@react-pdf-viewer/core');
 var React = require('react');
 
@@ -142,7 +143,7 @@ var CoverInner = function (_a) {
             (_a = renderTask.current) === null || _a === void 0 ? void 0 : _a.cancel();
         };
     }, []);
-    return (React__namespace.createElement("div", { ref: containerRef, className: "rpv-thumbnail__cover-inner", "data-testid": "thumbnail__cover-inner" }, src ? (React__namespace.createElement("img", { className: "rpv-thumbnail__cover-image", "data-testid": "thumbnail__cover-image", src: src })) : (React__namespace.createElement("div", { className: "rpv-thumbnail__cover-loader", "data-testid": "thumbnail__cover-loader" }, renderSpinner ? renderSpinner() : React__namespace.createElement(core.Spinner, null)))));
+    return (jsxRuntime.jsx("div", { ref: containerRef, className: "rpv-thumbnail__cover-inner", "data-testid": "thumbnail__cover-inner", children: src ? (jsxRuntime.jsx("img", { className: "rpv-thumbnail__cover-image", "data-testid": "thumbnail__cover-image", src: src })) : (jsxRuntime.jsx("div", { className: "rpv-thumbnail__cover-loader", "data-testid": "thumbnail__cover-loader", children: renderSpinner ? renderSpinner() : jsxRuntime.jsx(core.Spinner, {}) })) }));
 };
 
 var Cover = function (_a) {
@@ -157,10 +158,10 @@ var Cover = function (_a) {
             store.unsubscribe('doc', handleDocumentChanged);
         };
     }, []);
-    return (React__namespace.createElement("div", { className: "rpv-thumbnail__cover" }, currentDoc ? (React__namespace.createElement(CoverInner, { doc: currentDoc, getPageIndex: getPageIndex, renderSpinner: renderSpinner, store: store, width: width })) : (React__namespace.createElement("div", { className: "rpv-thumbnail__cover-loader" }, renderSpinner ? renderSpinner() : React__namespace.createElement(core.Spinner, null)))));
+    return (jsxRuntime.jsx("div", { className: "rpv-thumbnail__cover", children: currentDoc ? (jsxRuntime.jsx(CoverInner, { doc: currentDoc, getPageIndex: getPageIndex, renderSpinner: renderSpinner, store: store, width: width })) : (jsxRuntime.jsx("div", { className: "rpv-thumbnail__cover-loader", children: renderSpinner ? renderSpinner() : jsxRuntime.jsx(core.Spinner, {}) })) }));
 };
 
-var defaultSpinner = function () { return React__namespace.createElement(core.Spinner, null); };
+var defaultSpinner = function () { return jsxRuntime.jsx(core.Spinner, {}); };
 var SpinnerContext = React__namespace.createContext({
     renderSpinner: defaultSpinner,
 });
@@ -177,7 +178,7 @@ var FetchLabels = function (_a) {
             isMounted.current && setStatus({ loading: false, labels: result || [] });
         });
     }, [doc.loadingTask.docId]);
-    return status.loading ? React__namespace.createElement(React__namespace.Fragment, null) : children(status.labels);
+    return status.loading ? jsxRuntime.jsx(jsxRuntime.Fragment, {}) : children(status.labels);
 };
 
 var ThumbnailItem = function (_a) {
@@ -215,7 +216,7 @@ var ThumbnailItem = function (_a) {
             (_a = renderTask.current) === null || _a === void 0 ? void 0 : _a.cancel();
         };
     }, [rotation]);
-    return !src ? (React__namespace.useContext(SpinnerContext).renderSpinner()) : (React__namespace.createElement("img", { "aria-label": thumbnailLabel.replace('{{pageIndex}}', "".concat(pageIndex + 1)), src: src, height: "".concat(thumbnailHeight, "px"), width: "".concat(thumbnailWidth, "px") }));
+    return !src ? (React__namespace.useContext(SpinnerContext).renderSpinner()) : (jsxRuntime.jsx("img", { "aria-label": thumbnailLabel.replace('{{pageIndex}}', "".concat(pageIndex + 1)), src: src, height: "".concat(thumbnailHeight, "px"), width: "".concat(thumbnailWidth, "px") }));
 };
 
 var ThumbnailContainer = function (_a) {
@@ -252,10 +253,10 @@ var ThumbnailContainer = function (_a) {
             onVisibilityChanged(pageIndex, visibility);
         },
     });
-    return (React__namespace.createElement("div", { className: "rpv-thumbnail__container", "data-testid": "thumbnail__container-".concat(pageIndex), ref: containerRef, style: {
+    return (jsxRuntime.jsx("div", { className: "rpv-thumbnail__container", "data-testid": "thumbnail__container-".concat(pageIndex), ref: containerRef, style: {
             height: "".concat(h, "px"),
             width: "".concat(w, "px"),
-        } }, !page ? (React__namespace.useContext(SpinnerContext).renderSpinner()) : (React__namespace.createElement(ThumbnailItem, { page: page, pageHeight: isVertical ? height : width, pageIndex: pageIndex, pageWidth: isVertical ? width : height, rotation: rotationNumber, thumbnailHeight: h, thumbnailWidth: w, onRenderCompleted: onRenderCompleted }))));
+        }, children: !page ? (React__namespace.useContext(SpinnerContext).renderSpinner()) : (jsxRuntime.jsx(ThumbnailItem, { page: page, pageHeight: isVertical ? height : width, pageIndex: pageIndex, pageWidth: isVertical ? width : height, rotation: rotationNumber, thumbnailHeight: h, thumbnailWidth: w, onRenderCompleted: onRenderCompleted })) }));
 };
 
 var scrollToBeVisibleVertically = function (ele, container) {
@@ -437,59 +438,57 @@ var ThumbnailList = function (_a) {
             ? renderCurrentPageLabel({ currentPage: currentPage, pageIndex: pageIndex, numPages: numPages, pageLabel: pageLabel })
             : pageLabel;
         var pageRotation = pagesRotation.has(pageIndex) ? pagesRotation.get(pageIndex) : 0;
-        var thumbnail = (React__namespace.createElement(ThumbnailContainer, { doc: doc, pageHeight: pageHeight, pageIndex: pageIndex, pageRotation: pageRotation, pageWidth: pageWidth, rotation: rotation, shouldRender: renderPageIndex === pageIndex, thumbnailWidth: thumbnailWidth, onRenderCompleted: handleRenderCompleted, onVisibilityChanged: handleVisibilityChanged }));
+        var thumbnail = (jsxRuntime.jsx(ThumbnailContainer, { doc: doc, pageHeight: pageHeight, pageIndex: pageIndex, pageRotation: pageRotation, pageWidth: pageWidth, rotation: rotation, shouldRender: renderPageIndex === pageIndex, thumbnailWidth: thumbnailWidth, onRenderCompleted: handleRenderCompleted, onVisibilityChanged: handleVisibilityChanged }));
         return renderThumbnailItem ? (renderThumbnailItem({
             currentPage: currentPage,
             key: key,
             numPages: numPages,
             pageIndex: pageIndex,
-            renderPageLabel: React__namespace.createElement(React__namespace.Fragment, null, label),
+            renderPageLabel: jsxRuntime.jsx(jsxRuntime.Fragment, { children: label }),
             renderPageThumbnail: thumbnail,
             onJumpToPage: function () { return onJumpToPage(pageIndex); },
             onRotatePage: function (direction) { return onRotatePage(pageIndex, direction); },
-        })) : (React__namespace.createElement("div", { key: key },
-            React__namespace.createElement("div", { className: core.classNames({
-                    'rpv-thumbnail__item': true,
-                    'rpv-thumbnail__item--dual-even': viewMode === core.ViewMode.DualPage && pageIndex % 2 === 0,
-                    'rpv-thumbnail__item--dual-odd': viewMode === core.ViewMode.DualPage && pageIndex % 2 === 1,
-                    'rpv-thumbnail__item--dual-cover': isCover,
-                    'rpv-thumbnail__item--dual-cover-even': viewMode === core.ViewMode.DualPageWithCover && !isCover && pageIndex % 2 === 0,
-                    'rpv-thumbnail__item--dual-cover-odd': viewMode === core.ViewMode.DualPageWithCover && !isCover && pageIndex % 2 === 1,
-                    'rpv-thumbnail__item--single': viewMode === core.ViewMode.SinglePage,
-                    'rpv-thumbnail__item--selected': currentPage === pageIndex,
-                }), role: "button", tabIndex: currentPage === pageIndex ? 0 : -1, onClick: function () { return onJumpToPage(pageIndex); } }, thumbnail),
-            React__namespace.createElement("div", { "data-testid": "thumbnail__label-".concat(pageIndex), className: "rpv-thumbnail__label" }, label)));
+        })) : (jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("div", { className: core.classNames({
+                        'rpv-thumbnail__item': true,
+                        'rpv-thumbnail__item--dual-even': viewMode === core.ViewMode.DualPage && pageIndex % 2 === 0,
+                        'rpv-thumbnail__item--dual-odd': viewMode === core.ViewMode.DualPage && pageIndex % 2 === 1,
+                        'rpv-thumbnail__item--dual-cover': isCover,
+                        'rpv-thumbnail__item--dual-cover-even': viewMode === core.ViewMode.DualPageWithCover && !isCover && pageIndex % 2 === 0,
+                        'rpv-thumbnail__item--dual-cover-odd': viewMode === core.ViewMode.DualPageWithCover && !isCover && pageIndex % 2 === 1,
+                        'rpv-thumbnail__item--single': viewMode === core.ViewMode.SinglePage,
+                        'rpv-thumbnail__item--selected': currentPage === pageIndex,
+                    }), role: "button", tabIndex: currentPage === pageIndex ? 0 : -1, onClick: function () { return onJumpToPage(pageIndex); }, children: thumbnail }), jsxRuntime.jsx("div", { "data-testid": "thumbnail__label-".concat(pageIndex), className: "rpv-thumbnail__label", children: label })] }, key));
     };
-    return (React__namespace.createElement("div", { ref: containerRef, "data-testid": "thumbnail__list", className: core.classNames({
+    return (jsxRuntime.jsx("div", { ref: containerRef, "data-testid": "thumbnail__list", className: core.classNames({
             'rpv-thumbnail__list': true,
             'rpv-thumbnail__list--horizontal': thumbnailDirection === exports.ThumbnailDirection.Horizontal,
             'rpv-thumbnail__list--rtl': isRtl,
             'rpv-thumbnail__list--vertical': thumbnailDirection === exports.ThumbnailDirection.Vertical,
-        }), onKeyDown: handleKeyDown }, chunks.map(function (chunkItem, index) {
-        var isSelectedChunk = false;
-        switch (viewMode) {
-            case core.ViewMode.DualPage:
-                isSelectedChunk = currentPage === 2 * index || currentPage === 2 * index + 1;
-                break;
-            case core.ViewMode.DualPageWithCover:
-                isSelectedChunk =
-                    (currentPage === 0 && index === 0) ||
-                        (index > 0 && currentPage === 2 * index - 1) ||
-                        (index > 0 && currentPage === 2 * index);
-                break;
-            case core.ViewMode.SinglePage:
-            default:
-                isSelectedChunk = currentPage === index;
-                break;
-        }
-        return (React__namespace.createElement("div", { className: core.classNames({
-                'rpv-thumbnail__items': true,
-                'rpv-thumbnail__items--dual': viewMode === core.ViewMode.DualPage,
-                'rpv-thumbnail__items--dual-cover': viewMode === core.ViewMode.DualPageWithCover,
-                'rpv-thumbnail__items--single': viewMode === core.ViewMode.SinglePage,
-                'rpv-thumbnail__items--selected': isSelectedChunk,
-            }), key: "".concat(index, "___").concat(viewMode) }, chunkItem.map(function (pageIndex) { return renderPageThumbnail(pageIndex); })));
-    })));
+        }), onKeyDown: handleKeyDown, children: chunks.map(function (chunkItem, index) {
+            var isSelectedChunk = false;
+            switch (viewMode) {
+                case core.ViewMode.DualPage:
+                    isSelectedChunk = currentPage === 2 * index || currentPage === 2 * index + 1;
+                    break;
+                case core.ViewMode.DualPageWithCover:
+                    isSelectedChunk =
+                        (currentPage === 0 && index === 0) ||
+                            (index > 0 && currentPage === 2 * index - 1) ||
+                            (index > 0 && currentPage === 2 * index);
+                    break;
+                case core.ViewMode.SinglePage:
+                default:
+                    isSelectedChunk = currentPage === index;
+                    break;
+            }
+            return (jsxRuntime.jsx("div", { className: core.classNames({
+                    'rpv-thumbnail__items': true,
+                    'rpv-thumbnail__items--dual': viewMode === core.ViewMode.DualPage,
+                    'rpv-thumbnail__items--dual-cover': viewMode === core.ViewMode.DualPageWithCover,
+                    'rpv-thumbnail__items--single': viewMode === core.ViewMode.SinglePage,
+                    'rpv-thumbnail__items--selected': isSelectedChunk,
+                }), children: chunkItem.map(function (pageIndex) { return renderPageThumbnail(pageIndex); }) }, "".concat(index, "___").concat(viewMode)));
+        }) }));
 };
 
 var ThumbnailListWithStore = function (_a) {
@@ -559,10 +558,9 @@ var ThumbnailListWithStore = function (_a) {
             store.unsubscribe('currentPage', handleCurrentPageChanged);
         };
     }, []);
-    return currentDoc ? (React__namespace.createElement(core.LazyRender, { testId: "thumbnail__list-container", attrs: {
+    return currentDoc ? (jsxRuntime.jsx(core.LazyRender, { testId: "thumbnail__list-container", attrs: {
             className: 'rpv-thumbnail__list-container',
-        } },
-        React__namespace.createElement(FetchLabels, { doc: currentDoc }, function (labels) { return (React__namespace.createElement(ThumbnailList, { currentPage: currentPage, doc: currentDoc, labels: labels, pagesRotation: pagesRotation, pageHeight: pageHeight, pageWidth: pageWidth, renderCurrentPageLabel: renderCurrentPageLabel, renderThumbnailItem: renderThumbnailItem, rotatedPage: rotatedPage, rotation: rotation, thumbnailDirection: thumbnailDirection, thumbnailWidth: thumbnailWidth, viewMode: viewMode, onJumpToPage: jump, onRotatePage: rotatePage })); }))) : (React__namespace.createElement("div", { "data-testid": "thumbnail-list__loader", className: "rpv-thumbnail__loader" }, React__namespace.useContext(SpinnerContext).renderSpinner()));
+        }, children: jsxRuntime.jsx(FetchLabels, { doc: currentDoc, children: function (labels) { return (jsxRuntime.jsx(ThumbnailList, { currentPage: currentPage, doc: currentDoc, labels: labels, pagesRotation: pagesRotation, pageHeight: pageHeight, pageWidth: pageWidth, renderCurrentPageLabel: renderCurrentPageLabel, renderThumbnailItem: renderThumbnailItem, rotatedPage: rotatedPage, rotation: rotation, thumbnailDirection: thumbnailDirection, thumbnailWidth: thumbnailWidth, viewMode: viewMode, onJumpToPage: jump, onRotatePage: rotatePage })); } }) })) : (jsxRuntime.jsx("div", { "data-testid": "thumbnail-list__loader", className: "rpv-thumbnail__loader", children: React__namespace.useContext(SpinnerContext).renderSpinner() }));
 };
 
 var thumbnailPlugin = function (pluginProps) {
@@ -574,9 +572,8 @@ var thumbnailPlugin = function (pluginProps) {
         });
     }, []);
     var _a = React__namespace.useState(''), docId = _a[0], setDocId = _a[1];
-    var CoverDecorator = function (props) { return (React__namespace.createElement(Cover, __assign({}, props, { renderSpinner: pluginProps === null || pluginProps === void 0 ? void 0 : pluginProps.renderSpinner, store: store }))); };
-    var ThumbnailsDecorator = React__namespace.useCallback(function (props) { return (React__namespace.createElement(SpinnerContext.Provider, { value: { renderSpinner: (pluginProps === null || pluginProps === void 0 ? void 0 : pluginProps.renderSpinner) || defaultSpinner } },
-        React__namespace.createElement(ThumbnailListWithStore, { renderCurrentPageLabel: pluginProps === null || pluginProps === void 0 ? void 0 : pluginProps.renderCurrentPageLabel, renderThumbnailItem: props === null || props === void 0 ? void 0 : props.renderThumbnailItem, store: store, thumbnailDirection: (props === null || props === void 0 ? void 0 : props.thumbnailDirection) || exports.ThumbnailDirection.Vertical, thumbnailWidth: (pluginProps === null || pluginProps === void 0 ? void 0 : pluginProps.thumbnailWidth) || 100 }))); }, [docId]);
+    var CoverDecorator = function (props) { return (jsxRuntime.jsx(Cover, __assign({}, props, { renderSpinner: pluginProps === null || pluginProps === void 0 ? void 0 : pluginProps.renderSpinner, store: store }))); };
+    var ThumbnailsDecorator = React__namespace.useCallback(function (props) { return (jsxRuntime.jsx(SpinnerContext.Provider, { value: { renderSpinner: (pluginProps === null || pluginProps === void 0 ? void 0 : pluginProps.renderSpinner) || defaultSpinner }, children: jsxRuntime.jsx(ThumbnailListWithStore, { renderCurrentPageLabel: pluginProps === null || pluginProps === void 0 ? void 0 : pluginProps.renderCurrentPageLabel, renderThumbnailItem: props === null || props === void 0 ? void 0 : props.renderThumbnailItem, store: store, thumbnailDirection: (props === null || props === void 0 ? void 0 : props.thumbnailDirection) || exports.ThumbnailDirection.Vertical, thumbnailWidth: (pluginProps === null || pluginProps === void 0 ? void 0 : pluginProps.thumbnailWidth) || 100 }) })); }, [docId]);
     return {
         install: function (pluginFunctions) {
             store.update('jumpToPage', pluginFunctions.jumpToPage);

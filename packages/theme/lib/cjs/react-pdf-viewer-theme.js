@@ -1,5 +1,6 @@
 'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 var core = require('@react-pdf-viewer/core');
 var React = require('react');
 
@@ -22,13 +23,9 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var DarkIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M19.5,15.106l2.4-2.4a1,1,0,0,0,0-1.414l-2.4-2.4V5.5a1,1,0,0,0-1-1H15.106l-2.4-2.4a1,1,0,0,0-1.414,0l-2.4,2.4H5.5a1,1,0,0,0-1,1V8.894l-2.4,2.4a1,1,0,0,0,0,1.414l2.4,2.4V18.5a1,1,0,0,0,1,1H8.894l2.4,2.4a1,1,0,0,0,1.414,0l2.4-2.4H18.5a1,1,0,0,0,1-1Z" }),
-    React__namespace.createElement("path", { d: "M10,6.349a6,6,0,0,1,0,11.3,6,6,0,1,0,0-11.3Z" }))); };
+var DarkIcon = function () { return (jsxRuntime.jsxs(core.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M19.5,15.106l2.4-2.4a1,1,0,0,0,0-1.414l-2.4-2.4V5.5a1,1,0,0,0-1-1H15.106l-2.4-2.4a1,1,0,0,0-1.414,0l-2.4,2.4H5.5a1,1,0,0,0-1,1V8.894l-2.4,2.4a1,1,0,0,0,0,1.414l2.4,2.4V18.5a1,1,0,0,0,1,1H8.894l2.4,2.4a1,1,0,0,0,1.414,0l2.4-2.4H18.5a1,1,0,0,0,1-1Z" }), jsxRuntime.jsx("path", { d: "M10,6.349a6,6,0,0,1,0,11.3,6,6,0,1,0,0-11.3Z" })] })); };
 
-var LightIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M19.491,15.106l2.4-2.4a1,1,0,0,0,0-1.414l-2.4-2.4V5.5a1,1,0,0,0-1-1H15.1L12.7,2.1a1,1,0,0,0-1.414,0l-2.4,2.4H5.491a1,1,0,0,0-1,1V8.894l-2.4,2.4a1,1,0,0,0,0,1.414l2.4,2.4V18.5a1,1,0,0,0,1,1H8.885l2.4,2.4a1,1,0,0,0,1.414,0l2.4-2.4h3.394a1,1,0,0,0,1-1Z" }),
-    React__namespace.createElement("path", { d: "M11.491,6c4,0,6,2.686,6,6s-2,6-6,6Z" }))); };
+var LightIcon = function () { return (jsxRuntime.jsxs(core.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M19.491,15.106l2.4-2.4a1,1,0,0,0,0-1.414l-2.4-2.4V5.5a1,1,0,0,0-1-1H15.1L12.7,2.1a1,1,0,0,0-1.414,0l-2.4,2.4H5.491a1,1,0,0,0-1,1V8.894l-2.4,2.4a1,1,0,0,0,0,1.414l2.4,2.4V18.5a1,1,0,0,0,1,1H8.885l2.4,2.4a1,1,0,0,0,1.414,0l2.4-2.4h3.394a1,1,0,0,0,1-1Z" }), jsxRuntime.jsx("path", { d: "M11.491,6c4,0,6,2.686,6,6s-2,6-6,6Z" })] })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -76,13 +73,13 @@ var SwitchThemeButton = function (_a) {
         : isDarkTheme
             ? 'Switch to the light theme'
             : 'Switch to the dark theme';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "theme-switch", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaLabel: label, testId: "theme__switch-button", onClick: onClick }, isDarkTheme ? React__namespace.createElement(LightIcon, null) : React__namespace.createElement(DarkIcon, null)), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "theme-switch", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: label, testId: "theme__switch-button", onClick: onClick, children: isDarkTheme ? jsxRuntime.jsx(LightIcon, {}) : jsxRuntime.jsx(DarkIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
 };
 
 var SwitchTheme = function (_a) {
     var children = _a.children;
     var theme = React__namespace.useContext(core.ThemeContext);
-    var defaultChildern = function (props) { return React__namespace.createElement(SwitchThemeButton, { onClick: props.onClick }); };
+    var defaultChildern = function (props) { return jsxRuntime.jsx(SwitchThemeButton, { onClick: props.onClick }); };
     var render = children || defaultChildern;
     return render({
         onClick: function () { return theme.setCurrentTheme(theme.currentTheme === 'dark' ? 'light' : 'dark'); },
@@ -101,16 +98,16 @@ var SwitchThemeMenuItem = function (_a) {
         : isDarkTheme
             ? 'Switch to the light theme'
             : 'Switch to the dark theme';
-    return (React__namespace.createElement(core.MenuItem, { icon: isDarkTheme ? React__namespace.createElement(LightIcon, null) : React__namespace.createElement(DarkIcon, null), testId: "theme__switch-menu", onClick: onClick }, label));
+    return (jsxRuntime.jsx(core.MenuItem, { icon: isDarkTheme ? jsxRuntime.jsx(LightIcon, {}) : jsxRuntime.jsx(DarkIcon, {}), testId: "theme__switch-menu", onClick: onClick, children: label }));
 };
 
 var themePlugin = function () {
-    var SwitchThemeDecorator = function (props) { return React__namespace.createElement(SwitchTheme, __assign({}, props)); };
-    var SwitchThemeButtonDecorator = function () { return (React__namespace.createElement(SwitchThemeDecorator, null, function (props) { return React__namespace.createElement(SwitchThemeButton, __assign({}, props)); })); };
-    var SwitchThemeMenuItemDecorator = function (props) { return (React__namespace.createElement(SwitchThemeDecorator, null, function (p) { return (React__namespace.createElement(SwitchThemeMenuItem, { onClick: function () {
-            p.onClick();
-            props.onClick();
-        } })); })); };
+    var SwitchThemeDecorator = function (props) { return jsxRuntime.jsx(SwitchTheme, __assign({}, props)); };
+    var SwitchThemeButtonDecorator = function () { return (jsxRuntime.jsx(SwitchThemeDecorator, { children: function (props) { return jsxRuntime.jsx(SwitchThemeButton, __assign({}, props)); } })); };
+    var SwitchThemeMenuItemDecorator = function (props) { return (jsxRuntime.jsx(SwitchThemeDecorator, { children: function (p) { return (jsxRuntime.jsx(SwitchThemeMenuItem, { onClick: function () {
+                p.onClick();
+                props.onClick();
+            } })); } })); };
     return {
         SwitchTheme: SwitchThemeDecorator,
         SwitchThemeButton: SwitchThemeButtonDecorator,

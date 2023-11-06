@@ -1,5 +1,6 @@
 'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 var core = require('@react-pdf-viewer/core');
 var React = require('react');
 
@@ -97,10 +98,10 @@ var AttachmentList = function (_a) {
             firstItem.setAttribute('tabindex', '0');
         }
     }, []);
-    return (React__namespace.createElement("div", { "data-testid": "attachment__list", className: core.classNames({
+    return (jsxRuntime.jsx("div", { "data-testid": "attachment__list", className: core.classNames({
             'rpv-attachment__list': true,
             'rpv-attachment__list--rtl': isRtl,
-        }), ref: containerRef, tabIndex: -1, onKeyDown: handleKeyDown }, files.map(function (file) { return (React__namespace.createElement("button", { className: "rpv-attachment__item", key: file.fileName, tabIndex: -1, title: clickDownloadLabel, type: "button", onClick: function () { return downloadFile(file.fileName, file.data); } }, file.fileName)); })));
+        }), ref: containerRef, tabIndex: -1, onKeyDown: handleKeyDown, children: files.map(function (file) { return (jsxRuntime.jsx("button", { className: "rpv-attachment__item", tabIndex: -1, title: clickDownloadLabel, type: "button", onClick: function () { return downloadFile(file.fileName, file.data); }, children: file.fileName }, file.fileName)); }) }));
 };
 
 var AttachmentLoader = function (_a) {
@@ -131,10 +132,10 @@ var AttachmentLoader = function (_a) {
             });
         });
     }, [doc]);
-    return !attachments.isLoaded ? (React__namespace.createElement(core.Spinner, null)) : attachments.files.length === 0 ? (React__namespace.createElement("div", { "data-testid": "attachment__empty", className: core.classNames({
+    return !attachments.isLoaded ? (jsxRuntime.jsx(core.Spinner, {})) : attachments.files.length === 0 ? (jsxRuntime.jsx("div", { "data-testid": "attachment__empty", className: core.classNames({
             'rpv-attachment__empty': true,
             'rpv-attachment__empty--rtl': isRtl,
-        }) }, noAttachmentLabel)) : (React__namespace.createElement(AttachmentList, { files: attachments.files }));
+        }), children: noAttachmentLabel })) : (jsxRuntime.jsx(AttachmentList, { files: attachments.files }));
 };
 
 var AttachmentListWithStore = function (_a) {
@@ -149,13 +150,12 @@ var AttachmentListWithStore = function (_a) {
             store.unsubscribe('doc', handleDocumentChanged);
         };
     }, []);
-    return currentDoc ? (React__namespace.createElement(AttachmentLoader, { doc: currentDoc })) : (React__namespace.createElement("div", { className: "rpv-attachment__loader" },
-        React__namespace.createElement(core.Spinner, null)));
+    return currentDoc ? (jsxRuntime.jsx(AttachmentLoader, { doc: currentDoc })) : (jsxRuntime.jsx("div", { className: "rpv-attachment__loader", children: jsxRuntime.jsx(core.Spinner, {}) }));
 };
 
 var attachmentPlugin = function () {
     var store = React__namespace.useMemo(function () { return core.createStore({}); }, []);
-    var AttachmentsDecorator = function () { return React__namespace.createElement(AttachmentListWithStore, { store: store }); };
+    var AttachmentsDecorator = function () { return jsxRuntime.jsx(AttachmentListWithStore, { store: store }); };
     return {
         onDocumentLoad: function (props) {
             store.update('doc', props.doc);

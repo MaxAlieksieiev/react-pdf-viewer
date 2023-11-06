@@ -1,5 +1,6 @@
 'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 var core = require('@react-pdf-viewer/core');
 var React = require('react');
 
@@ -22,8 +23,7 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var InfoIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M12,1.001c6.075,0,11,4.925,11,11s-4.925,11-11,11s-11-4.925-11-11S5.925,1.001,12,1.001z\n            M14.5,17.005H13\n            c-0.552,0-1-0.448-1-1v-6.5c0-0.276-0.224-0.5-0.5-0.5H10\n            M11.745,6.504L11.745,6.504\n            M11.745,6.5c-0.138,0-0.25,0.112-0.25,0.25\n            S11.607,7,11.745,7s0.25-0.112,0.25-0.25S11.883,6.5,11.745,6.5" }))); };
+var InfoIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M12,1.001c6.075,0,11,4.925,11,11s-4.925,11-11,11s-11-4.925-11-11S5.925,1.001,12,1.001z\n            M14.5,17.005H13\n            c-0.552,0-1-0.448-1-1v-6.5c0-0.276-0.224-0.5-0.5-0.5H10\n            M11.745,6.504L11.745,6.504\n            M11.745,6.5c-0.138,0-0.25,0.112-0.25,0.25\n            S11.607,7,11.745,7s0.25-0.112,0.25-0.25S11.883,6.5,11.745,6.5" }) })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -79,22 +79,17 @@ var PropertiesLoader = function (_a) {
             setData(response);
         });
     }, []);
-    return data ? (render(data)) : (React__namespace.createElement("div", { className: "rpv-properties__loader" },
-        React__namespace.createElement(core.Spinner, null)));
+    return data ? (render(data)) : (jsxRuntime.jsx("div", { className: "rpv-properties__loader", children: jsxRuntime.jsx(core.Spinner, {}) }));
 };
 
 var PropertyItem = function (_a) {
     var label = _a.label, value = _a.value;
     var direction = React__namespace.useContext(core.ThemeContext).direction;
     var isRtl = direction === core.TextDirection.RightToLeft;
-    return (React__namespace.createElement("dl", { className: core.classNames({
+    return (jsxRuntime.jsxs("dl", { className: core.classNames({
             'rpv-properties__item': true,
             'rpv-properties__item--rtl': isRtl,
-        }) },
-        React__namespace.createElement("dt", { className: "rpv-properties__item-label" },
-            label,
-            ":"),
-        React__namespace.createElement("dd", { className: "rpv-properties__item-value" }, value || '-')));
+        }), children: [jsxRuntime.jsxs("dt", { className: "rpv-properties__item-label", children: [label, ":"] }), jsxRuntime.jsx("dd", { className: "rpv-properties__item-value", children: value || '-' })] }));
 };
 
 var dateRegex = new RegExp('^D:' +
@@ -158,42 +153,22 @@ var PropertiesModal = function (_a) {
         var date = convertDate(input);
         return date ? "".concat(date.toLocaleDateString(), ", ").concat(date.toLocaleTimeString()) : '';
     };
-    var renderData = function (data) { return (React__namespace.createElement(React__namespace.Fragment, null,
-        React__namespace.createElement("div", { className: "rpv-properties__modal-section" },
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties
-                    ? l10n.properties.fileName
-                    : 'File name', value: data.fileName || getFileName(fileName) }),
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties
-                    ? l10n.properties.fileSize
-                    : 'File size', value: getFileSize(data.length) })),
-        React__namespace.createElement(core.Separator, null),
-        React__namespace.createElement("div", { className: "rpv-properties__modal-section" },
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties ? l10n.properties.title : 'Title', value: data.info.Title }),
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties ? l10n.properties.author : 'Author', value: data.info.Author }),
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties ? l10n.properties.subject : 'Subject', value: data.info.Subject }),
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties ? l10n.properties.keywords : 'Keywords', value: data.info.Keywords }),
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties ? l10n.properties.creator : 'Creator', value: data.info.Creator }),
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties
-                    ? l10n.properties.creationDate
-                    : 'Creation date', value: formatDate(data.info.CreationDate) }),
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties
-                    ? l10n.properties.modificationDate
-                    : 'Modification date', value: formatDate(data.info.ModDate) })),
-        React__namespace.createElement(core.Separator, null),
-        React__namespace.createElement("div", { className: "rpv-properties__modal-section" },
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties
-                    ? l10n.properties.pdfProducer
-                    : 'PDF producer', value: data.info.Producer }),
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties
-                    ? l10n.properties.pdfVersion
-                    : 'PDF version', value: data.info.PDFFormatVersion }),
-            React__namespace.createElement(PropertyItem, { label: l10n && l10n.properties
-                    ? l10n.properties.pageCount
-                    : 'Page count', value: "".concat(doc.numPages) })))); };
-    return (React__namespace.createElement("div", { className: "rpv-properties__modal" },
-        React__namespace.createElement(PropertiesLoader, { doc: doc, render: renderData }),
-        React__namespace.createElement("div", { className: "rpv-properties__modal-footer" },
-            React__namespace.createElement(core.Button, { onClick: onToggle }, l10n && l10n.properties ? l10n.properties.close : 'Close'))));
+    var renderData = function (data) { return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsxs("div", { className: "rpv-properties__modal-section", children: [jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties
+                            ? l10n.properties.fileName
+                            : 'File name', value: data.fileName || getFileName(fileName) }), jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties
+                            ? l10n.properties.fileSize
+                            : 'File size', value: getFileSize(data.length) })] }), jsxRuntime.jsx(core.Separator, {}), jsxRuntime.jsxs("div", { className: "rpv-properties__modal-section", children: [jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties ? l10n.properties.title : 'Title', value: data.info.Title }), jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties ? l10n.properties.author : 'Author', value: data.info.Author }), jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties ? l10n.properties.subject : 'Subject', value: data.info.Subject }), jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties ? l10n.properties.keywords : 'Keywords', value: data.info.Keywords }), jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties ? l10n.properties.creator : 'Creator', value: data.info.Creator }), jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties
+                            ? l10n.properties.creationDate
+                            : 'Creation date', value: formatDate(data.info.CreationDate) }), jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties
+                            ? l10n.properties.modificationDate
+                            : 'Modification date', value: formatDate(data.info.ModDate) })] }), jsxRuntime.jsx(core.Separator, {}), jsxRuntime.jsxs("div", { className: "rpv-properties__modal-section", children: [jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties
+                            ? l10n.properties.pdfProducer
+                            : 'PDF producer', value: data.info.Producer }), jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties
+                            ? l10n.properties.pdfVersion
+                            : 'PDF version', value: data.info.PDFFormatVersion }), jsxRuntime.jsx(PropertyItem, { label: l10n && l10n.properties
+                            ? l10n.properties.pageCount
+                            : 'Page count', value: "".concat(doc.numPages) })] })] })); };
+    return (jsxRuntime.jsxs("div", { className: "rpv-properties__modal", children: [jsxRuntime.jsx(PropertiesLoader, { doc: doc, render: renderData }), jsxRuntime.jsx("div", { className: "rpv-properties__modal-footer", children: jsxRuntime.jsx(core.Button, { onClick: onToggle, children: l10n && l10n.properties ? l10n.properties.close : 'Close' }) })] }));
 };
 
 var TOOLTIP_OFFSET = { left: 0, top: 8 };
@@ -201,8 +176,7 @@ var ShowPropertiesButton = function (_a) {
     var onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.properties ? l10n.properties.showProperties : 'Show properties';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "properties", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaLabel: label, testId: "properties__button", onClick: onClick },
-            React__namespace.createElement(InfoIcon, null)), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "properties", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: label, testId: "properties__button", onClick: onClick, children: jsxRuntime.jsx(InfoIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
 };
 
 var useDocument = function (store) {
@@ -223,20 +197,20 @@ var ShowProperties = function (_a) {
     var children = _a.children, store = _a.store;
     var currentDoc = useDocument(store).currentDoc;
     var fileName = store.get('fileName') || '';
-    var defaultChildren = function (props) { return React__namespace.createElement(ShowPropertiesButton, __assign({}, props)); };
+    var defaultChildren = function (props) { return jsxRuntime.jsx(ShowPropertiesButton, __assign({}, props)); };
     var render = children || defaultChildren;
-    return currentDoc ? (React__namespace.createElement(core.Modal, { ariaControlsSuffix: "properties", target: function (toggle) {
+    return currentDoc ? (jsxRuntime.jsx(core.Modal, { ariaControlsSuffix: "properties", target: function (toggle) {
             return render({
                 onClick: toggle,
             });
-        }, content: function (toggle) { return React__namespace.createElement(PropertiesModal, { doc: currentDoc, fileName: fileName, onToggle: toggle }); }, closeOnClickOutside: true, closeOnEscape: true })) : (React__namespace.createElement(React__namespace.Fragment, null));
+        }, content: function (toggle) { return jsxRuntime.jsx(PropertiesModal, { doc: currentDoc, fileName: fileName, onToggle: toggle }); }, closeOnClickOutside: true, closeOnEscape: true })) : (jsxRuntime.jsx(jsxRuntime.Fragment, {}));
 };
 
 var ShowPropertiesMenuItem = function (_a) {
     var onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.properties ? l10n.properties.showProperties : 'Show properties';
-    return (React__namespace.createElement(core.MenuItem, { icon: React__namespace.createElement(InfoIcon, null), testId: "properties__menu", onClick: onClick }, label));
+    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(InfoIcon, {}), testId: "properties__menu", onClick: onClick, children: label }));
 };
 
 var propertiesPlugin = function () {
@@ -245,9 +219,9 @@ var propertiesPlugin = function () {
             fileName: '',
         });
     }, []);
-    var ShowPropertiesDecorator = function (props) { return React__namespace.createElement(ShowProperties, __assign({}, props, { store: store })); };
-    var ShowPropertiesButtonDecorator = function () { return React__namespace.createElement(ShowProperties, { store: store }); };
-    var ShowPropertiesMenuItemDecorator = function (props) { return (React__namespace.createElement(ShowPropertiesDecorator, null, function (p) { return React__namespace.createElement(ShowPropertiesMenuItem, __assign({}, p)); })); };
+    var ShowPropertiesDecorator = function (props) { return jsxRuntime.jsx(ShowProperties, __assign({}, props, { store: store })); };
+    var ShowPropertiesButtonDecorator = function () { return jsxRuntime.jsx(ShowProperties, { store: store }); };
+    var ShowPropertiesMenuItemDecorator = function (props) { return (jsxRuntime.jsx(ShowPropertiesDecorator, { children: function (p) { return jsxRuntime.jsx(ShowPropertiesMenuItem, __assign({}, p)); } })); };
     return {
         onDocumentLoad: function (props) {
             store.update('doc', props.doc);

@@ -45,6 +45,7 @@ export const ClickDrag: React.FC<{
     };
 
     const handleMouseDown = (e: MouseEvent | TouchEvent) => {
+        console.log('hahandleMouseDownnde')
         const textLayerEle = textLayerRef.current;
         const container = containerRef.current;
         if (!e.altKey || !textLayerEle || !container || e instanceof MouseEvent && e.button !== 0) {
@@ -86,6 +87,7 @@ export const ClickDrag: React.FC<{
     };
 
     const handleDocumentMouseMove = (e: MouseEvent | TouchEvent) => {
+        console.log('handleDocumentMouseMove');
         const textLayerEle = textLayerRef.current;
         const container = containerRef.current;
         if (!textLayerEle || !container) {
@@ -113,6 +115,7 @@ export const ClickDrag: React.FC<{
     };
 
     const handleDocumentKeyDown = (e: KeyboardEvent) => {
+        console.log('handleDocumentKeyDown')
         if (e.key === 'Escape' && store.get('highlightState').type === HighlightStateType.ClickDragged) {
             e.preventDefault();
             hideContainer();
@@ -122,6 +125,7 @@ export const ClickDrag: React.FC<{
 
     // Hide the container when clicking outside
     const handleDocumenClick = (e: MouseEvent | TouchEvent) => {
+        console.log('handleDocumenClick', handleDocumenClick)
         const container = containerRef.current;
         if (!container) {
             return;
@@ -133,6 +137,7 @@ export const ClickDrag: React.FC<{
     };
 
     const handleDocumentMouseUp = (e: MouseEvent | TouchEvent) => {
+        console.log('handleDocumentMouseUp')
         e.preventDefault();
 
         if(e instanceof MouseEvent) {
@@ -210,16 +215,23 @@ export const ClickDrag: React.FC<{
         const eventOptions = {
             capture: true,
         };
-        document.addEventListener('keydown', handleDocumentKeyDown);
-        document.addEventListener('click', handleDocumenClick, eventOptions);
+        
+        
+        if(isMobile()) {
+            document.addEventListener('touchcancel', handleDocumenClick, eventOptions);
+        } else {
+            document.addEventListener('keydown', handleDocumentKeyDown);
+            document.addEventListener('click', handleDocumenClick, eventOptions);
+        }
         return () => {
             if(isMobile()) {
-                textLayerEle.removeEventListener('touchstart', handleMouseDown)
+                textLayerEle.removeEventListener('touchstart', handleMouseDown);
+                document.removeEventListener('touchcancel', handleDocumenClick, eventOptions);
             } else {
                 textLayerEle.removeEventListener('mousedown', handleMouseDown);
+                document.removeEventListener('click', handleDocumenClick, eventOptions);
+                document.removeEventListener('keydown', handleDocumentKeyDown);
             }
-            document.removeEventListener('click', handleDocumenClick, eventOptions);
-            document.removeEventListener('keydown', handleDocumentKeyDown);
         };
     }, [textLayerRendered]);
 
