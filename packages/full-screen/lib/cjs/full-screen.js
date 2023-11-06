@@ -1,5 +1,6 @@
 'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 var core = require('@react-pdf-viewer/core');
 var React = require('react');
 
@@ -22,20 +23,9 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var ExitFullScreenIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M11.5 23.499L11.5 14.499" }),
-    React__namespace.createElement("path", { d: "M7.5 18.499L11.5 14.499 15.5 18.499" }),
-    React__namespace.createElement("path", { d: "M11.5 1.499L11.5 10.499" }),
-    React__namespace.createElement("path", { d: "M7.5 6.499L11.5 10.499 15.5 6.499" }),
-    React__namespace.createElement("path", { d: "M20.5 12.499L1.5 12.499" }))); };
+var ExitFullScreenIcon = function () { return (jsxRuntime.jsxs(core.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M11.5 23.499L11.5 14.499" }), jsxRuntime.jsx("path", { d: "M7.5 18.499L11.5 14.499 15.5 18.499" }), jsxRuntime.jsx("path", { d: "M11.5 1.499L11.5 10.499" }), jsxRuntime.jsx("path", { d: "M7.5 6.499L11.5 10.499 15.5 6.499" }), jsxRuntime.jsx("path", { d: "M20.5 12.499L1.5 12.499" })] })); };
 
-var FullScreenIcon = function () { return (React__namespace.createElement(core.Icon, { size: 16 },
-    React__namespace.createElement("path", { d: "M0.5 12L23.5 12" }),
-    React__namespace.createElement("path", { d: "M11.5 1L11.5 23" }),
-    React__namespace.createElement("path", { d: "M8.5 4L11.5 1 14.5 4" }),
-    React__namespace.createElement("path", { d: "M20.5 9L23.5 12 20.5 15" }),
-    React__namespace.createElement("path", { d: "M3.5 15L0.5 12 3.5 9" }),
-    React__namespace.createElement("path", { d: "M14.5 20L11.5 23 8.5 20" }))); };
+var FullScreenIcon = function () { return (jsxRuntime.jsxs(core.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M0.5 12L23.5 12" }), jsxRuntime.jsx("path", { d: "M11.5 1L11.5 23" }), jsxRuntime.jsx("path", { d: "M8.5 4L11.5 1 14.5 4" }), jsxRuntime.jsx("path", { d: "M20.5 9L23.5 12 20.5 15" }), jsxRuntime.jsx("path", { d: "M3.5 15L0.5 12 3.5 9" }), jsxRuntime.jsx("path", { d: "M14.5 20L11.5 23 8.5 20" })] })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -76,8 +66,12 @@ var EnterFullScreenButton = function (_a) {
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.fullScreen ? l10n.fullScreen.enterFullScreen : 'Full screen';
     var ariaKeyShortcuts = enableShortcuts ? (core.isMac() ? 'Meta+Ctrl+F' : 'F11') : '';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "full-screen-enter", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, isDisabled: !core.isFullScreenEnabled(), testId: "full-screen__enter-button", onClick: onClick },
-            React__namespace.createElement(FullScreenIcon, null)), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
+    console.log('isFullScreenEnabled', core.isFullScreenEnabled());
+    var handleClick = function () {
+        console.log(onClick);
+        onClick();
+    };
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "full-screen-enter", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, isDisabled: !core.isFullScreenEnabled(), testId: "full-screen__enter-button", onClick: handleClick, children: jsxRuntime.jsx(FullScreenIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
 };
 
 var TOOLTIP_OFFSET = { left: 0, top: 8 };
@@ -85,8 +79,7 @@ var ExitFullScreenButtonWithTooltip = function (_a) {
     var onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var exitFullScreenLabel = l10n && l10n.fullScreen ? l10n.fullScreen.exitFullScreen : 'Exit full screen';
-    return (React__namespace.createElement(core.Tooltip, { ariaControlsSuffix: "full-screen-exit", position: core.Position.BottomCenter, target: React__namespace.createElement(core.MinimalButton, { ariaKeyShortcuts: "Esc", ariaLabel: exitFullScreenLabel, testId: "full-screen__exit-button-with-tooltip", onClick: onClick },
-            React__namespace.createElement(ExitFullScreenIcon, null)), content: function () { return exitFullScreenLabel; }, offset: TOOLTIP_OFFSET }));
+    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "full-screen-exit", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: "Esc", ariaLabel: exitFullScreenLabel, testId: "full-screen__exit-button-with-tooltip", onClick: onClick, children: jsxRuntime.jsx(ExitFullScreenIcon, {}) }), content: function () { return exitFullScreenLabel; }, offset: TOOLTIP_OFFSET }));
 };
 
 var useEnterFullScreen = function (getFullScreenTarget, store) {
@@ -122,7 +115,7 @@ var EnterFullScreen = function (_a) {
     var children = _a.children, enableShortcuts = _a.enableShortcuts, getFullScreenTarget = _a.getFullScreenTarget, store = _a.store;
     var _b = useEnterFullScreen(getFullScreenTarget, store), enterFullScreen = _b.enterFullScreen, exitFullScreen = _b.exitFullScreen, isFullScreen = _b.isFullScreen;
     var defaultChildren = function (props) {
-        return isFullScreen ? (React__namespace.createElement(ExitFullScreenButtonWithTooltip, { onClick: props.onClick })) : (React__namespace.createElement(EnterFullScreenButton, { enableShortcuts: enableShortcuts, onClick: props.onClick }));
+        return isFullScreen ? (jsxRuntime.jsx(ExitFullScreenButtonWithTooltip, { onClick: props.onClick })) : (jsxRuntime.jsx(EnterFullScreenButton, { enableShortcuts: enableShortcuts, onClick: props.onClick }));
     };
     var render = children || defaultChildren;
     return render({
@@ -134,7 +127,7 @@ var EnterFullScreenMenuItem = function (_a) {
     var onClick = _a.onClick;
     var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
     var label = l10n && l10n.fullScreen ? l10n.fullScreen.enterFullScreen : 'Full screen';
-    return (React__namespace.createElement(core.MenuItem, { icon: React__namespace.createElement(FullScreenIcon, null), isDisabled: !core.isFullScreenEnabled(), testId: "full-screen__enter-menu", onClick: onClick }, label));
+    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(FullScreenIcon, {}), isDisabled: !core.isFullScreenEnabled(), testId: "full-screen__enter-menu", onClick: onClick, children: label }));
 };
 
 var ExitFullScreenButton = function (_a) {
@@ -143,19 +136,17 @@ var ExitFullScreenButton = function (_a) {
     var direction = React__namespace.useContext(core.ThemeContext).direction;
     var isRtl = direction === core.TextDirection.RightToLeft;
     var exitFullScreenLabel = l10n && l10n.fullScreen ? l10n.fullScreen.exitFullScreen : 'Exit full screen';
-    return (React__namespace.createElement("div", { className: core.classNames({
+    return (jsxRuntime.jsx("div", { className: core.classNames({
             'rpv-full-screen__exit-button': true,
             'rpv-full-screen__exit-button--ltr': !isRtl,
             'rpv-full-screen__exit-button--rtl': isRtl,
-        }) },
-        React__namespace.createElement(core.MinimalButton, { ariaLabel: exitFullScreenLabel, testId: "full-screen__exit-button", onClick: onClick },
-            React__namespace.createElement(ExitFullScreenIcon, null))));
+        }), children: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: exitFullScreenLabel, testId: "full-screen__exit-button", onClick: onClick, children: jsxRuntime.jsx(ExitFullScreenIcon, {}) }) }));
 };
 
 var ExitFullScreen = function (_a) {
     var children = _a.children, getFullScreenTarget = _a.getFullScreenTarget, store = _a.store;
     var _b = useEnterFullScreen(getFullScreenTarget, store), enterFullScreen = _b.enterFullScreen, exitFullScreen = _b.exitFullScreen, isFullScreen = _b.isFullScreen;
-    var defaultChildren = function (props) { return React__namespace.createElement(ExitFullScreenButton, { onClick: props.onClick }); };
+    var defaultChildren = function (props) { return jsxRuntime.jsx(ExitFullScreenButton, { onClick: props.onClick }); };
     var render = children || defaultChildren;
     return (isFullScreen &&
         render({
@@ -167,6 +158,7 @@ var FullScreenModeTracker = function (_a) {
     var store = _a.store, onEnterFullScreen = _a.onEnterFullScreen, onExitFullScreen = _a.onExitFullScreen;
     var _b = React__namespace.useState(store.get('fullScreenMode')), fullScreenMode = _b[0], setFullScreenMode = _b[1];
     var handleFullScreenMode = React__namespace.useCallback(function (fullScreenMode) {
+        console.log('handleFullScreenMode', fullScreenMode);
         setFullScreenMode(fullScreenMode);
     }, []);
     var handleEnteredFullScreen = function () {
@@ -191,8 +183,7 @@ var FullScreenModeTracker = function (_a) {
             store.unsubscribe('fullScreenMode', handleFullScreenMode);
         };
     }, []);
-    return ((fullScreenMode === core.FullScreenMode.Entering || fullScreenMode === core.FullScreenMode.Entered) && (React__namespace.createElement("div", { className: "rpv-full-screen__overlay" },
-        React__namespace.createElement(core.Spinner, null))));
+    return ((fullScreenMode === core.FullScreenMode.Entering || fullScreenMode === core.FullScreenMode.Entered) && (jsxRuntime.jsx("div", { className: "rpv-full-screen__overlay", children: jsxRuntime.jsx(core.Spinner, {}) })));
 };
 
 var ShortcutHandler = function (_a) {
@@ -223,7 +214,7 @@ var ShortcutHandler = function (_a) {
             document.removeEventListener('keydown', keydownHandler);
         };
     }, [containerRef.current]);
-    return React__namespace.createElement(React__namespace.Fragment, null);
+    return jsxRuntime.jsx(jsxRuntime.Fragment, {});
 };
 
 var fullScreenPlugin = function (props) {
@@ -240,21 +231,17 @@ var fullScreenPlugin = function (props) {
             zoom: function () { },
         });
     }, []);
-    var EnterFullScreenDecorator = function (props) { return (React__namespace.createElement(EnterFullScreen, __assign({}, props, { enableShortcuts: fullScreenPluginProps.enableShortcuts, getFullScreenTarget: getFullScreenTarget, store: store }))); };
-    var EnterFullScreenButtonDecorator = function () { return (React__namespace.createElement(EnterFullScreenDecorator, null, function (renderProps) { return (React__namespace.createElement(EnterFullScreenButton, __assign({ enableShortcuts: fullScreenPluginProps.enableShortcuts }, renderProps))); })); };
-    var EnterFullScreenMenuItemDecorator = function (props) { return (React__namespace.createElement(EnterFullScreenDecorator, null, function (p) { return (React__namespace.createElement(EnterFullScreenMenuItem, { onClick: function () {
-            p.onClick();
-            props.onClick();
-        } })); })); };
-    var ExitFullScreenDecorator = function () { return (React__namespace.createElement(ExitFullScreen, { getFullScreenTarget: getFullScreenTarget, store: store }, props === null || props === void 0 ? void 0 : props.renderExitFullScreenButton)); };
+    var EnterFullScreenDecorator = function (props) { return (jsxRuntime.jsx(EnterFullScreen, __assign({}, props, { enableShortcuts: fullScreenPluginProps.enableShortcuts, getFullScreenTarget: getFullScreenTarget, store: store }))); };
+    var EnterFullScreenButtonDecorator = function () { return (jsxRuntime.jsx(EnterFullScreenDecorator, { children: function (renderProps) { return (jsxRuntime.jsx(EnterFullScreenButton, __assign({ enableShortcuts: fullScreenPluginProps.enableShortcuts }, renderProps))); } })); };
+    var EnterFullScreenMenuItemDecorator = function (props) { return (jsxRuntime.jsx(EnterFullScreenDecorator, { children: function (p) { return (jsxRuntime.jsx(EnterFullScreenMenuItem, { onClick: function () {
+                p.onClick();
+                props.onClick();
+            } })); } })); };
+    var ExitFullScreenDecorator = function () { return (jsxRuntime.jsx(ExitFullScreen, { getFullScreenTarget: getFullScreenTarget, store: store, children: props === null || props === void 0 ? void 0 : props.renderExitFullScreenButton })); };
     var renderViewer = function (props) {
         var currentSlot = props.slot;
         if (currentSlot.subSlot) {
-            currentSlot.subSlot.children = (React__namespace.createElement(React__namespace.Fragment, null,
-                fullScreenPluginProps.enableShortcuts && (React__namespace.createElement(ShortcutHandler, { containerRef: props.containerRef, getFullScreenTarget: getFullScreenTarget, store: store })),
-                React__namespace.createElement(FullScreenModeTracker, { store: store, onEnterFullScreen: fullScreenPluginProps.onEnterFullScreen, onExitFullScreen: fullScreenPluginProps.onExitFullScreen }),
-                React__namespace.createElement(ExitFullScreenDecorator, null),
-                currentSlot.subSlot.children));
+            currentSlot.subSlot.children = (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [fullScreenPluginProps.enableShortcuts && (jsxRuntime.jsx(ShortcutHandler, { containerRef: props.containerRef, getFullScreenTarget: getFullScreenTarget, store: store })), jsxRuntime.jsx(FullScreenModeTracker, { store: store, onEnterFullScreen: fullScreenPluginProps.onEnterFullScreen, onExitFullScreen: fullScreenPluginProps.onExitFullScreen }), jsxRuntime.jsx(ExitFullScreenDecorator, {}), currentSlot.subSlot.children] }));
         }
         return currentSlot;
     };

@@ -1,8 +1,7 @@
 # React PDF viewer
 
 A React component to view a PDF document. It's written in TypeScript, and powered by React hooks completely.
-
-![React PDF viewer](https://raw.githubusercontent.com/react-pdf-viewer/react-pdf-viewer/master/assets/screenshot.png)
+It's forked package, and added touchEvent for highlight
 
 ```javascript
 // Core viewer
@@ -58,16 +57,8 @@ const defaultLayoutPluginInstance = defaultLayoutPlugin();
 -   [x] The toolbar can be customized easily
 -   [x] All text items can be localized in another language
 
-## License
-
-You have to purchase a Commercial License at the [official website](https://react-pdf-viewer.dev).
-
 ## About
 
 This project is developed by _Nguyen Huu Phuoc_. I love building products and sharing knowledge.
+But forked by _Maks Alieksieiev_.
 
-Be my friend on
-
--   [Twitter](https://twitter.com/nghuuphuoc)
--   [dev.to](https://dev.to/phuocng)
--   [Github](https://github.com/phuoc-ng)
