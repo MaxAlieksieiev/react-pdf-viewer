@@ -1,7 +1,7 @@
 'use strict';
 
 var jsxRuntime = require('react/jsx-runtime');
-var core = require('@react-pdf-viewer/core');
+var reactPdfViewerCore = require('@max_alieksieiev/react-pdf-viewer-core');
 var React = require('react');
 
 function _interopNamespaceDefault(e) {
@@ -23,9 +23,9 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var ExitFullScreenIcon = function () { return (jsxRuntime.jsxs(core.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M11.5 23.499L11.5 14.499" }), jsxRuntime.jsx("path", { d: "M7.5 18.499L11.5 14.499 15.5 18.499" }), jsxRuntime.jsx("path", { d: "M11.5 1.499L11.5 10.499" }), jsxRuntime.jsx("path", { d: "M7.5 6.499L11.5 10.499 15.5 6.499" }), jsxRuntime.jsx("path", { d: "M20.5 12.499L1.5 12.499" })] })); };
+var ExitFullScreenIcon = function () { return (jsxRuntime.jsxs(reactPdfViewerCore.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M11.5 23.499L11.5 14.499" }), jsxRuntime.jsx("path", { d: "M7.5 18.499L11.5 14.499 15.5 18.499" }), jsxRuntime.jsx("path", { d: "M11.5 1.499L11.5 10.499" }), jsxRuntime.jsx("path", { d: "M7.5 6.499L11.5 10.499 15.5 6.499" }), jsxRuntime.jsx("path", { d: "M20.5 12.499L1.5 12.499" })] })); };
 
-var FullScreenIcon = function () { return (jsxRuntime.jsxs(core.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M0.5 12L23.5 12" }), jsxRuntime.jsx("path", { d: "M11.5 1L11.5 23" }), jsxRuntime.jsx("path", { d: "M8.5 4L11.5 1 14.5 4" }), jsxRuntime.jsx("path", { d: "M20.5 9L23.5 12 20.5 15" }), jsxRuntime.jsx("path", { d: "M3.5 15L0.5 12 3.5 9" }), jsxRuntime.jsx("path", { d: "M14.5 20L11.5 23 8.5 20" })] })); };
+var FullScreenIcon = function () { return (jsxRuntime.jsxs(reactPdfViewerCore.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M0.5 12L23.5 12" }), jsxRuntime.jsx("path", { d: "M11.5 1L11.5 23" }), jsxRuntime.jsx("path", { d: "M8.5 4L11.5 1 14.5 4" }), jsxRuntime.jsx("path", { d: "M20.5 9L23.5 12 20.5 15" }), jsxRuntime.jsx("path", { d: "M3.5 15L0.5 12 3.5 9" }), jsxRuntime.jsx("path", { d: "M14.5 20L11.5 23 8.5 20" })] })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -63,18 +63,18 @@ typeof SuppressedError === "function" ? SuppressedError : function (error, suppr
 var TOOLTIP_OFFSET$1 = { left: 0, top: 8 };
 var EnterFullScreenButton = function (_a) {
     var enableShortcuts = _a.enableShortcuts, onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.fullScreen ? l10n.fullScreen.enterFullScreen : 'Full screen';
-    var ariaKeyShortcuts = enableShortcuts ? (core.isMac() ? 'Meta+Ctrl+F' : 'F11') : '';
-    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "full-screen-enter", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, isDisabled: !core.isFullScreenEnabled(), testId: "full-screen__enter-button", onClick: onClick, children: jsxRuntime.jsx(FullScreenIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
+    var ariaKeyShortcuts = enableShortcuts ? (reactPdfViewerCore.isMac() ? 'Meta+Ctrl+F' : 'F11') : '';
+    return (jsxRuntime.jsx(reactPdfViewerCore.Tooltip, { ariaControlsSuffix: "full-screen-enter", position: reactPdfViewerCore.Position.BottomCenter, target: jsxRuntime.jsx(reactPdfViewerCore.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: label, isDisabled: !reactPdfViewerCore.isFullScreenEnabled(), testId: "full-screen__enter-button", onClick: onClick, children: jsxRuntime.jsx(FullScreenIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
 };
 
 var TOOLTIP_OFFSET = { left: 0, top: 8 };
 var ExitFullScreenButtonWithTooltip = function (_a) {
     var onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var exitFullScreenLabel = l10n && l10n.fullScreen ? l10n.fullScreen.exitFullScreen : 'Exit full screen';
-    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "full-screen-exit", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: "Esc", ariaLabel: exitFullScreenLabel, testId: "full-screen__exit-button-with-tooltip", onClick: onClick, children: jsxRuntime.jsx(ExitFullScreenIcon, {}) }), content: function () { return exitFullScreenLabel; }, offset: TOOLTIP_OFFSET }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.Tooltip, { ariaControlsSuffix: "full-screen-exit", position: reactPdfViewerCore.Position.BottomCenter, target: jsxRuntime.jsx(reactPdfViewerCore.MinimalButton, { ariaKeyShortcuts: "Esc", ariaLabel: exitFullScreenLabel, testId: "full-screen__exit-button-with-tooltip", onClick: onClick, children: jsxRuntime.jsx(ExitFullScreenIcon, {}) }), content: function () { return exitFullScreenLabel; }, offset: TOOLTIP_OFFSET }));
 };
 
 var useEnterFullScreen = function (getFullScreenTarget, store) {
@@ -102,7 +102,7 @@ var useEnterFullScreen = function (getFullScreenTarget, store) {
     return {
         enterFullScreen: enterFullScreen,
         exitFullScreen: exitFullScreen,
-        isFullScreen: fullScreenMode === core.FullScreenMode.Entering || fullScreenMode === core.FullScreenMode.EnteredCompletely,
+        isFullScreen: fullScreenMode === reactPdfViewerCore.FullScreenMode.Entering || fullScreenMode === reactPdfViewerCore.FullScreenMode.EnteredCompletely,
     };
 };
 
@@ -120,22 +120,22 @@ var EnterFullScreen = function (_a) {
 
 var EnterFullScreenMenuItem = function (_a) {
     var onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.fullScreen ? l10n.fullScreen.enterFullScreen : 'Full screen';
-    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(FullScreenIcon, {}), isDisabled: !core.isFullScreenEnabled(), testId: "full-screen__enter-menu", onClick: onClick, children: label }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.MenuItem, { icon: jsxRuntime.jsx(FullScreenIcon, {}), isDisabled: !reactPdfViewerCore.isFullScreenEnabled(), testId: "full-screen__enter-menu", onClick: onClick, children: label }));
 };
 
 var ExitFullScreenButton = function (_a) {
     var onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
-    var direction = React__namespace.useContext(core.ThemeContext).direction;
-    var isRtl = direction === core.TextDirection.RightToLeft;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
+    var direction = React__namespace.useContext(reactPdfViewerCore.ThemeContext).direction;
+    var isRtl = direction === reactPdfViewerCore.TextDirection.RightToLeft;
     var exitFullScreenLabel = l10n && l10n.fullScreen ? l10n.fullScreen.exitFullScreen : 'Exit full screen';
-    return (jsxRuntime.jsx("div", { className: core.classNames({
+    return (jsxRuntime.jsx("div", { className: reactPdfViewerCore.classNames({
             'rpv-full-screen__exit-button': true,
             'rpv-full-screen__exit-button--ltr': !isRtl,
             'rpv-full-screen__exit-button--rtl': isRtl,
-        }), children: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: exitFullScreenLabel, testId: "full-screen__exit-button", onClick: onClick, children: jsxRuntime.jsx(ExitFullScreenIcon, {}) }) }));
+        }), children: jsxRuntime.jsx(reactPdfViewerCore.MinimalButton, { ariaLabel: exitFullScreenLabel, testId: "full-screen__exit-button", onClick: onClick, children: jsxRuntime.jsx(ExitFullScreenIcon, {}) }) }));
 };
 
 var ExitFullScreen = function (_a) {
@@ -163,10 +163,10 @@ var FullScreenModeTracker = function (_a) {
     };
     React__namespace.useEffect(function () {
         switch (fullScreenMode) {
-            case core.FullScreenMode.EnteredCompletely:
+            case reactPdfViewerCore.FullScreenMode.EnteredCompletely:
                 handleEnteredFullScreen();
                 break;
-            case core.FullScreenMode.Exited:
+            case reactPdfViewerCore.FullScreenMode.Exited:
                 handleExitedFullScreen();
                 break;
         }
@@ -177,7 +177,7 @@ var FullScreenModeTracker = function (_a) {
             store.unsubscribe('fullScreenMode', handleFullScreenMode);
         };
     }, []);
-    return ((fullScreenMode === core.FullScreenMode.Entering || fullScreenMode === core.FullScreenMode.Entered) && (jsxRuntime.jsx("div", { className: "rpv-full-screen__overlay", children: jsxRuntime.jsx(core.Spinner, {}) })));
+    return ((fullScreenMode === reactPdfViewerCore.FullScreenMode.Entering || fullScreenMode === reactPdfViewerCore.FullScreenMode.Entered) && (jsxRuntime.jsx("div", { className: "rpv-full-screen__overlay", children: jsxRuntime.jsx(reactPdfViewerCore.Spinner, {}) })));
 };
 
 var ShortcutHandler = function (_a) {
@@ -187,7 +187,7 @@ var ShortcutHandler = function (_a) {
         if (e.shiftKey || e.altKey) {
             return;
         }
-        var areShortcutsPressed = core.isMac() ? e.metaKey && e.ctrlKey && e.key === 'f' : e.key === 'F11';
+        var areShortcutsPressed = reactPdfViewerCore.isMac() ? e.metaKey && e.ctrlKey && e.key === 'f' : e.key === 'F11';
         if (!areShortcutsPressed) {
             return;
         }
@@ -218,10 +218,10 @@ var fullScreenPlugin = function (props) {
         return Object.assign({}, { enableShortcuts: true, onEnterFullScreen: function () { }, onExitFullScreen: function () { } }, props);
     }, []);
     var store = React__namespace.useMemo(function () {
-        return core.createStore({
+        return reactPdfViewerCore.createStore({
             enterFullScreenMode: function () { },
             exitFullScreenMode: function () { },
-            fullScreenMode: core.FullScreenMode.Normal,
+            fullScreenMode: reactPdfViewerCore.FullScreenMode.Normal,
             zoom: function () { },
         });
     }, []);

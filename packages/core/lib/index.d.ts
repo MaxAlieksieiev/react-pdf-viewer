@@ -217,6 +217,7 @@ export enum FullScreenMode {
     Entered = 'Entered',
     Exitting = 'Exitting',
     Exited = 'Exited',
+    EnteredCompletely = 'Entered Completely'
 }
 
 export enum LayerRenderStatus {

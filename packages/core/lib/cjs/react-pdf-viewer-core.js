@@ -3956,7 +3956,7 @@ var Viewer = function (_a) {
 
 var Worker = function (_a) {
     _a.children;
-    throw new Error('The Worker component is moved to @max_alieksieiev/react-pdf-viewer-worker or @max_alieksieiev/react-pdf-viewer-legacy-worker');
+    throw new Error('The Worker component is moved to @react-pdf-viewer/worker or @react-pdf-viewer/legacy-worker');
 };
 
 var Button = function (_a) {
