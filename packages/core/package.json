@@ -1,6 +1,6 @@
 {
     "name": "@max_alieksieiev/react-pdf-viewer-core",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "A React component to view a PDF document",
     "license": "MIT",
     "author": {
