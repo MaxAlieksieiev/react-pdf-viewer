@@ -8,7 +8,7 @@
 
 'use client';
 
-import { type Store } from '@react-pdf-viewer/core';
+import { type Store } from '@max_alieksieiev/react-pdf-viewer-core';
 import * as React from 'react';
 import { HighlightRect } from './HighlightRect';
 import { getCssProperties } from './transformArea';

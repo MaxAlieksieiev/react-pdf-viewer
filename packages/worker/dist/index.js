@@ -9,7 +9,7 @@
 'use strict';
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports = require('./cjs/worker.min.js');
+    module.exports = require('./cjs/react-pdf-viewer-worker.min.js');
 } else {
-    module.exports = require('./cjs/worker.js');
+    module.exports = require('./cjs/react-pdf-viewer-worker.js');
 }

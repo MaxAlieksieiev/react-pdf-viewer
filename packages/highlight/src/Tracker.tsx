@@ -8,7 +8,7 @@
 
 'use client';
 
-import { type Store } from '@react-pdf-viewer/core';
+import { type Store } from '@max_alieksieiev/react-pdf-viewer-core';
 import * as React from 'react';
 import { HIGHLIGHT_LAYER_ATTR, HIGHLIGHT_PAGE_ATTR } from './constants';
 import { getRectFromOffsets } from './getRectFromOffsets';
@@ -45,6 +45,7 @@ export const Tracker: React.FC<{
 
     const onMouseUpHandler = () => {
         // Get the current selection
+        console.log('tracker  onMouseUpHandler')
         const selection = document.getSelection();
 
         const highlightState = store.get('highlightState');

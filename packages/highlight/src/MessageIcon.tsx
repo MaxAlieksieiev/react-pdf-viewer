@@ -6,7 +6,7 @@
  * @copyright 2019-2023 Nguyen Huu Phuoc <me@phuoc.ng>
  */
 
-import { Icon } from '@react-pdf-viewer/core';
+import { Icon } from '@max_alieksieiev/react-pdf-viewer-core';
 import * as React from 'react';
 
 export const MessageIcon: React.FC = () => (

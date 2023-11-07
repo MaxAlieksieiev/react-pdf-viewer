@@ -1,15 +1,7 @@
-/**
- * A React component to view a PDF document
- *
- * @see https://react-pdf-viewer.dev
- * @license https://react-pdf-viewer.dev/license
- * @copyright 2019-2023 Nguyen Huu Phuoc <me@phuoc.ng>
- */
-
 'use strict';
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports = require('./cjs/core.min.js');
+    module.exports = require('./cjs/react-pdf-viewer-core.min.js');
 } else {
-    module.exports = require('./cjs/core.js');
+    module.exports = require('./cjs/react-pdf-viewer-core.js');
 }

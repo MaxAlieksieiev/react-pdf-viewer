@@ -8,7 +8,7 @@
 
 'use client';
 
-import { type Store, type StoreHandler } from '@react-pdf-viewer/core';
+import { type Store, type StoreHandler } from '@max_alieksieiev/react-pdf-viewer-core';
 import * as React from 'react';
 import { type StoreProps } from './types/StoreProps';
 

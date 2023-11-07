@@ -1,7 +1,7 @@
 'use strict';
 
 var jsxRuntime = require('react/jsx-runtime');
-var core = require('@react-pdf-viewer/core');
+var reactPdfViewerCore = require('@max_alieksieiev/react-pdf-viewer-core');
 var React = require('react');
 var isMobile = require('is-mobile');
 
@@ -24,7 +24,7 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var MessageIcon = function () { return (jsxRuntime.jsxs(core.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M23.5,17a1,1,0,0,1-1,1h-11l-4,4V18h-6a1,1,0,0,1-1-1V3a1,1,0,0,1,1-1h21a1,1,0,0,1,1,1Z" }), jsxRuntime.jsx("path", { d: "M5.5 12L18.5 12" }), jsxRuntime.jsx("path", { d: "M5.5 7L18.5 7" })] })); };
+var MessageIcon = function () { return (jsxRuntime.jsxs(reactPdfViewerCore.Icon, { size: 16, children: [jsxRuntime.jsx("path", { d: "M23.5,17a1,1,0,0,1-1,1h-11l-4,4V18h-6a1,1,0,0,1-1-1V3a1,1,0,0,1,1-1h21a1,1,0,0,1,1,1Z" }), jsxRuntime.jsx("path", { d: "M5.5 12L18.5 12" }), jsxRuntime.jsx("path", { d: "M5.5 7L18.5 7" })] })); };
 
 var getImageFromArea = function () {
     var newCanvas = document.createElement('canvas');
@@ -83,7 +83,7 @@ var ClickDrag = function (_a) {
         }
     };
     var handleMouseDown = function (e) {
-        console.log('hahandleMouseDownnde');
+        console.log('handleMouseDown');
         var textLayerEle = textLayerRef.current;
         var container = containerRef.current;
         if (!e.altKey || !textLayerEle || !container || e instanceof MouseEvent && e.button !== 0) {
@@ -140,7 +140,6 @@ var ClickDrag = function (_a) {
         container.style.height = "".concat(height, "%");
     };
     var handleDocumentKeyDown = function (e) {
-        console.log('handleDocumentKeyDown');
         if (e.key === 'Escape' && store.get('highlightState').type === HighlightStateType.ClickDragged) {
             e.preventDefault();
             hideContainer();
@@ -148,7 +147,6 @@ var ClickDrag = function (_a) {
         }
     };
     var handleDocumenClick = function (e) {
-        console.log('handleDocumenClick', handleDocumenClick);
         var container = containerRef.current;
         if (!container) {
             return;
@@ -159,7 +157,7 @@ var ClickDrag = function (_a) {
         }
     };
     var handleDocumentMouseUp = function (e) {
-        console.log('handleDocumentMouseUp');
+        console.log("handleDocumentMouseUp");
         e.preventDefault();
         if (e instanceof MouseEvent) {
             document.removeEventListener('mousemove', handleDocumentMouseMove);
@@ -215,30 +213,39 @@ var ClickDrag = function (_a) {
             return;
         }
         if (isMobile()) {
-            textLayerEle.addEventListener('touchstart', handleMouseDown);
+            console.log('touchstart 1');
+            textLayerEle.addEventListener('textLayerEle touchstart', handleMouseDown);
         }
         else {
-            textLayerEle.addEventListener('mousedown', handleMouseDown);
+            console.log('mousedown 1');
+            textLayerEle.addEventListener('textLayerEle mousedown', handleMouseDown);
         }
         var eventOptions = {
             capture: true,
         };
         if (isMobile()) {
-            document.addEventListener('touchcancel', handleDocumenClick, eventOptions);
+            document.addEventListener('document touchend', handleDocumenClick, eventOptions);
+            console.log('touchend 2');
         }
         else {
-            document.addEventListener('keydown', handleDocumentKeyDown);
-            document.addEventListener('click', handleDocumenClick, eventOptions);
+            document.addEventListener('document keydown', handleDocumentKeyDown);
+            console.log('keydown 2');
+            document.addEventListener('document click', handleDocumenClick, eventOptions);
+            console.log('click 2');
         }
         return function () {
             if (isMobile()) {
-                textLayerEle.removeEventListener('touchstart', handleMouseDown);
-                document.removeEventListener('touchcancel', handleDocumenClick, eventOptions);
+                textLayerEle.removeEventListener('textLayerEle rem touchend', handleMouseDown);
+                console.log(' textLayerEle removeEventListener touchend 2');
+                document.removeEventListener('touchend', handleDocumenClick, eventOptions);
             }
             else {
                 textLayerEle.removeEventListener('mousedown', handleMouseDown);
+                console.log('rem textLayerEle mousedown');
                 document.removeEventListener('click', handleDocumenClick, eventOptions);
+                console.log('rem document click');
                 document.removeEventListener('keydown', handleDocumentKeyDown);
+                console.log('REM keydown document');
             }
         };
     }, [textLayerRendered]);
@@ -398,8 +405,8 @@ var getRectFromOffsets = function (textDiv, startOffset, endOffset) {
     textDiv.parentNode.appendChild(clonedEle);
     var firstChild = clonedEle.firstChild;
     var range = new Range();
-    range.setStart(firstChild, startOffset);
-    range.setEnd(firstChild, endOffset);
+    range === null || range === void 0 ? void 0 : range.setStart(firstChild, startOffset);
+    range === null || range === void 0 ? void 0 : range.setEnd(firstChild, endOffset);
     var wrapper = document.createElement('span');
     range.surroundContents(wrapper);
     var rect = wrapper.getBoundingClientRect();
@@ -476,6 +483,7 @@ var Tracker = function (_a) {
     };
     var handleTrigger = function (trigger) { return setTrigger(trigger); };
     var onMouseUpHandler = function () {
+        console.log('tracker  onMouseUpHandler');
         var selection = document.getSelection();
         var highlightState = store.get('highlightState');
         var hasSelection = (highlightState.type === HighlightStateType.NoSelection ||
@@ -650,16 +658,20 @@ var Tracker = function (_a) {
             return;
         }
         if (isMobile()) {
+            console.log('tracker touchend');
             ele.addEventListener('touchend', onMouseUpHandler);
         }
         else {
+            console.log('tracker mouseup');
             ele.addEventListener('mouseup', onMouseUpHandler);
         }
         return function () {
             if (isMobile()) {
+                console.log('tracker touchend rem');
                 ele.removeEventListener('touchend', onMouseUpHandler);
             }
             else {
+                console.log('tracker mouseup rem');
                 ele.removeEventListener('mouseup', onMouseUpHandler);
             }
         };
@@ -679,7 +691,7 @@ var TEXT_LAYER_END_SELECTOR = 'rpv-highlight__selected-end';
 var highlightPlugin = function (props) {
     var highlightPluginProps = Object.assign({}, { trigger: exports.Trigger.TextSelection }, props);
     var store = React__namespace.useMemo(function () {
-        return core.createStore({
+        return reactPdfViewerCore.createStore({
             highlightState: NO_SELECTION_STATE,
             trigger: highlightPluginProps.trigger,
         });
@@ -740,12 +752,14 @@ var highlightPlugin = function (props) {
         var mouseDownHandler = handleMouseDown(e);
         var mouseUpHandler = handleMouseUp(e);
         var textEle = e.ele;
-        if (e.status === core.LayerRenderStatus.PreRender) {
+        if (e.status === reactPdfViewerCore.LayerRenderStatus.PreRender) {
             if (isMobile()) {
+                console.log('onTextLayerRender remove touchstart touchend');
                 textEle.removeEventListener('touchstart', mouseDownHandler);
                 textEle.removeEventListener('touchend', mouseUpHandler);
             }
             else {
+                console.log('onTextLayerRender remove mousedown mouseup');
                 textEle.removeEventListener('mousedown', mouseDownHandler);
                 textEle.removeEventListener('mouseup', mouseUpHandler);
             }
@@ -754,12 +768,14 @@ var highlightPlugin = function (props) {
                 textEle.removeChild(selectEndEle);
             }
         }
-        else if (e.status === core.LayerRenderStatus.DidRender) {
+        else if (e.status === reactPdfViewerCore.LayerRenderStatus.DidRender) {
             if (isMobile()) {
+                console.log('onTextLayerRender add touchstart touchend');
                 textEle.addEventListener('touchstart', mouseDownHandler);
                 textEle.addEventListener('touchend', mouseUpHandler);
             }
             else {
+                console.log('onTextLayerRender add mousedown mouseup');
                 textEle.addEventListener('mousedown', mouseDownHandler);
                 textEle.addEventListener('mouseup', mouseUpHandler);
             }

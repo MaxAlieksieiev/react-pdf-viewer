@@ -8,7 +8,7 @@
 
 'use client';
 
-import { type Store } from '@react-pdf-viewer/core';
+import { type Store } from '@max_alieksieiev/react-pdf-viewer-core';
 import * as React from 'react';
 import { getImageFromArea } from './getImageFromArea';
 import { HighlightState, HighlightStateType, NO_SELECTION_STATE } from './types/HighlightState';
@@ -45,7 +45,6 @@ export const ClickDrag: React.FC<{
     };
 
     const handleMouseDown = (e: MouseEvent | TouchEvent) => {
-        console.log('hahandleMouseDownnde')
         const textLayerEle = textLayerRef.current;
         const container = containerRef.current;
         if (!e.altKey || !textLayerEle || !container || e instanceof MouseEvent && e.button !== 0) {
@@ -87,7 +86,6 @@ export const ClickDrag: React.FC<{
     };
 
     const handleDocumentMouseMove = (e: MouseEvent | TouchEvent) => {
-        console.log('handleDocumentMouseMove');
         const textLayerEle = textLayerRef.current;
         const container = containerRef.current;
         if (!textLayerEle || !container) {
@@ -115,7 +113,6 @@ export const ClickDrag: React.FC<{
     };
 
     const handleDocumentKeyDown = (e: KeyboardEvent) => {
-        console.log('handleDocumentKeyDown')
         if (e.key === 'Escape' && store.get('highlightState').type === HighlightStateType.ClickDragged) {
             e.preventDefault();
             hideContainer();
@@ -125,7 +122,6 @@ export const ClickDrag: React.FC<{
 
     // Hide the container when clicking outside
     const handleDocumenClick = (e: MouseEvent | TouchEvent) => {
-        console.log('handleDocumenClick', handleDocumenClick)
         const container = containerRef.current;
         if (!container) {
             return;
@@ -137,7 +133,6 @@ export const ClickDrag: React.FC<{
     };
 
     const handleDocumentMouseUp = (e: MouseEvent | TouchEvent) => {
-        console.log('handleDocumentMouseUp')
         e.preventDefault();
 
         if(e instanceof MouseEvent) {
@@ -207,9 +202,9 @@ export const ClickDrag: React.FC<{
         }
 
         if(isMobile()) {
-            textLayerEle.addEventListener('touchstart', handleMouseDown);
+            textLayerEle.addEventListener('textLayerEle touchstart', handleMouseDown);
         } else {
-            textLayerEle.addEventListener('mousedown', handleMouseDown);
+            textLayerEle.addEventListener('textLayerEle mousedown', handleMouseDown);
         }
 
         const eventOptions = {
@@ -218,15 +213,15 @@ export const ClickDrag: React.FC<{
         
         
         if(isMobile()) {
-            document.addEventListener('touchcancel', handleDocumenClick, eventOptions);
+            document.addEventListener('document touchend', handleDocumenClick, eventOptions);
         } else {
-            document.addEventListener('keydown', handleDocumentKeyDown);
-            document.addEventListener('click', handleDocumenClick, eventOptions);
+            document.addEventListener('document keydown', handleDocumentKeyDown);
+            document.addEventListener('document click', handleDocumenClick, eventOptions);
         }
         return () => {
             if(isMobile()) {
-                textLayerEle.removeEventListener('touchstart', handleMouseDown);
-                document.removeEventListener('touchcancel', handleDocumenClick, eventOptions);
+                textLayerEle.removeEventListener('textLayerEle rem touchend', handleMouseDown);
+                document.removeEventListener('touchend', handleDocumenClick, eventOptions);
             } else {
                 textLayerEle.removeEventListener('mousedown', handleMouseDown);
                 document.removeEventListener('click', handleDocumenClick, eventOptions);
