@@ -1,7 +1,7 @@
 'use strict';
 
 var jsxRuntime = require('react/jsx-runtime');
-var core = require('@react-pdf-viewer/core');
+var reactPdfViewerCore = require('@max_alieksieiev/react-pdf-viewer-core');
 var React = require('react');
 
 function _interopNamespaceDefault(e) {
@@ -23,13 +23,13 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var DownArrowIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M2.32,2.966h19.452c0.552,0.001,1,0.449,0.999,1.001c0,0.182-0.05,0.36-0.144,0.516L12.9,20.552\n            c-0.286,0.472-0.901,0.624-1.373,0.338c-0.138-0.084-0.254-0.2-0.338-0.338L1.465,4.483C1.179,4.01,1.331,3.396,1.804,3.11\n            C1.96,3.016,2.138,2.966,2.32,2.966z" }) })); };
+var DownArrowIcon = function () { return (jsxRuntime.jsx(reactPdfViewerCore.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M2.32,2.966h19.452c0.552,0.001,1,0.449,0.999,1.001c0,0.182-0.05,0.36-0.144,0.516L12.9,20.552\n            c-0.286,0.472-0.901,0.624-1.373,0.338c-0.138-0.084-0.254-0.2-0.338-0.338L1.465,4.483C1.179,4.01,1.331,3.396,1.804,3.11\n            C1.96,3.016,2.138,2.966,2.32,2.966z" }) })); };
 
-var NextIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M0.541,5.627L11.666,18.2c0.183,0.207,0.499,0.226,0.706,0.043c0.015-0.014,0.03-0.028,0.043-0.043\n            L23.541,5.627" }) })); };
+var NextIcon = function () { return (jsxRuntime.jsx(reactPdfViewerCore.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M0.541,5.627L11.666,18.2c0.183,0.207,0.499,0.226,0.706,0.043c0.015-0.014,0.03-0.028,0.043-0.043\n            L23.541,5.627" }) })); };
 
-var PreviousIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M23.535,18.373L12.409,5.8c-0.183-0.207-0.499-0.226-0.706-0.043C11.688,5.77,11.674,5.785,11.66,5.8\n            L0.535,18.373" }) })); };
+var PreviousIcon = function () { return (jsxRuntime.jsx(reactPdfViewerCore.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M23.535,18.373L12.409,5.8c-0.183-0.207-0.499-0.226-0.706-0.043C11.688,5.77,11.674,5.785,11.66,5.8\n            L0.535,18.373" }) })); };
 
-var UpArrowIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M21.783,21.034H2.332c-0.552,0-1-0.448-1-1c0-0.182,0.05-0.361,0.144-0.517L11.2,3.448\n            c0.286-0.472,0.901-0.624,1.373-0.338c0.138,0.084,0.254,0.2,0.338,0.338l9.726,16.069c0.286,0.473,0.134,1.087-0.339,1.373\n            C22.143,20.984,21.965,21.034,21.783,21.034z" }) })); };
+var UpArrowIcon = function () { return (jsxRuntime.jsx(reactPdfViewerCore.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M21.783,21.034H2.332c-0.552,0-1-0.448-1-1c0-0.182,0.05-0.361,0.144-0.517L11.2,3.448\n            c0.286-0.472,0.901-0.624,1.373-0.338c0.138,0.084,0.254,0.2,0.338,0.338l9.726,16.069c0.286,0.473,0.134,1.087-0.339,1.373\n            C22.143,20.984,21.965,21.034,21.783,21.034z" }) })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -69,7 +69,7 @@ var useCurrentPage = function (store) {
     var handleCurrentPageChanged = function (currentPageIndex) {
         setCurrentPage(currentPageIndex);
     };
-    core.useIsomorphicLayoutEffect(function () {
+    reactPdfViewerCore.useIsomorphicLayoutEffect(function () {
         store.subscribe('currentPage', handleCurrentPageChanged);
         return function () {
             store.unsubscribe('currentPage', handleCurrentPageChanged);
@@ -94,7 +94,7 @@ var useNumberOfPages = function (store) {
 
 var CurrentPageInput = function (_a) {
     var store = _a.store;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var _b = React__namespace.useState('1'), editingPage = _b[0], setEditingPage = _b[1];
     var currentPage = useCurrentPage(store).currentPage;
     var numberOfPages = useNumberOfPages(store).numberOfPages;
@@ -141,12 +141,12 @@ var CurrentPageInput = function (_a) {
     var label = l10n && l10n.pageNavigation
         ? l10n.pageNavigation.enterPageNumber
         : 'Enter a page number';
-    return (jsxRuntime.jsx("span", { className: "rpv-page-navigation__current-page-input", children: jsxRuntime.jsx(core.TextBox, { ariaLabel: label, testId: "page-navigation__current-page-input", type: "text", value: editingPage, onChange: setEditingPage, onKeyDown: keydownPage }) }));
+    return (jsxRuntime.jsx("span", { className: "rpv-page-navigation__current-page-input", children: jsxRuntime.jsx(reactPdfViewerCore.TextBox, { ariaLabel: label, testId: "page-navigation__current-page-input", type: "text", value: editingPage, onChange: setEditingPage, onKeyDown: keydownPage }) }));
 };
 
 var FetchLabels = function (_a) {
     var children = _a.children, doc = _a.doc;
-    var isMounted = core.useIsMounted();
+    var isMounted = reactPdfViewerCore.useIsMounted();
     var _b = React__namespace.useState({
         loading: true,
         labels: [],
@@ -193,9 +193,9 @@ var CurrentPageLabel = function (_a) {
 var TOOLTIP_OFFSET$3 = { left: 0, top: 8 };
 var GoToFirstPageButton = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToFirstPage : 'First page';
-    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "page-navigation-first", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__first-button", onClick: onClick, children: jsxRuntime.jsx(UpArrowIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$3 }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.Tooltip, { ariaControlsSuffix: "page-navigation-first", position: reactPdfViewerCore.Position.BottomCenter, target: jsxRuntime.jsx(reactPdfViewerCore.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__first-button", onClick: onClick, children: jsxRuntime.jsx(UpArrowIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$3 }));
 };
 
 var GoToFirstPage = function (_a) {
@@ -217,17 +217,17 @@ var GoToFirstPage = function (_a) {
 
 var GoToFirstPageMenuItem = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToFirstPage : 'First page';
-    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(UpArrowIcon, {}), isDisabled: isDisabled, testId: "page-navigation__first-menu", onClick: onClick, children: label }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.MenuItem, { icon: jsxRuntime.jsx(UpArrowIcon, {}), isDisabled: isDisabled, testId: "page-navigation__first-menu", onClick: onClick, children: label }));
 };
 
 var TOOLTIP_OFFSET$2 = { left: 0, top: 8 };
 var GoToLastPageButton = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToLastPage : 'Last page';
-    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "page-navigation-last", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__last-button", onClick: onClick, children: jsxRuntime.jsx(DownArrowIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$2 }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.Tooltip, { ariaControlsSuffix: "page-navigation-last", position: reactPdfViewerCore.Position.BottomCenter, target: jsxRuntime.jsx(reactPdfViewerCore.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__last-button", onClick: onClick, children: jsxRuntime.jsx(DownArrowIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$2 }));
 };
 
 var GoToLastPage = function (_a) {
@@ -250,17 +250,17 @@ var GoToLastPage = function (_a) {
 
 var GoToLastPageMenuItem = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToLastPage : 'Last page';
-    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(DownArrowIcon, {}), isDisabled: isDisabled, testId: "page-navigation__last-menu", onClick: onClick, children: label }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.MenuItem, { icon: jsxRuntime.jsx(DownArrowIcon, {}), isDisabled: isDisabled, testId: "page-navigation__last-menu", onClick: onClick, children: label }));
 };
 
 var TOOLTIP_OFFSET$1 = { left: 0, top: 8 };
 var GoToNextPageButton = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToNextPage : 'Next page';
-    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "page-navigation-next", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__next-button", onClick: onClick, children: jsxRuntime.jsx(NextIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.Tooltip, { ariaControlsSuffix: "page-navigation-next", position: reactPdfViewerCore.Position.BottomCenter, target: jsxRuntime.jsx(reactPdfViewerCore.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__next-button", onClick: onClick, children: jsxRuntime.jsx(NextIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET$1 }));
 };
 
 var GoToNextPage = function (_a) {
@@ -283,19 +283,19 @@ var GoToNextPage = function (_a) {
 
 var GoToNextPageMenuItem = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation ? l10n.pageNavigation.goToNextPage : 'Next page';
-    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(NextIcon, {}), isDisabled: isDisabled, testId: "page-navigation__next-menu", onClick: onClick, children: label }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.MenuItem, { icon: jsxRuntime.jsx(NextIcon, {}), isDisabled: isDisabled, testId: "page-navigation__next-menu", onClick: onClick, children: label }));
 };
 
 var TOOLTIP_OFFSET = { left: 0, top: 8 };
 var GoToPreviousPageButton = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation
         ? l10n.pageNavigation.goToPreviousPage
         : 'Previous page';
-    return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "page-navigation-previous", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__previous-button", onClick: onClick, children: jsxRuntime.jsx(PreviousIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.Tooltip, { ariaControlsSuffix: "page-navigation-previous", position: reactPdfViewerCore.Position.BottomCenter, target: jsxRuntime.jsx(reactPdfViewerCore.MinimalButton, { ariaLabel: label, isDisabled: isDisabled, testId: "page-navigation__previous-button", onClick: onClick, children: jsxRuntime.jsx(PreviousIcon, {}) }), content: function () { return label; }, offset: TOOLTIP_OFFSET }));
 };
 
 var GoToPreviousPage = function (_a) {
@@ -317,11 +317,11 @@ var GoToPreviousPage = function (_a) {
 
 var GoToPreviousPageMenuItem = function (_a) {
     var isDisabled = _a.isDisabled, onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.pageNavigation
         ? l10n.pageNavigation.goToPreviousPage
         : 'Previous page';
-    return (jsxRuntime.jsx(core.MenuItem, { icon: jsxRuntime.jsx(PreviousIcon, {}), isDisabled: isDisabled, testId: "page-navigation__previous-menu", onClick: onClick, children: label }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.MenuItem, { icon: jsxRuntime.jsx(PreviousIcon, {}), isDisabled: isDisabled, testId: "page-navigation__previous-menu", onClick: onClick, children: label }));
 };
 
 var NumberOfPages = function (_a) {
@@ -386,7 +386,7 @@ var ShortcutHandler = function (_a) {
             goToPreviousPage();
             return;
         }
-        var isCommandPressed = core.isMac() ? e.metaKey && !e.ctrlKey : e.altKey;
+        var isCommandPressed = reactPdfViewerCore.isMac() ? e.metaKey && !e.ctrlKey : e.altKey;
         if (isCommandPressed) {
             switch (e.key) {
                 case 'ArrowLeft':
@@ -419,7 +419,7 @@ var ShortcutHandler = function (_a) {
 
 var pageNavigationPlugin = function (props) {
     var pageNavigationPluginProps = React__namespace.useMemo(function () { return Object.assign({}, { enableShortcuts: true }, props); }, []);
-    var store = React__namespace.useMemo(function () { return core.createStore(); }, []);
+    var store = React__namespace.useMemo(function () { return reactPdfViewerCore.createStore(); }, []);
     var CurrentPageInputDecorator = function () { return jsxRuntime.jsx(CurrentPageInput, { store: store }); };
     var CurrentPageLabelDecorator = function (props) { return jsxRuntime.jsx(CurrentPageLabel, __assign({}, props, { store: store })); };
     var GoToFirstPageDecorator = function (props) { return jsxRuntime.jsx(GoToFirstPage, __assign({}, props, { store: store })); };

@@ -1,14 +1,6 @@
-/**
- * A React component to view a PDF document
- *
- * @see https://react-pdf-viewer.dev
- * @license https://react-pdf-viewer.dev/license
- * @copyright 2019-2023 Nguyen Huu Phuoc <me@phuoc.ng>
- */
-
 'use client';
 
-import { LocalizationContext, MinimalButton, Position, Tooltip, type LocalizationMap } from '@react-pdf-viewer/core';
+import { LocalizationContext, MinimalButton, Position, Tooltip, type LocalizationMap } from '@max_alieksieiev/react-pdf-viewer-core';
 import * as React from 'react';
 import { PreviousIcon } from './PreviousIcon';
 import { type RenderGoToPageProps } from './types/index';
