@@ -1,14 +1,6 @@
-/**
- * A React component to view a PDF document
- *
- * @see https://react-pdf-viewer.dev
- * @license https://react-pdf-viewer.dev/license
- * @copyright 2019-2023 Nguyen Huu Phuoc <me@phuoc.ng>
- */
-
 'use client';
 
-import { Spinner, type PdfJs, type Store, type StoreHandler } from '@react-pdf-viewer/core';
+import { Spinner, type PdfJs, type Store, type StoreHandler } from '@max_alieksieiev/react-pdf-viewer-core';
 import * as React from 'react';
 import { BookmarkLoader } from './BookmarkLoader';
 import { type IsBookmarkExpanded } from './types/IsBookmarkExpanded';

@@ -1,7 +1,7 @@
 'use strict';
 
 var jsxRuntime = require('react/jsx-runtime');
-var core = require('@react-pdf-viewer/core');
+var reactPdfViewerCore = require('@max_alieksieiev/react-pdf-viewer-core');
 var React = require('react');
 
 function _interopNamespaceDefault(e) {
@@ -24,10 +24,10 @@ function _interopNamespaceDefault(e) {
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
 var DownArrowIcon = function () {
-    return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M6.427,8.245A.5.5,0,0,1,6.862,7.5H17.138a.5.5,0,0,1,.435.749l-5.139,9a.5.5,0,0,1-.868,0Z" }) }));
+    return (jsxRuntime.jsx(reactPdfViewerCore.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M6.427,8.245A.5.5,0,0,1,6.862,7.5H17.138a.5.5,0,0,1,.435.749l-5.139,9a.5.5,0,0,1-.868,0Z" }) }));
 };
 
-var RightArrowIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M9.248,17.572a.5.5,0,0,1-.748-.434V6.862a.5.5,0,0,1,.748-.434l8.992,5.138a.5.5,0,0,1,0,.868Z" }) })); };
+var RightArrowIcon = function () { return (jsxRuntime.jsx(reactPdfViewerCore.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M9.248,17.572a.5.5,0,0,1-.748-.434V6.862a.5.5,0,0,1,.748-.434l8.992,5.138a.5.5,0,0,1,0,.868Z" }) })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -103,7 +103,7 @@ var BookmarkItem = function (_a) {
     var jumpToDest = function () {
         var dest = bookmark.dest;
         var jumpToDestination = store.get('jumpToDestination');
-        core.getDestination(doc, dest).then(function (target) {
+        reactPdfViewerCore.getDestination(doc, dest).then(function (target) {
             if (jumpToDestination) {
                 jumpToDestination(__assign({ label: bookmark.title }, target));
             }
@@ -254,9 +254,9 @@ var BookmarkListRoot = function (_a) {
 
 var BookmarkLoader = function (_a) {
     var doc = _a.doc, isBookmarkExpanded = _a.isBookmarkExpanded, renderBookmarkItem = _a.renderBookmarkItem, store = _a.store;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
-    var direction = React__namespace.useContext(core.ThemeContext).direction;
-    var isRtl = direction === core.TextDirection.RightToLeft;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
+    var direction = React__namespace.useContext(reactPdfViewerCore.ThemeContext).direction;
+    var isRtl = direction === reactPdfViewerCore.TextDirection.RightToLeft;
     var _b = React__namespace.useState({
         isLoaded: false,
         items: [],
@@ -273,10 +273,10 @@ var BookmarkLoader = function (_a) {
             });
         });
     }, [doc]);
-    return !bookmarks.isLoaded ? (jsxRuntime.jsx("div", { className: "rpv-bookmark__loader", children: jsxRuntime.jsx(core.Spinner, {}) })) : bookmarks.items.length === 0 ? (jsxRuntime.jsx("div", { "data-testid": "bookmark__empty", className: core.classNames({
+    return !bookmarks.isLoaded ? (jsxRuntime.jsx("div", { className: "rpv-bookmark__loader", children: jsxRuntime.jsx(reactPdfViewerCore.Spinner, {}) })) : bookmarks.items.length === 0 ? (jsxRuntime.jsx("div", { "data-testid": "bookmark__empty", className: reactPdfViewerCore.classNames({
             'rpv-bookmark__empty': true,
             'rpv-bookmark__empty--rtl': isRtl,
-        }), children: l10n && l10n.bookmark ? l10n.bookmark.noBookmark : 'There is no bookmark' })) : (jsxRuntime.jsx("div", { "data-testid": "bookmark__container", className: core.classNames({
+        }), children: l10n && l10n.bookmark ? l10n.bookmark.noBookmark : 'There is no bookmark' })) : (jsxRuntime.jsx("div", { "data-testid": "bookmark__container", className: reactPdfViewerCore.classNames({
             'rpv-bookmark__container': true,
             'rpv-bookmark__container--rtl': isRtl,
         }), children: jsxRuntime.jsx(BookmarkListRoot, { bookmarks: bookmarks.items, doc: doc, isBookmarkExpanded: isBookmarkExpanded, renderBookmarkItem: renderBookmarkItem, store: store }) }));
@@ -294,12 +294,12 @@ var BookmarkListWithStore = function (_a) {
             store.unsubscribe('doc', handleDocumentChanged);
         };
     }, []);
-    return currentDoc ? (jsxRuntime.jsx(BookmarkLoader, { doc: currentDoc, isBookmarkExpanded: isBookmarkExpanded, renderBookmarkItem: renderBookmarkItem, store: store })) : (jsxRuntime.jsx("div", { className: "rpv-bookmark__loader", children: jsxRuntime.jsx(core.Spinner, {}) }));
+    return currentDoc ? (jsxRuntime.jsx(BookmarkLoader, { doc: currentDoc, isBookmarkExpanded: isBookmarkExpanded, renderBookmarkItem: renderBookmarkItem, store: store })) : (jsxRuntime.jsx("div", { className: "rpv-bookmark__loader", children: jsxRuntime.jsx(reactPdfViewerCore.Spinner, {}) }));
 };
 
 var bookmarkPlugin = function () {
     var store = React__namespace.useMemo(function () {
-        return core.createStore({
+        return reactPdfViewerCore.createStore({
             bookmarkExpandedMap: new Map(),
         });
     }, []);
