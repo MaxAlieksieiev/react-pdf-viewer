@@ -202,9 +202,9 @@ export const ClickDrag: React.FC<{
         }
 
         if(isMobile()) {
-            textLayerEle.addEventListener('textLayerEle touchstart', handleMouseDown);
+            textLayerEle.addEventListener('touchstart', handleMouseDown);
         } else {
-            textLayerEle.addEventListener('textLayerEle mousedown', handleMouseDown);
+            textLayerEle.addEventListener('mousedown', handleMouseDown);
         }
 
         const eventOptions = {
@@ -213,14 +213,14 @@ export const ClickDrag: React.FC<{
         
         
         if(isMobile()) {
-            document.addEventListener('document touchend', handleDocumenClick, eventOptions);
+            document.addEventListener('touchend', handleDocumenClick, eventOptions);
         } else {
-            document.addEventListener('document keydown', handleDocumentKeyDown);
-            document.addEventListener('document click', handleDocumenClick, eventOptions);
+            document.addEventListener('keydown', handleDocumentKeyDown);
+            document.addEventListener('click', handleDocumenClick, eventOptions);
         }
         return () => {
             if(isMobile()) {
-                textLayerEle.removeEventListener('textLayerEle rem touchend', handleMouseDown);
+                textLayerEle.removeEventListener('touchend', handleMouseDown);
                 document.removeEventListener('touchend', handleDocumenClick, eventOptions);
             } else {
                 textLayerEle.removeEventListener('mousedown', handleMouseDown);
