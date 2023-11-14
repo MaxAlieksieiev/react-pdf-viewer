@@ -1,14 +1,7 @@
-/**
- * A React component to view a PDF document
- *
- * @see https://react-pdf-viewer.dev
- * @license https://react-pdf-viewer.dev/license
- * @copyright 2019-2023 Nguyen Huu Phuoc <me@phuoc.ng>
- */
 
 'use client';
 
-import { MinimalButton, Position, Tooltip, isMac, type Store, type StoreHandler } from '@react-pdf-viewer/core';
+import { MinimalButton, Position, Tooltip, isMac, type Store, type StoreHandler } from '@max_alieksieiev/react-pdf-viewer-core';
 import * as React from 'react';
 import { ShowSearchPopoverDecorator } from './ShowSearchPopoverDecorator';
 import { type StoreProps } from './types/StoreProps';

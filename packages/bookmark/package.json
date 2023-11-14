@@ -1,6 +1,6 @@
 {
     "name": "@max_alieksieiev/react-pdf-viewer-bookmark",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "A React component to view a PDF document",
     "license": "MIT",
     "author": {

@@ -1,7 +1,7 @@
 'use strict';
 
 var jsxRuntime = require('react/jsx-runtime');
-var core = require('@react-pdf-viewer/core');
+var reactPdfViewerCore = require('@max_alieksieiev/react-pdf-viewer-core');
 var React = require('react');
 
 function _interopNamespaceDefault(e) {
@@ -23,11 +23,11 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-var NextIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M0.541,5.627L11.666,18.2c0.183,0.207,0.499,0.226,0.706,0.043c0.015-0.014,0.03-0.028,0.043-0.043\n            L23.541,5.627" }) })); };
+var NextIcon = function () { return (jsxRuntime.jsx(reactPdfViewerCore.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M0.541,5.627L11.666,18.2c0.183,0.207,0.499,0.226,0.706,0.043c0.015-0.014,0.03-0.028,0.043-0.043\n            L23.541,5.627" }) })); };
 
-var PreviousIcon = function () { return (jsxRuntime.jsx(core.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M23.535,18.373L12.409,5.8c-0.183-0.207-0.499-0.226-0.706-0.043C11.688,5.77,11.674,5.785,11.66,5.8\n            L0.535,18.373" }) })); };
+var PreviousIcon = function () { return (jsxRuntime.jsx(reactPdfViewerCore.Icon, { size: 16, children: jsxRuntime.jsx("path", { d: "M23.535,18.373L12.409,5.8c-0.183-0.207-0.499-0.226-0.706-0.043C11.688,5.77,11.674,5.785,11.66,5.8\n            L0.535,18.373" }) })); };
 
-var SearchIcon = function () { return (jsxRuntime.jsx(core.Icon, { ignoreDirection: true, size: 16, children: jsxRuntime.jsx("path", { d: "M10.5,0.5c5.523,0,10,4.477,10,10s-4.477,10-10,10s-10-4.477-10-10S4.977,0.5,10.5,0.5z\n            M23.5,23.5\n            l-5.929-5.929" }) })); };
+var SearchIcon = function () { return (jsxRuntime.jsx(reactPdfViewerCore.Icon, { ignoreDirection: true, size: 16, children: jsxRuntime.jsx("path", { d: "M10.5,0.5c5.523,0,10,4.477,10,10s-4.477,10-10,10s-10-4.477-10-10S4.977,0.5,10.5,0.5z\n            M23.5,23.5\n            l-5.929-5.929" }) })); };
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -74,7 +74,7 @@ var getCssProperties = function (area) {
 var HightlightItem = function (_a) {
     var index = _a.index, area = _a.area, onHighlightKeyword = _a.onHighlightKeyword;
     var containerRef = React__namespace.useRef();
-    core.useIsomorphicLayoutEffect(function () {
+    reactPdfViewerCore.useIsomorphicLayoutEffect(function () {
         var highlightEle = containerRef.current;
         if (onHighlightKeyword && highlightEle) {
             onHighlightKeyword({
@@ -157,7 +157,7 @@ var Highlights = function (_a) {
     var _d = React__namespace.useState({
         pageIndex: pageIndex,
         scale: 1,
-        status: core.LayerRenderStatus.PreRender,
+        status: reactPdfViewerCore.LayerRenderStatus.PreRender,
     }), renderStatus = _d[0], setRenderStatus = _d[1];
     var currentMatchRef = React__namespace.useRef(null);
     var characterIndexesRef = React__namespace.useRef([]);
@@ -275,7 +275,7 @@ var Highlights = function (_a) {
     };
     React__namespace.useEffect(function () {
         if (isEmptyKeyword() ||
-            renderStatus.status !== core.LayerRenderStatus.DidRender ||
+            renderStatus.status !== reactPdfViewerCore.LayerRenderStatus.DidRender ||
             characterIndexesRef.current.length) {
             return;
         }
@@ -302,7 +302,7 @@ var Highlights = function (_a) {
     React__namespace.useEffect(function () {
         if (isEmptyKeyword() ||
             !renderStatus.ele ||
-            renderStatus.status !== core.LayerRenderStatus.DidRender ||
+            renderStatus.status !== reactPdfViewerCore.LayerRenderStatus.DidRender ||
             !targetPageFilter()({ pageIndex: pageIndex, numPages: numPages })) {
             return;
         }
@@ -311,7 +311,7 @@ var Highlights = function (_a) {
         setHighlightAreas(highlightPos);
     }, [keywordRegexp, matchPosition, renderStatus.status, characterIndexesRef.current]);
     React__namespace.useEffect(function () {
-        if (isEmptyKeyword() && renderStatus.ele && renderStatus.status === core.LayerRenderStatus.DidRender) {
+        if (isEmptyKeyword() && renderStatus.ele && renderStatus.status === reactPdfViewerCore.LayerRenderStatus.DidRender) {
             setHighlightAreas([]);
         }
     }, [keywordRegexp, renderStatus.status]);
@@ -322,7 +322,7 @@ var Highlights = function (_a) {
         var container = containerRef.current;
         if (matchPosition.pageIndex !== pageIndex ||
             !container ||
-            renderStatus.status !== core.LayerRenderStatus.DidRender) {
+            renderStatus.status !== reactPdfViewerCore.LayerRenderStatus.DidRender) {
             return;
         }
         var highlightEle = container.querySelector(".rpv-search__highlight[data-index=\"".concat(matchPosition.matchIndex, "\"]"));
@@ -481,7 +481,7 @@ var useSearch = function (store) {
         var promises = Array(currentDoc.numPages)
             .fill(0)
             .map(function (_, pageIndex) {
-            return core.getPage(currentDoc, pageIndex)
+            return reactPdfViewerCore.getPage(currentDoc, pageIndex)
                 .then(function (page) {
                 return page.getTextContent();
             })
@@ -620,7 +620,7 @@ var ShortcutHandler = function (_a) {
         if (e.shiftKey || e.altKey || e.key !== 'f') {
             return;
         }
-        var isCommandPressed = core.isMac() ? e.metaKey && !e.ctrlKey : e.ctrlKey;
+        var isCommandPressed = reactPdfViewerCore.isMac() ? e.metaKey && !e.ctrlKey : e.ctrlKey;
         if (!isCommandPressed) {
             return;
         }
@@ -649,11 +649,11 @@ var ShortcutHandler = function (_a) {
 var PORTAL_OFFSET$1 = { left: 0, top: 8 };
 var SearchPopover = function (_a) {
     var store = _a.store, onToggle = _a.onToggle;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
-    var direction = React__namespace.useContext(core.ThemeContext).direction;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
+    var direction = React__namespace.useContext(reactPdfViewerCore.ThemeContext).direction;
     var _b = React__namespace.useState(false), isQuerying = _b[0], setIsQuerying = _b[1];
     var _c = React__namespace.useState(false), searchDone = _c[0], setSearchDone = _c[1];
-    var isRtl = direction === core.TextDirection.RightToLeft;
+    var isRtl = direction === reactPdfViewerCore.TextDirection.RightToLeft;
     var _d = useSearch(store), clearKeyword = _d.clearKeyword, changeMatchCase = _d.changeMatchCase, changeWholeWords = _d.changeWholeWords, currentMatch = _d.currentMatch, jumpToNextMatch = _d.jumpToNextMatch, jumpToPreviousMatch = _d.jumpToPreviousMatch, keyword = _d.keyword, matchCase = _d.matchCase, numberOfMatches = _d.numberOfMatches, wholeWords = _d.wholeWords, search = _d.search, setKeyword = _d.setKeyword;
     var performSearch = function (cb) {
         setIsQuerying(true);
@@ -696,20 +696,20 @@ var SearchPopover = function (_a) {
     var previousMatchLabel = l10n && l10n.search ? l10n.search.previousMatch : 'Previous match';
     var nextMatchLabel = l10n && l10n.search ? l10n.search.nextMatch : 'Next match';
     var closeButtonLabel = l10n && l10n.search ? l10n.search.close : 'Close';
-    return (jsxRuntime.jsxs("div", { className: "rpv-search__popover", children: [jsxRuntime.jsxs("div", { className: "rpv-search__popover-input-counter", children: [jsxRuntime.jsx(core.TextBox, { ariaLabel: searchLabel, autoFocus: true, placeholder: searchLabel, type: "text", value: keyword, onChange: onChangeKeyword, onKeyDown: onKeydownSearch }), jsxRuntime.jsxs("div", { className: core.classNames({
+    return (jsxRuntime.jsxs("div", { className: "rpv-search__popover", children: [jsxRuntime.jsxs("div", { className: "rpv-search__popover-input-counter", children: [jsxRuntime.jsx(reactPdfViewerCore.TextBox, { ariaLabel: searchLabel, autoFocus: true, placeholder: searchLabel, type: "text", value: keyword, onChange: onChangeKeyword, onKeyDown: onKeydownSearch }), jsxRuntime.jsxs("div", { className: reactPdfViewerCore.classNames({
                             'rpv-search__popover-counter': true,
                             'rpv-search__popover-counter--ltr': !isRtl,
                             'rpv-search__popover-counter--rtl': isRtl,
-                        }), children: [isQuerying && jsxRuntime.jsx(core.Spinner, { testId: "search__popover-searching", size: "1rem" }), !isQuerying && (jsxRuntime.jsxs("span", { "data-testid": "search__popover-num-matches", children: [currentMatch, "/", numberOfMatches] }))] })] }), jsxRuntime.jsxs("label", { className: "rpv-search__popover-label", children: [jsxRuntime.jsx("input", { className: "rpv-search__popover-label-checkbox", "data-testid": "search__popover-match-case", checked: matchCase, type: "checkbox", onChange: onChangeMatchCase }), ' ', l10n && l10n.search ? l10n.search.matchCase : 'Match case'] }), jsxRuntime.jsxs("label", { className: "rpv-search__popover-label", children: [jsxRuntime.jsx("input", { className: "rpv-search__popover-label-checkbox", checked: wholeWords, "data-testid": "search__popover-whole-words", type: "checkbox", onChange: onChangeWholeWords }), ' ', l10n && l10n.search ? l10n.search.wholeWords : 'Whole words'] }), jsxRuntime.jsxs("div", { className: "rpv-search__popover-footer", children: [jsxRuntime.jsx("div", { className: "rpv-search__popover-footer-item", children: jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "search-previous-match", position: isRtl ? core.Position.BottomRight : core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: previousMatchLabel, isDisabled: currentMatch <= 1, onClick: jumpToPreviousMatch, children: jsxRuntime.jsx(PreviousIcon, {}) }), content: function () { return previousMatchLabel; }, offset: PORTAL_OFFSET$1 }) }), jsxRuntime.jsx("div", { className: "rpv-search__popover-footer-item", children: jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "search-next-match", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaLabel: nextMatchLabel, isDisabled: currentMatch > numberOfMatches - 1, onClick: jumpToNextMatch, children: jsxRuntime.jsx(NextIcon, {}) }), content: function () { return nextMatchLabel; }, offset: PORTAL_OFFSET$1 }) }), jsxRuntime.jsx("div", { className: core.classNames({
+                        }), children: [isQuerying && jsxRuntime.jsx(reactPdfViewerCore.Spinner, { testId: "search__popover-searching", size: "1rem" }), !isQuerying && (jsxRuntime.jsxs("span", { "data-testid": "search__popover-num-matches", children: [currentMatch, "/", numberOfMatches] }))] })] }), jsxRuntime.jsxs("label", { className: "rpv-search__popover-label", children: [jsxRuntime.jsx("input", { className: "rpv-search__popover-label-checkbox", "data-testid": "search__popover-match-case", checked: matchCase, type: "checkbox", onChange: onChangeMatchCase }), ' ', l10n && l10n.search ? l10n.search.matchCase : 'Match case'] }), jsxRuntime.jsxs("label", { className: "rpv-search__popover-label", children: [jsxRuntime.jsx("input", { className: "rpv-search__popover-label-checkbox", checked: wholeWords, "data-testid": "search__popover-whole-words", type: "checkbox", onChange: onChangeWholeWords }), ' ', l10n && l10n.search ? l10n.search.wholeWords : 'Whole words'] }), jsxRuntime.jsxs("div", { className: "rpv-search__popover-footer", children: [jsxRuntime.jsx("div", { className: "rpv-search__popover-footer-item", children: jsxRuntime.jsx(reactPdfViewerCore.Tooltip, { ariaControlsSuffix: "search-previous-match", position: isRtl ? reactPdfViewerCore.Position.BottomRight : reactPdfViewerCore.Position.BottomCenter, target: jsxRuntime.jsx(reactPdfViewerCore.MinimalButton, { ariaLabel: previousMatchLabel, isDisabled: currentMatch <= 1, onClick: jumpToPreviousMatch, children: jsxRuntime.jsx(PreviousIcon, {}) }), content: function () { return previousMatchLabel; }, offset: PORTAL_OFFSET$1 }) }), jsxRuntime.jsx("div", { className: "rpv-search__popover-footer-item", children: jsxRuntime.jsx(reactPdfViewerCore.Tooltip, { ariaControlsSuffix: "search-next-match", position: reactPdfViewerCore.Position.BottomCenter, target: jsxRuntime.jsx(reactPdfViewerCore.MinimalButton, { ariaLabel: nextMatchLabel, isDisabled: currentMatch > numberOfMatches - 1, onClick: jumpToNextMatch, children: jsxRuntime.jsx(NextIcon, {}) }), content: function () { return nextMatchLabel; }, offset: PORTAL_OFFSET$1 }) }), jsxRuntime.jsx("div", { className: reactPdfViewerCore.classNames({
                             'rpv-search__popover-footer-button': true,
                             'rpv-search__popover-footer-button--ltr': !isRtl,
                             'rpv-search__popover-footer-button--rtl': isRtl,
-                        }), children: jsxRuntime.jsx(core.Button, { onClick: onClose, children: closeButtonLabel }) })] })] }));
+                        }), children: jsxRuntime.jsx(reactPdfViewerCore.Button, { onClick: onClose, children: closeButtonLabel }) })] })] }));
 };
 
 var ShowSearchPopoverDecorator = function (_a) {
     var children = _a.children, onClick = _a.onClick;
-    var l10n = React__namespace.useContext(core.LocalizationContext).l10n;
+    var l10n = React__namespace.useContext(reactPdfViewerCore.LocalizationContext).l10n;
     var label = l10n && l10n.search ? l10n.search.search : 'Search';
     var icon = jsxRuntime.jsx(SearchIcon, {});
     return children({ icon: icon, label: label, onClick: onClick });
@@ -718,7 +718,7 @@ var ShowSearchPopoverDecorator = function (_a) {
 var TOOLTIP_OFFSET = { left: 0, top: 8 };
 var ShowSearchPopoverButton = function (_a) {
     var enableShortcuts = _a.enableShortcuts, store = _a.store, onClick = _a.onClick;
-    var ariaKeyShortcuts = enableShortcuts ? (core.isMac() ? 'Meta+F' : 'Ctrl+F') : '';
+    var ariaKeyShortcuts = enableShortcuts ? (reactPdfViewerCore.isMac() ? 'Meta+F' : 'Ctrl+F') : '';
     var handleShortcutsPressed = function (areShortcutsPressed) {
         if (areShortcutsPressed) {
             onClick();
@@ -730,17 +730,17 @@ var ShowSearchPopoverButton = function (_a) {
             store.unsubscribe('areShortcutsPressed', handleShortcutsPressed);
         };
     }, []);
-    return (jsxRuntime.jsx(ShowSearchPopoverDecorator, { onClick: onClick, children: function (p) { return (jsxRuntime.jsx(core.Tooltip, { ariaControlsSuffix: "search-popover", position: core.Position.BottomCenter, target: jsxRuntime.jsx(core.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: p.label, testId: "search__popover-button", onClick: onClick, children: p.icon }), content: function () { return p.label; }, offset: TOOLTIP_OFFSET })); } }));
+    return (jsxRuntime.jsx(ShowSearchPopoverDecorator, { onClick: onClick, children: function (p) { return (jsxRuntime.jsx(reactPdfViewerCore.Tooltip, { ariaControlsSuffix: "search-popover", position: reactPdfViewerCore.Position.BottomCenter, target: jsxRuntime.jsx(reactPdfViewerCore.MinimalButton, { ariaKeyShortcuts: ariaKeyShortcuts, ariaLabel: p.label, testId: "search__popover-button", onClick: onClick, children: p.icon }), content: function () { return p.label; }, offset: TOOLTIP_OFFSET })); } }));
 };
 
 var PORTAL_OFFSET = { left: 0, top: 8 };
 var ShowSearchPopover = function (_a) {
     var children = _a.children, enableShortcuts = _a.enableShortcuts, store = _a.store;
-    var direction = React__namespace.useContext(core.ThemeContext).direction;
-    var portalPosition = direction === core.TextDirection.RightToLeft ? core.Position.BottomRight : core.Position.BottomLeft;
+    var direction = React__namespace.useContext(reactPdfViewerCore.ThemeContext).direction;
+    var portalPosition = direction === reactPdfViewerCore.TextDirection.RightToLeft ? reactPdfViewerCore.Position.BottomRight : reactPdfViewerCore.Position.BottomLeft;
     var defaultChildren = function (props) { return (jsxRuntime.jsx(ShowSearchPopoverButton, __assign({ enableShortcuts: enableShortcuts, store: store }, props))); };
     var render = children || defaultChildren;
-    return (jsxRuntime.jsx(core.Popover, { ariaControlsSuffix: "search", lockScroll: false, position: portalPosition, target: function (toggle) {
+    return (jsxRuntime.jsx(reactPdfViewerCore.Popover, { ariaControlsSuffix: "search", lockScroll: false, position: portalPosition, target: function (toggle) {
             return render({
                 onClick: toggle,
             });
@@ -753,7 +753,7 @@ var normalizeKeywords = function (keyword) {
 var searchPlugin = function (props) {
     var searchPluginProps = React__namespace.useMemo(function () { return Object.assign({}, { enableShortcuts: true, onHighlightKeyword: function () { } }, props); }, []);
     var store = React__namespace.useMemo(function () {
-        return core.createStore({
+        return reactPdfViewerCore.createStore({
             initialKeyword: props && props.keyword ? (Array.isArray(props.keyword) ? props.keyword : [props.keyword]) : [],
             keyword: props && props.keyword ? normalizeKeywords(props.keyword) : [EMPTY_KEYWORD_REGEXP],
             matchPosition: {

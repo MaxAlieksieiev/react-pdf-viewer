@@ -9,7 +9,7 @@
 'use strict';
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports = require('./cjs/bookmark.min.js');
+    module.exports = require('./cjs/react-pdf-viewer-bookmark.min.js');
 } else {
-    module.exports = require('./cjs/bookmark.js');
+    module.exports = require('./cjs/react-pdf-viewer-bookmark.js');
 }

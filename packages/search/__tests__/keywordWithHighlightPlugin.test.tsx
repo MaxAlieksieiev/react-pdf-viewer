@@ -1,5 +1,5 @@
-import { PdfJsApiContext, Viewer, type PdfJsApiProvider } from '@react-pdf-viewer/core';
-import { highlightPlugin } from '@react-pdf-viewer/highlight';
+import { PdfJsApiContext, Viewer, type PdfJsApiProvider } from '@max_alieksieiev/react-pdf-viewer-core';
+import { highlightPlugin } from '@max_alieksieiev/react-pdf-viewer-highlight';
 import { findAllByTitle } from '@testing-library/dom';
 import { fireEvent, render, waitForElementToBeRemoved } from '@testing-library/react';
 import * as PdfJs from 'pdfjs-dist';
